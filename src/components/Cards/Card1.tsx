@@ -8,7 +8,7 @@ interface Card1Props {
 
 const Card1 = ({ title, description, color }: Card1Props) => {
   return (
-    <div className="relative col-start-1 col-end-6 row-start-1 row-end-6">
+    <div className="relative col-start-1 col-end-6 row-start-1 row-end-6 ">
 
       {/* PROFILE PHOTO */}
       <div className="absolute rounded-full overflow-hidden z-20 ">

@@ -45,6 +45,8 @@ body {
 
 .bentogrid{
   margin: 0rem 2rem;
+  grid-auto-flow:column;  /*when add grid add in width */
+  grid:repeat(auto-fit, minmax(250px, 1fr)) / auto-flow;
 
 }
 .navbar {
@@ -156,11 +158,12 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: clamp(5px, 1.5vw, 20px); /* slightly smaller min and max */
-  line-height: clamp(7px, 2vw, 28px);  /* slightly smaller max */
+  line-height: clamp(10px, 2vw, 28px);  /* slightly smaller max */
   letter-spacing: 0;
   text-transform: none;
     font-family: "GT Walsheim", sans-serif;
     margin-bottom: 0.5rem;
+    margin-top: 2rem;
 }
 
 .card-description-md {
@@ -189,7 +192,7 @@ body {
   font-weight: 600;
   font-style: normal;
   font-size: clamp(10px, 2vw, 48px); /* keep as is */
-  line-height: 33px; 
+  line-height: clamp(10px, 2vw, 33px);
   letter-spacing: clamp(-1px, -0.2vw, -2px);
   text-transform: capitalize;
   font-family: "GT Walsheim", sans-serif;
@@ -201,12 +204,12 @@ body {
   font-weight: 600;
   font-style: normal;
   font-size: clamp(8px, 1.5vw, 32px);
-  line-height: clamp(10px, 2vw, 40px);
+  line-height: clamp(8px, 2vw, 30px);
   letter-spacing: clamp(-1px, -0.15vw, -2px);
   text-transform: capitalize;
     font-family: "GT Walsheim", sans-serif;
      margin-bottom: 0.5rem;
-     line-height: 30px;
+     
 }
 
 .card-title-sm {
@@ -214,12 +217,11 @@ body {
   font-weight: 600;
   font-style: normal;
   font-size: clamp(6px, 1vw, 24px);
-  line-height: clamp(8px, 1.5vw, 32px);
+  line-height: clamp(8px, 1.5vw, 16px);
   letter-spacing: clamp(-0.5px, -0.1vw, -2px);
   text-transform: capitalize;
   font-family: "GT Walsheim", sans-serif;
   margin-bottom: 0;
-  line-height: 16px;
 }
 
 /* CARD BACKGROUND */
