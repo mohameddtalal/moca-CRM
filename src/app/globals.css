@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F7F7F7;
+  --foreground: #171717;
+  --navbar: #FEFEFE;
+  --yellow: #FFE42C;
+  --green: #1FA293;
+  --purple: #9A28CD;
+  --energy-green: #3BFFB5;
+  --skin-pink: #FFD3D2;
+  --hot-purple: #B433FF;
+  --peach: #FFA480;
+  --black: #1D1D1B;
+}
+
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bentogrid{
+  margin: 0rem 2rem;
+
+}
+
+.navbar{
+  background-color: var(--navbar);
+  margin: 1.5rem 2rem;
+}
+.logo-img {
+  width: 45%;
+  height: auto;
+  margin: 1rem 2rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.navItems {
+  display: flex;
+  align-items: center;
+  margin: 1rem 2rem;
+
+}
+
+.notifications, .quote , .search{
+  width: 36.5px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--purple);
+  border-radius: 50px;
+  margin: 0;
+}
+
+.line {
+   margin: 0 -4px;
+   width: 15px;
+   height: 40px;
+   padding: 0;
+   border: none;
+   background-color: var(--purple);
+   display: block;
+   flex-shrink: 0;
+   clip-path: polygon(
+     0% 25%,
+     0% 10%,
+     0% 0%,
+     0% 100%,
+     0% 90%,
+     0% 75%,
+     10% 68%,
+     20% 63%,
+     30% 60%,
+     40% 58%,
+     50% 57%,
+     60% 58%,
+     70% 60%,
+     80% 63%,
+     90% 68%,
+     100% 75%,
+     100% 90%,
+     100% 100%,
+     100% 0%,
+     100% 10%,
+     100% 25%,
+     90% 32%,
+     80% 37%,
+     70% 40%,
+     60% 42%,
+     50% 43%,
+     40% 42%,
+     30% 40%,
+     20% 37%,
+     10% 32%
+   );
+}
+.notification-badge { 
+  position: absolute; 
+  top: 0px; 
+  right: 0px; 
+  background-color: #ff4757; 
+  color: white; 
+  width: 20px; 
+  height: 20px; 
+  border-radius: 50%; 
+  display:flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 12px; 
+  font-weight: bold;
+  border: 2px solid white;
+
+}
+
+.header{
+  height: auto;
+  margin-top: 1rem;
+}
+
+.scrollItem{
+  font-size: 25px;
+}
+
+.card-title{
+font-weight: 600;
+font-size:clamp(1.5rem, 0.5661rem + 6.6116vw, 3rem);
+line-height: 50px;
+}
+
+.card-description-lg{
+font-weight: 400;
+font-style: normal;
+font-size: clamp(12px, 2vw + 16px, 24px);
+line-height: clamp(18px, 2vw + 16px, 28px);
+letter-spacing: 0%;
+text-transform: none;
+
+}
+
+.card-description-md{
+font-weight: 400;
+font-style: normal;
+font-size: clamp(8px, 2vw + 16px, 16px);
+line-height: clamp(16px, 2vw + 16px, 24px);
+letter-spacing: 0%;
+text-transform: none;
+
+}
+.card-description-sm{
+  font-weight: 400;
+font-style: normal;
+font-size: clamp(7px, 2vw + 16px, 14px);
+line-height: clamp(8px, 2vw + 16px, 16px);
+letter-spacing: 0%;
+text-transform: none;
+
+}
+
+.card-bg{
+  border-radius: 24px;
+}
+
+.card-title-lg{
+font-weight: 600;
+font-style: medium;
+font-size: clamp(32px, 4vw + 16px, 48px);
+line-height: clamp(40px, 4vw + 24px, 56px);
+letter-spacing: clamp(-4%, -3vw, -2%);
+text-transform: capitalize;
+}
+.card-title-md{
+font-weight: 600;
+font-style: medium;
+font-size: clamp(24px, 3vw + 16px, 32px);
+line-height: clamp(32px, 3vw + 24px, 40px);
+letter-spacing: clamp(-4%, -3vw, -2%);
+text-transform: capitalize;
+}
+.card-title-sm{
+font-weight: 600;
+font-style: medium;
+font-size: clamp(18px, 2vw + 16px, 24px);
+line-height: clamp(24px, 2vw + 24px, 32px);
+letter-spacing: clamp(-4%, -3vw, -2%);
+text-transform: capitalize;
+}
+
