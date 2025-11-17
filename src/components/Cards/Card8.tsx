@@ -26,17 +26,29 @@ const Card8 = ({ title, description, color }: Card8Props) => {
           {description}
         </p>
 
-        {/* Arrow Button */}
-        <button className="bg-black w-16 h-16 rounded-full flex items-center justify-center">
-          <Image
-            src="/assets/arrow_forward.svg"
-            alt="Arrow"
-            width={24}
-            height={24}
-          />
-        </button>
+{/* ARROW BUTTON — stays inside card */}
+<div className="place-self-start mt-[clamp(2px,1vw,8px)]">
+  <button
+    className="bg-black rounded-full flex items-center justify-center"
+    style={{
+      width: "clamp(24px, 5vw, 44px)",  // smaller min & max
+      height: "clamp(24px, 5vw, 44px)", // smaller min & max
+    }}
+  >
+    <Image
+      src="/assets/arrow_forward.svg"
+      alt="Arrow"
+      width={24} // fallback
+      height={24} // fallback
+      style={{
+        width: "clamp(10px, 3vw, 18px)",  // smaller icon for mobile/tablet
+        height: "clamp(10px, 3vw, 18px)",
+      }}
+    />
+  </button>
+</div>
 
-      </div>
+       </div>
     </div>
   );
 };

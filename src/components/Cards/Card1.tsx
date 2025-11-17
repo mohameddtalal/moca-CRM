@@ -8,7 +8,7 @@ interface Card1Props {
 
 const Card1 = ({ title, description, color }: Card1Props) => {
   return (
-    <div className="relative col-start-1 col-end-6 row-start-1 row-end-6">
+    <div className="relative col-start-1 col-end-6 row-start-1 row-end-6 ">
 
       {/* PHOTO — unchanged exactly as you had it */}
       <div className="absolute rounded-full overflow-hidden z-20">
@@ -42,18 +42,29 @@ const Card1 = ({ title, description, color }: Card1Props) => {
             >
               {description}
             </p>
+{/* ARROW BUTTON — stays inside card */}
+<div className="place-self-start mt-[clamp(2px,1vw,8px)]">
+  <button
+    className="bg-black rounded-full flex items-center justify-center"
+    style={{
+      width: "clamp(24px, 5vw, 44px)",  // smaller min & max
+      height: "clamp(24px, 5vw, 44px)", // smaller min & max
+    }}
+  >
+    <Image
+      src="/assets/arrow_forward.svg"
+      alt="Arrow"
+      width={24} // fallback
+      height={24} // fallback
+      style={{
+        width: "clamp(10px, 3vw, 18px)",  // smaller icon for mobile/tablet
+        height: "clamp(10px, 3vw, 18px)",
+      }}
+    />
+  </button>
+</div>
 
-            {/* ARROW BUTTON — stays inside card */}
-            <div className="place-self-start mt-4">
-              <button className="bg-black w-14 h-14 rounded-full flex items-center justify-center">
-                <Image
-                  src="/assets/arrow_forward.svg"
-                  alt="Arrow"
-                  width={24}
-                  height={24}
-                />
-              </button>
-            </div>
+
 
           </div>
         </div>

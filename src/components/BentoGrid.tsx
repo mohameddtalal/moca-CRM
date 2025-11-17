@@ -22,12 +22,12 @@ const BentoGrid = () => {
       <Card1 title="Bookings Planner"
             description="Centralized management of bookings, schedules, and space availability across locations."
             color="bg-[var(--yellow)]"
-            profilePhoto="/assets/profile-photo.svg"
         />
-        <Card2 title="People of moca"
+        <Card2 title={"People of \nMoca"} 
+                        
             description="Centralized management of bookings, schedules, and space availability across locations."
             color="bg-[var(--green)]"/>
-        <Card3 title="Operations Center"
+        <Card3 title={"Operations \nCenter"}
             description="Central hub linking key operational tasks for seamless tracking, reporting, and workflow management."
             color="bg-[var(--purple)]"/>
 
@@ -35,7 +35,7 @@ const BentoGrid = () => {
             description="A real-time dashboard for bookings, revenue, members, and workspace performance."
             color="bg-[var(--energy-green)]"/>
 
-        <Card5 title="Experience & Engagement Lab"
+        <Card5 title={"Experience &\nEngagement Lab"}
             description="A tools lab that drives engagement and growth where experience is refined and elevated."
             color="bg-[var(--skin-pink)]"/>
         <Card6 title="Payment center"

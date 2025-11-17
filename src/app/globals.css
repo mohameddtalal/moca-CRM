@@ -104,92 +104,89 @@ body {
 }
 .notification-badge { 
   position: absolute; 
-  top: 0px; 
-  right: 0px; 
+  top: 0; 
+  right: 0; 
   background-color: #ff4757; 
   color: white; 
-  width: 20px; 
-  height: 20px; 
+  width: clamp(16px, 3vw, 24px); /* dynamic size */
+  height: clamp(16px, 3vw, 24px); /* dynamic size */
   border-radius: 50%; 
-  display:flex; 
+  display: flex; 
   align-items: center; 
   justify-content: center; 
-  font-size: 12px; 
+  font-size: clamp(10px, 1.5vw, 14px); /* dynamic font-size */
   font-weight: bold;
-  border: 2px solid white;
-
+  border: clamp(1px, 0.3vw, 2px) solid white; /* dynamic border */
 }
 
-.header{
+.header {
   height: auto;
-  margin-top: 1rem;
+  margin-top: clamp(0.5rem, 1vw, 1.5rem); /* dynamic margin */
 }
 
-.scrollItem{
-  font-size: 25px;
+.scrollItem {
+  font-size: clamp(18px, 2.5vw, 25px); /* dynamic font size */
 }
-
-.card-title{
-font-weight: 600;
-font-size:clamp(1.5rem, 0.5661rem + 6.6116vw, 3rem);
-line-height: 50px;
-}
-
-.card-description-lg{
-font-weight: 400;
-font-style: normal;
-font-size: clamp(12px, 2vw + 16px, 24px);
-line-height: clamp(18px, 2vw + 16px, 28px);
-letter-spacing: 0%;
-text-transform: none;
-
-}
-
-.card-description-md{
-font-weight: 400;
-font-style: normal;
-font-size: clamp(8px, 2vw + 16px, 16px);
-line-height: clamp(16px, 2vw + 16px, 24px);
-letter-spacing: 0%;
-text-transform: none;
-
-}
-.card-description-sm{
+/* CARD DESCRIPTIONS */
+.card-description-lg {
   font-weight: 400;
-font-style: normal;
-font-size: clamp(7px, 2vw + 16px, 14px);
-line-height: clamp(8px, 2vw + 16px, 16px);
-letter-spacing: 0%;
-text-transform: none;
-
+  font-style: normal;
+  font-size: clamp(5px, 1.5vw, 20px); /* slightly smaller min and max */
+  line-height: clamp(7px, 2vw, 28px);  /* slightly smaller max */
+  letter-spacing: 0;
+  text-transform: none;
 }
 
-.card-bg{
+.card-description-md {
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(4px, 1.2vw, 16px); /* slightly smaller min and max */
+  line-height: clamp(6px, 1.5vw, 22px); /* slightly smaller max */
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.card-description-sm {
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(3px, 1vw, 14px); /* slightly smaller min and max */
+  line-height: clamp(5px, 1.2vw, 16px); /* slightly smaller max */
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* CARD TITLES */
+.card-title-lg {
+    white-space: pre-line;
+  font-weight: 600;
+  font-style: normal;
+  font-size: clamp(10px, 2vw, 48px); /* keep as is */
+  line-height: clamp(12px, 3vw, 56px);
+  letter-spacing: clamp(-1px, -0.2vw, -2px);
+  text-transform: capitalize;
+}
+
+.card-title-md {
+    white-space: pre-line;
+  font-weight: 600;
+  font-style: normal;
+  font-size: clamp(8px, 1.5vw, 32px);
+  line-height: clamp(10px, 2vw, 40px);
+  letter-spacing: clamp(-1px, -0.15vw, -2px);
+  text-transform: capitalize;
+}
+
+.card-title-sm {
+    white-space: pre-line;
+  font-weight: 600;
+  font-style: normal;
+  font-size: clamp(6px, 1vw, 24px);
+  line-height: clamp(8px, 1.5vw, 32px);
+  letter-spacing: clamp(-0.5px, -0.1vw, -2px);
+  text-transform: capitalize;
+}
+
+/* CARD BACKGROUND */
+.card-bg {
   border-radius: 24px;
 }
-
-.card-title-lg{
-font-weight: 600;
-font-style: medium;
-font-size: clamp(32px, 4vw + 16px, 48px);
-line-height: clamp(40px, 4vw + 24px, 56px);
-letter-spacing: clamp(-4%, -3vw, -2%);
-text-transform: capitalize;
-}
-.card-title-md{
-font-weight: 600;
-font-style: medium;
-font-size: clamp(24px, 3vw + 16px, 32px);
-line-height: clamp(32px, 3vw + 24px, 40px);
-letter-spacing: clamp(-4%, -3vw, -2%);
-text-transform: capitalize;
-}
-.card-title-sm{
-font-weight: 600;
-font-style: medium;
-font-size: clamp(18px, 2vw + 16px, 24px);
-line-height: clamp(24px, 2vw + 24px, 32px);
-letter-spacing: clamp(-4%, -3vw, -2%);
-text-transform: capitalize;
-}
-
