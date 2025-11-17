@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+
+
+
+
+
 :root {
   --background: #F7F7F7;
   --foreground: #171717;
@@ -14,6 +19,23 @@
   --black: #1D1D1B;
 }
 
+@font-face {
+  font-family: "GT Walsheim";
+  src: url("/assets/fonts/GT-Walsheim-Pro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: "GT Walsheim";
+  src: url("/assets/fonts/GT-Walsheim-Pro-Medium.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 body {
   background: var(--background);
@@ -25,11 +47,11 @@ body {
   margin: 0rem 2rem;
 
 }
-
-.navbar{
+.navbar {
   background-color: var(--navbar);
   margin: 1.5rem 2rem;
 }
+
 .logo-img {
   width: 45%;
   height: auto;
@@ -38,25 +60,26 @@ body {
 
 .row {
   display: flex;
-  justify-content: space-between; 
-  align-items: center; 
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navItems {
   display: flex;
   align-items: center;
-  margin: 1rem 2rem;
-
+  margin:1rem 2rem;
 }
 
-.notifications, .quote , .search{
+.notifications,
+.quote,
+.search {
   width: 36.5px;
-  height: 36px;
+  height: 36;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--purple);
-  border-radius: 50px;
+  border-radius: 50%;
   margin: 0;
 }
 
@@ -126,6 +149,7 @@ body {
 
 .scrollItem {
   font-size: clamp(18px, 2.5vw, 25px); /* dynamic font size */
+  font-family: "GT Walsheim", sans-serif;
 }
 /* CARD DESCRIPTIONS */
 .card-description-lg {
@@ -135,6 +159,8 @@ body {
   line-height: clamp(7px, 2vw, 28px);  /* slightly smaller max */
   letter-spacing: 0;
   text-transform: none;
+    font-family: "GT Walsheim", sans-serif;
+    margin-bottom: 0.5rem;
 }
 
 .card-description-md {
@@ -144,6 +170,7 @@ body {
   line-height: clamp(6px, 1.5vw, 22px); /* slightly smaller max */
   letter-spacing: 0;
   text-transform: none;
+    font-family: "GT Walsheim", sans-serif;
 }
 
 .card-description-sm {
@@ -153,6 +180,7 @@ body {
   line-height: clamp(5px, 1.2vw, 16px); /* slightly smaller max */
   letter-spacing: 0;
   text-transform: none;
+    font-family: "GT Walsheim", sans-serif;
 }
 
 /* CARD TITLES */
@@ -161,9 +189,11 @@ body {
   font-weight: 600;
   font-style: normal;
   font-size: clamp(10px, 2vw, 48px); /* keep as is */
-  line-height: clamp(12px, 3vw, 56px);
+  line-height: 33px; 
   letter-spacing: clamp(-1px, -0.2vw, -2px);
   text-transform: capitalize;
+  font-family: "GT Walsheim", sans-serif;
+   margin-bottom: 0.5rem;
 }
 
 .card-title-md {
@@ -174,16 +204,22 @@ body {
   line-height: clamp(10px, 2vw, 40px);
   letter-spacing: clamp(-1px, -0.15vw, -2px);
   text-transform: capitalize;
+    font-family: "GT Walsheim", sans-serif;
+     margin-bottom: 0.5rem;
+     line-height: 30px;
 }
 
 .card-title-sm {
-    white-space: pre-line;
+  white-space: pre-line;
   font-weight: 600;
   font-style: normal;
   font-size: clamp(6px, 1vw, 24px);
   line-height: clamp(8px, 1.5vw, 32px);
   letter-spacing: clamp(-0.5px, -0.1vw, -2px);
   text-transform: capitalize;
+  font-family: "GT Walsheim", sans-serif;
+  margin-bottom: 0;
+  line-height: 16px;
 }
 
 /* CARD BACKGROUND */

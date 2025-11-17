@@ -11,41 +11,41 @@ const Card3 = ({ title, description, color }: Card3Props) => {
     <div
       className={`col-start-8 col-end-11 row-start-1 row-end-8 ${color} rounded-lg p-4 h-full w-full flex flex-col card-bg`}
     >
-      <div className="grid grid-rows-[auto_1fr_auto] h-full">
-        {/* Title */}
-        <h2 className="card-title-lg" style={{ color: "var(--peach)" }}>
-          {title}
-        </h2>
+      {/* Flex column to keep arrow at bottom */}
+      <div className="flex flex-col flex-1 justify-between min-h-0">
 
-        {/* Description */}
-        <p
-          className="card-description-lg mt-3"
-          style={{ color: "var(--peach)" }}
-        >
-          {description}
-        </p>
+        {/* TITLE + DESCRIPTION */}
+        <div>
+          <h2 className="card-title-lg whitespace-pre-line" style={{ color: "var(--peach)" }}>
+            {title}
+          </h2>
 
- {/* ARROW BUTTON — stays inside card */}
-<div className="place-self-start mt-[clamp(2px,1vw,8px)]">
-  <button
-    className="bg-black rounded-full flex items-center justify-center"
-    style={{
-      width: "clamp(24px, 5vw, 44px)",  // smaller min & max
-      height: "clamp(24px, 5vw, 44px)", // smaller min & max
-    }}
-  >
-    <Image
-      src="/assets/arrow_forward.svg"
-      alt="Arrow"
-      width={24} // fallback
-      height={24} // fallback
-      style={{
-        width: "clamp(10px, 3vw, 18px)",  // smaller icon for mobile/tablet
-        height: "clamp(10px, 3vw, 18px)",
-      }}
-    />
-  </button>
-</div>
+          <p className="card-description-lg mt-2" style={{ color: "var(--peach)" }}>
+            {description}
+          </p>
+        </div>
+
+        {/* ARROW BUTTON */}
+        <div className="self-start">
+          <button
+            className="bg-black rounded-full flex items-center justify-center"
+            style={{
+              width: "clamp(24px, 5vw, 44px)",
+              height: "clamp(24px, 5vw, 44px)",
+            }}
+          >
+            <Image
+              src="/assets/arrow_forward.svg"
+              alt="Arrow"
+              width={24}
+              height={24}
+              style={{
+                width: "clamp(10px, 3vw, 18px)",
+                height: "clamp(10px, 3vw, 18px)",
+              }}
+            />
+          </button>
+        </div>
 
       </div>
     </div>

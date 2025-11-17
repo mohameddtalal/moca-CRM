@@ -45,7 +45,7 @@ const BentoGrid = () => {
             description=""
             color="bg-[var(--purple)]"/>
 
-        <Card8 title="Leads & Deals"
+        <Card8 title={"Leads & \nDeals"}
             description="A gateway for partnerships and corporate deals that drive strategic growth."
             color="bg-[var(--yellow)]"/>
         <Card9 title="Data Hub"
