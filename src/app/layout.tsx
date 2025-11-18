@@ -47,13 +47,9 @@ export default function RootLayout({
        " />
      </clipPath>
    </defs>
-</svg>
-        <div className="flex-shrink-0">
+</svg>    
           <Navbar/>
-        </div>
-        <div className="flex-1 min-h-0">
           {children}
-        </div>
       </body>
     </html>
   );

@@ -19,7 +19,7 @@ const ScrollingHeader = () => {
   );
 
   return (
-    <div className="overflow-hidden header flex-shrink-0" style={{ height: '60px' }}>
+    <div className="overflow-hidden header flex-shrink-0">
       <div className="flex gap-8 whitespace-nowrap animate-scroll  scrollItem">
         {items.map((item, idx) => renderItem(item, `original-${idx}`))}
         {items.map((item, idx) => renderItem(item, `dup1-${idx}`))}
