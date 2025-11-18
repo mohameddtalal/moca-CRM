@@ -16,7 +16,7 @@ const Card10 = ({ title, description, color }: Card10Props) => {
 
         {/* TITLE + DESCRIPTION */}
         <div>
-          <h2 className="card-title-sm whitespace-pre-line" style={{ color: "var(--yellow)" }}>
+          <h2 className="card-title-sm-m whitespace-pre-line" style={{ color: "var(--yellow)" }}>
             {title}
           </h2>
 
