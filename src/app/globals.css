@@ -40,7 +40,7 @@ body {
 }
 
 .bentogrid{
-  margin-bottom: clamp(2rem, 0rem + 3.125vw, 3rem);
+  margin-bottom: clamp(2rem, 0rem + 3.125vw, 3rem) !important;
   margin-left: clamp(2rem, 0rem + 3.125vw, 3rem);
   margin-right: clamp(2rem, 0rem + 3.125vw, 3rem);
   grid-auto-flow:column;  /*when add grid add in width */
