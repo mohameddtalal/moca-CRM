@@ -1,10 +1,6 @@
 @import "tailwindcss";
 
 
-
-
-
-
 :root {
   --background: #F7F7F7;
   --foreground: #171717;
@@ -44,14 +40,19 @@ body {
 }
 
 .bentogrid{
-  margin: 0rem 2rem;
+  margin-bottom: clamp(2rem, 0rem + 3.125vw, 3rem);
+  margin-left: clamp(2rem, 0rem + 3.125vw, 3rem);
+  margin-right: clamp(2rem, 0rem + 3.125vw, 3rem);
   grid-auto-flow:column;  /*when add grid add in width */
   grid:repeat(auto-fit, minmax(250px, 1fr)) / auto-flow;
 
 }
 .navbar {
   background-color: var(--navbar);
-  margin: 1.5rem 2rem;
+  margin-top:  clamp(2rem, 0rem + 3.125vw, 3rem);
+  margin-right: clamp(2rem, 0rem + 3.125vw, 3rem);
+  margin-bottom:  clamp(1rem, 0rem + 1.5625vw, 1.5rem);
+  margin-left:   clamp(2rem, 0rem + 3.125vw, 3rem);
 }
 
 .logo-img {
@@ -146,7 +147,7 @@ body {
 
 .header {
   height: auto;
-  margin-top: clamp(0.5rem, 1vw, 1.5rem); /* dynamic margin */
+  margin-bottom: clamp(1rem, 0rem + 1.5625vw, 1.5rem); /* dynamic margin */
 }
 
 .scrollItem {

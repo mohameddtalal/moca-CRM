@@ -12,8 +12,9 @@ import Card9 from "./Cards/Card9";
 
 const BentoGrid = () => {
   return (
-    <div className="h-full p-4 bentogrid">
-      <div className="grid grid-cols-12 grid-rows-12 gap-4 h-full w-full " style={{
+    <div className="h-full bentogrid">
+      <div className="grid grid-cols-12 grid-rows-12  h-full w-full " style={{
+        gridGap: "clamp(8px, 1.5vw, 16px)",
         gridTemplateColumns: 'repeat(12, 1fr)',
         gridTemplateRows: 'repeat(12, 1fr)'
       }}>
