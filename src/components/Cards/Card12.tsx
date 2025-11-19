@@ -1,30 +1,26 @@
 import Image from "next/image";
 
-interface Card8Props {
+interface Card12Props {
   title: string;
   description: string;
   color: string;
 }
 
-const Card8 = ({ title, description, color }: Card8Props) => {
+const Card12 = ({ title, description, color }: Card12Props) => {
   return (
     <div
-      className={`col-start-11 col-end-13 row-start-6 row-end-13 ${color} rounded-lg p-4 card-bg`}
-     style={{
-                flex: '0 0 1',
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: 0  // Important: allows flex item to shrink below content size
-                }}>
-
+      className={`col-start-13 col-end-17 row-start-1 row-end-6 ${color} rounded-lg p-4 h-full w-full flex flex-col card-bg`}
+    >
+      {/* Flex column to keep arrow at bottom */}
+      <div className="flex flex-col flex-1 justify-between min-h-0">
 
         {/* TITLE + DESCRIPTION */}
-        <div style={{minHeight:0}}>
-          <h2 className="card-title-lg whitespace-pre-line" style={{ color: "var(--black)" }}>
+        <div>
+          <h2 className="card-title-lg whitespace-pre-line" style={{ color: "var(--purple)" }}>
             {title}
           </h2>
 
-          <p className="card-description-lg mt-2" style={{ color: "var(--black)" }}>
+          <p className="card-description-lg mt-2 mb-2" style={{ color: "var(--purple)" }}>
             {description}
           </p>
         </div>
@@ -52,7 +48,8 @@ const Card8 = ({ title, description, color }: Card8Props) => {
         </div>
 
       </div>
+    </div>
   );
 };
 
-export default Card8;
+export default Card12;
