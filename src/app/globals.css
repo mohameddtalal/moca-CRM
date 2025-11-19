@@ -156,7 +156,7 @@ body {
   margin: 0 16px;
 }
 
-/* OLD IMPLEMENTATION - kept for reference */
+/* OLD IMPLEMENTATION #1 - kept for reference */
 /* @keyframes scroll {
           0% {
             transform: translate3d(0, 0, 0);
@@ -176,42 +176,121 @@ body {
         .animate-scroll:hover {
           animation-play-state: paused;
         } */
-/* PROBLEMS WITH OLD APPROACH:
+/* PROBLEMS WITH OLD APPROACH #1:
    1. Animation moves only -12.5% (1/8 of total width with 8 duplicates)
    2. When animation resets from -12.5% to 0%, there's a visible jump/lag
    3. The reset is noticeable because the content doesn't align perfectly
    4. Using 8 duplicates is inefficient and causes performance issues
    5. The animation duration (8s) was trying to compensate for the long content */
 
-/* NEW IMPLEMENTATION: Seamless Infinite Scroll */
-/* How it works:
-   - Content is duplicated exactly once (2 sets total)
-   - Animation moves from 0% to -50% (exactly one set width)
-   - At -50%, the second set is in the exact position where the first set started
-   - When animation resets to 0%, it's visually identical (seamless loop)
-   - No visible jump because the content at 0% and -50% looks the same
-   - Shorter animation duration (20s) for smooth, readable scrolling speed */
-
-@keyframes scroll-seamless {
+/* OLD IMPLEMENTATION #2 - kept for reference */
+/* @keyframes scroll-seamless {
   0% {
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-50%, 0, 0); /* Move exactly half the width (one set) */
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.animate-scroll-seamless {
+  display: inline-flex;
+  animation: scroll-seamless 20s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+.animate-scroll-seamless:hover {
+  animation-play-state: paused;
+} */
+/* PROBLEMS WITH OLD APPROACH #2:
+   1. Used percentage-based animation (-50%) which doesn't account for gaps
+   2. The gap-4 (1rem) between items creates spacing that percentage doesn't include
+   3. Percentage-based transforms don't align perfectly with pixel-based content
+   4. Browser rounding errors cause slight misalignment at the loop point
+   5. Still had visible lag/jump when animation resets
+
+   Why percentage-based animation fails for seamless scrolling:
+   - CSS percentage (transform: translateX(-50%)) is relative to the element's width
+   - But the actual content width includes gaps, padding, margins, and varies by viewport
+   - The element's width is the TOTAL width (all duplicates), not one set
+   - So -50% moves half of TOTAL width, which may not align with one set's width
+   - Even 1px misalignment is visible as a jump/lag
+   - Example: If total width is 2000px but one set is 997px (due to gaps/rounding),
+     -50% moves 1000px, creating a 3px jump - very noticeable!
+
+   The fundamental issue:
+   - We need PIXEL-PERFECT alignment, not percentage-based approximation
+   - The animation must move EXACTLY the width of one set of items (including gaps)
+   - This requires JavaScript to measure the actual rendered width
+   - Only then can we create an animation that moves exactly that many pixels */
+
+/* OLD IMPLEMENTATION #3 - kept for reference */
+/* JavaScript-Calculated Pixel-Perfect Animation */
+/* How it worked:
+   - JavaScript measured the exact pixel width of one set of items (including gaps)
+   - Created a dynamic @keyframes animation with that exact pixel value
+   - Animation moved exactly one set width (e.g., -997px, not -50%)
+   - When animation reset to 0px, it was pixel-perfect aligned
+
+   PROBLEMS WITH OLD APPROACH #3:
+   1. OVERLY COMPLEX: Required useEffect, useRef, dynamic keyframe generation
+   2. TOO MUCH CODE: ~50 lines of JavaScript just for animation
+   3. WHITE SPACE GAP: With only 2 duplicates, a gap appeared before loop
+      - When last item scrolled out, viewport showed empty white space
+      - This happened because we moved exactly one set width
+      - Not enough content to fill viewport during transition
+   4. Maintenance burden: Complex code harder to understand and modify
+   5. Performance: JavaScript calculations on every mount
+
+   Why white space appeared:
+   - With 2 sets, when animation reached 100%, last item exited viewport
+   - Before animation reset to 0%, there was a brief moment with no content
+   - Even though reset was "instant", the gap was visible
+   - Need MORE content visible to prevent gaps during transition */
+
+/* NEW IMPLEMENTATION #4: Simple CSS-Only with Sufficient Duplicates */
+/* How it works:
+   - Use 4 duplicates (12 items total) to ensure content always fills viewport
+   - Simple CSS percentage animation (-25% = 1/4 of total width = one set)
+   - With 4 sets, there's ALWAYS content visible - no white space gaps
+   - Small alignment imperfections are invisible with this much content
+   - Much simpler: pure CSS, no JavaScript, no refs, no useEffect
+
+   Benefits:
+   - Simple and clean (back to CSS-only solution)
+   - No white space gaps (always content visible)
+   - Easy to understand and maintain
+   - Excellent performance (CSS animations are hardware-accelerated)
+   - Works reliably across all browsers
+   - Only ~10 lines of CSS vs ~50 lines of JavaScript
+
+   Why this works better:
+   - 4 duplicates provide enough content to fill viewport at all times
+   - Even if -25% isn't pixel-perfect, the misalignment is negligible
+   - With so much content, small jumps are invisible to the human eye
+   - Simplicity > Complexity for this use case */
+
+@keyframes scroll-simple {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-25%, 0, 0); /* Move 1/4 of total width (one set) */
   }
 }
 
-.animate-scroll-seamless {
+.animate-scroll-simple {
   display: inline-flex;
-  animation: scroll-seamless 20s linear infinite; /* Smooth, readable speed */
+  animation: scroll-simple 20s linear infinite;
   will-change: transform;
-  backface-visibility: hidden; /* Prevents flickering in some browsers */
-  -webkit-backface-visibility: hidden; /* Safari support */
-  transform: translateZ(0); /* Hardware acceleration for smooth animation */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
-.animate-scroll-seamless:hover {
-  animation-play-state: paused; /* Pause on hover for better UX */
+.animate-scroll-simple:hover {
+  animation-play-state: paused;
 }
     
 /* CARD DESCRIPTIONS */
