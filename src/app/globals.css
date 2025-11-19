@@ -303,7 +303,6 @@ body {
   text-transform: none;
     font-family: "GT Walsheim";
     margin-bottom: 0.5rem;
-    margin-top: 2rem;
 }
 
 .card-description-md {
@@ -314,6 +313,7 @@ body {
   letter-spacing: 0.7;
   text-transform: none;
   font-family: "GT Walsheim";
+  margin-bottom: 0.9rem;
 }
 
 .card-description-sm {
@@ -336,7 +336,7 @@ body {
   letter-spacing: clamp(-1px, -0.2vw, -2px);
   text-transform: capitalize;
   font-family: "GT Walsheim";
-   margin-bottom: 1.5rem;
+   margin-bottom: 0.5rem;
 }
 
 .card-title-md {
@@ -348,7 +348,7 @@ body {
   letter-spacing: clamp(-1px, -0.15vw, -2px);
   text-transform: capitalize;
     font-family: "GT Walsheim";
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
      
 }
 
