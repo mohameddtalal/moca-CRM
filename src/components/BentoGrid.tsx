@@ -115,10 +115,10 @@ const BentoGrid = () => {
             description="A centralized hub to collect, analyze, and access data for informed decisions."
             color="bg-[var(--energy-green)]"/>
         <Card10 title="Security Control"
-            description="Manage & monitor access, permissions, and security to ensure a safe space."
+            description="Manage physical access & security to ensure a safe space."
             color="bg-[var(--green)]"/>
         <Card11 title="Control Room"
-            description="Configure & personalize modules settings for optimal space management."
+            description="Serves as the central command center of the platform, giving administrators full oversight and configuration power across the entire system. "
             color="bg-[var(--skin-pink)]"/>
     
     </div>
