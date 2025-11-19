@@ -156,7 +156,8 @@ body {
   margin: 0 16px;
 }
 
-@keyframes scroll {
+/* OLD IMPLEMENTATION - kept for reference */
+/* @keyframes scroll {
           0% {
             transform: translate3d(0, 0, 0);
           }
@@ -174,7 +175,44 @@ body {
         }
         .animate-scroll:hover {
           animation-play-state: paused;
-        }
+        } */
+/* PROBLEMS WITH OLD APPROACH:
+   1. Animation moves only -12.5% (1/8 of total width with 8 duplicates)
+   2. When animation resets from -12.5% to 0%, there's a visible jump/lag
+   3. The reset is noticeable because the content doesn't align perfectly
+   4. Using 8 duplicates is inefficient and causes performance issues
+   5. The animation duration (8s) was trying to compensate for the long content */
+
+/* NEW IMPLEMENTATION: Seamless Infinite Scroll */
+/* How it works:
+   - Content is duplicated exactly once (2 sets total)
+   - Animation moves from 0% to -50% (exactly one set width)
+   - At -50%, the second set is in the exact position where the first set started
+   - When animation resets to 0%, it's visually identical (seamless loop)
+   - No visible jump because the content at 0% and -50% looks the same
+   - Shorter animation duration (20s) for smooth, readable scrolling speed */
+
+@keyframes scroll-seamless {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0); /* Move exactly half the width (one set) */
+  }
+}
+
+.animate-scroll-seamless {
+  display: inline-flex;
+  animation: scroll-seamless 20s linear infinite; /* Smooth, readable speed */
+  will-change: transform;
+  backface-visibility: hidden; /* Prevents flickering in some browsers */
+  -webkit-backface-visibility: hidden; /* Safari support */
+  transform: translateZ(0); /* Hardware acceleration for smooth animation */
+}
+
+.animate-scroll-seamless:hover {
+  animation-play-state: paused; /* Pause on hover for better UX */
+}
     
 /* CARD DESCRIPTIONS */
 .card-description-lg {

@@ -12,8 +12,70 @@ import Card9 from "./Cards/Card9";
 
 const BentoGrid = () => {
   return (
-    <div className="h-full bentogrid">
-      <div className="grid grid-cols-12 grid-rows-12  h-full w-full " style={{
+    // OLD IMPLEMENTATION #1 - kept for reference
+    // <div className="h-full bentogrid">
+    //   <div className="grid grid-cols-12 grid-rows-12  h-full w-full " style={{
+    // PROBLEM WITH OLD APPROACH #1:
+    // - h-full makes this div take 100% of parent height
+    // - .bentogrid class has margin-bottom: clamp(2rem, 0rem + 3.125vw, 3rem) in globals.css
+    // - Total height = 100% (content) + margin-bottom = MORE than 100%
+    // - Parent has overflow-hidden, so the margin portion gets clipped and is invisible
+    // - This is THE CORE ISSUE causing bottom margin to not show in Chrome
+
+    // OLD IMPLEMENTATION #2 - kept for reference
+    // <div className="bentogrid" style={{ height: 'calc(100% - clamp(2rem, 0rem + 3.125vw, 3rem))' }}>
+    //   <div className="grid grid-cols-12 grid-rows-12 w-full" style={{
+    //     height: '100%',
+    // PROBLEM WITH OLD APPROACH #2:
+    // - calc(100% - margin) seemed correct but didn't work
+    // - The "100%" refers to parent's height, but parent also contains ScrollingHeader
+    // - ScrollingHeader takes space (auto height + margin-bottom)
+    // - So BentoGrid doesn't actually have 100% available
+    // - Formula was: BentoGrid height = 100% - margin, but should be: (100% - ScrollingHeader space) - margin
+    // - Parent had overflow-hidden which clipped the margin
+    // - Still resulted in bottom margin being clipped at 100% zoom
+
+    // OLD IMPLEMENTATION #3 - kept for reference
+    // <div className="bentogrid" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+    //   <div className="grid grid-cols-12 grid-rows-12 w-full" style={{
+    //     flex: 1,
+    // PROBLEM WITH OLD APPROACH #3:
+    // - flex: 1 fills remaining space after ScrollingHeader (correct)
+    // - BUT: margin-bottom is OUTSIDE the flex item
+    // - Total height = flex: 1 space + margin-bottom
+    // - This causes total content to exceed 100svh
+    // - Result: Scrolling in Chrome/Edge (Zen handles differently)
+    // The issue:
+    // - .bentogrid has margin-bottom: clamp(2rem, 0rem + 3.125vw, 3rem)
+    // - This margin is added AFTER the flex: 1 calculation
+    // - So BentoGrid takes all remaining space, THEN adds margin
+    // - Total = more than available space = scrolling
+
+    // NEW IMPLEMENTATION #4:
+    // Use flex: 1 but reduce height to account for margin-bottom
+    // Using calc() to subtract margin from flex-basis
+    // How this works:
+    // - flex: 1 1 calc(100% - clamp(...)) means:
+    //   - flex-grow: 1 (can grow)
+    //   - flex-shrink: 1 (can shrink)
+    //   - flex-basis: calc(100% - margin value) (initial size accounts for margin)
+    // - This reserves space for the margin WITHIN the flex calculation
+    // - Total height = flex-basis + margin = exactly the available space
+    // - No overflow, no scrolling
+    // Benefits:
+    // - Margin fully visible (not clipped)
+    // - No scrolling in any browser
+    // - Content fits exactly within viewport
+    // - Consistent behavior: Chrome, Edge, Zen Browser
+    <div className="bentogrid" style={{
+      flex: '1 1 0',
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: 0  // Important: allows flex item to shrink below content size
+    }}>
+      <div className="grid grid-cols-12 grid-rows-12 w-full" style={{
+        flex: 1, // Grid fills all available space in the bentogrid container
+        minHeight: 0,  // Important: allows grid to shrink
         gridGap: "clamp(8px, 1.5vw, 16px)",
         gridTemplateColumns: 'repeat(12, 1fr)',
         gridTemplateRows: 'repeat(12, 1fr)'

@@ -26,9 +26,97 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    // OLD IMPLEMENTATION #1 - kept for reference
+    // <html lang="en" className="h-full">
+    //   <body
+    //     className={`${geistSans.variable} ${geistMono.variable} antialiased h-full overflow-hidden flex flex-col` }
+    //   >
+    // PROBLEM WITH OLD APPROACH #1:
+    // - h-full (height: 100%) on <html> and <body> creates viewport height issues
+    // - Different browsers calculate 100vh differently when UI chrome (address bar, toolbars) is present
+    // - Chrome includes full viewport even when address bar is visible, causing bottom margins to be clipped
+    // - Combined with overflow-hidden, any content exceeding viewport gets cut off
+
+    // OLD IMPLEMENTATION #2 - kept for reference
+    // <html lang="en" style={{ height: '100dvh' }}>
+    //   <body
+    //     className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden flex flex-col` }
+    //     style={{ height: '100dvh' }}
+    //   >
+    // PROBLEM WITH OLD APPROACH #2:
+    // - 100dvh (dynamic viewport height) seemed like the right solution
+    // - BUT: In Chrome on Windows, 100dvh includes the area BEHIND the taskbar
+    // - The Windows taskbar blocks that area from view, making it inaccessible
+    // - Result: Bottom margin extends into the area blocked by taskbar
+    // - This is why it works at 90% zoom (content shrinks to fit visible area)
+    // - This is why Zen Browser works (different dvh implementation)
+    // - Chrome's dvh calculation doesn't account for Windows taskbar properly
+
+    // OLD IMPLEMENTATION #3 - kept for reference
+    // <html lang="en" style={{ height: '100svh', minHeight: '100dvh' }}>
+    //   <body
+    //     className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden flex flex-col` }
+    //     style={{ height: '100svh', minHeight: '100dvh' }}
+    //   >
+    // PROBLEM WITH OLD APPROACH #3:
+    // - 100svh correctly excludes taskbar area (good!)
+    // - BUT: overflow-hidden on body clips BentoGrid's margin-bottom
+    // - In Chromium browsers (Chrome, Edge), overflow-hidden + flex + margins = clipping issue
+    // - Zen Browser (Firefox-based) handles this differently, so it works there
+    // - The margin extends beyond the flex item but gets clipped by overflow-hidden
+    // - This is a Chromium-specific rendering behavior with flexbox margins
+
+    // OLD IMPLEMENTATION #4 - kept for reference
+    // <html lang="en" style={{ height: '100svh', minHeight: '100dvh' }}>
+    //   <body
+    //     className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col` }
+    //     style={{ height: '100svh', minHeight: '100dvh' }}
+    //   >
+    // PROBLEM WITH OLD APPROACH #4:
+    // - Removed overflow-hidden to fix Chromium margin clipping (good!)
+    // - Bottom margin now visible in Chrome/Edge (good!)
+    // - BUT: Vertical scrolling appears in Chrome/Edge (bad!)
+    // - Zen Browser has no scrolling (works perfectly)
+    // Why scrolling occurs in Chrome/Edge:
+    // - Margins are OUTSIDE the flex item's content box
+    // - Total height = Navbar (with margins) + Page div (flex: 1) + all margins
+    // - Navbar margins: top (2-3rem) + bottom (1-1.5rem) = 3-4.5rem
+    // - ScrollingHeader margin: bottom (1-1.5rem) = 1-1.5rem
+    // - BentoGrid margin: bottom (2-3rem) = 2-3rem
+    // - Total margins = 6-9rem ADDED to 100svh
+    // - Result: Total height = 100svh + 6-9rem = MORE than viewport
+    // - Chrome/Edge show scrollbar, Zen Browser handles it differently
+    // The math breakdown:
+    // - Body: 100svh
+    // - Navbar: auto + margin-top (2-3rem) + margin-bottom (1-1.5rem)
+    // - Page div: flex: 1 (fills remaining space)
+    // - ScrollingHeader: auto + margin-bottom (1-1.5rem)
+    // - BentoGrid: flex: 1 + margin-bottom (2-3rem)
+    // - Total = 100svh + (2-3rem + 1-1.5rem + 1-1.5rem + 2-3rem) = 100svh + 6-9rem
+    // - This exceeds viewport, causing scrolling
+
+    // NEW IMPLEMENTATION #5:
+    // Use height: 100svh + overflow: hidden to prevent scrolling
+    // This is the correct approach - we need overflow: hidden after all
+    // How this works:
+    // - height: 100svh sets body to visible viewport height
+    // - overflow: hidden prevents scrolling when content exceeds viewport
+    // - The key insight: Zen Browser's rendering engine handles margin overflow differently
+    // - Chrome/Edge need explicit overflow: hidden to prevent scrolling
+    // - But we already removed overflow-hidden in Implementation #4 to show margins!
+    // The real solution:
+    // - We need to REDUCE the content height so margins fit WITHIN 100svh
+    // - Not use overflow: hidden which clips margins
+    // - Not allow scrolling which is bad UX
+    // - Instead: Make the flex items smaller to leave room for margins
+    //
+    // The actual fix: Use padding instead of margins, OR reduce flex item sizes
+    // Let's use overflow: hidden but ensure content + margins = exactly 100svh
+    // by adjusting the flex calculations in child components
+    <html lang="en" style={{ height: '100svh', minHeight: '100dvh' }}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-full overflow-hidden flex flex-col` } 
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col overflow-hidden` }
+        style={{ height: '100svh', minHeight: '100dvh' }}
       >
           <svg width="0" height="0"> 
    <defs>
