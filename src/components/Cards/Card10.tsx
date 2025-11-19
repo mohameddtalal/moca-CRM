@@ -24,13 +24,13 @@ const Card10 = ({ title, description, color }: Card10Props) => {
             {title}
           </h2>
 
-          <p className="card-description-sm mt-2 mb-2" style={{ color: "var(--yellow)" }}>
+          <p className="card-description-sm" style={{ color: "var(--yellow)" }}>
             {description}
           </p>
         </div>
 
         {/* ARROW BUTTON */}
-        <div className="self-start">
+        <div className="self-end">
           <button className="bg-black w-8 h-8 rounded-full flex items-center justify-center">
             <Image
               src="/assets/arrow_forward.svg"

@@ -49,14 +49,14 @@ const Card1 = ({ title, description, color }: Card1Props) => {
           >
             {title}
           </h2>
-          <div style={{ }}>
+     
           <p
             className="card-description-lg"
-            style={{ color: "var(--hot-purple)"}}
+            style={{ color: "var(--hot-purple)", paddingTop:'clamp(0.9375rem, 7.125rem + -6.4453vw, 3rem)'}}
           >
             {description}
           </p>
-          </div>
+
         </div>
 
         {/* ARROW BUTTON */}

@@ -24,7 +24,7 @@ const Card5 = ({ title, description, color }: Card5Props) => {
             {title}
           </h2>
 
-          <p className="card-description-sm mt-2" style={{ color: "var(--green)" }}>
+          <p className="card-description-sm mt-2 mb-2" style={{ color: "var(--green)" }}>
             {description}
           </p>
         </div>

@@ -31,7 +31,7 @@ const Card9 = ({ title, description, color }: Card9Props) => {
         </div>
 
         {/* ARROW BUTTON */}
-        <div className="self-start">
+        <div className="self-end">
           <button className="bg-black w-8 h-8 rounded-full flex items-center justify-center">
             <Image
               src="/assets/arrow_forward.svg"
