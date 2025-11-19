@@ -9,13 +9,18 @@ interface Card9Props {
 const Card9 = ({ title, description, color }: Card9Props) => {
   return (
     <div
-      className={`col-start-1 col-end-3 row-start-10 row-end-13 ${color} rounded-lg p-4 h-full w-full flex flex-col card-bg`}
+      className={`col-start-1 col-end-3 row-start-10 row-end-13 ${color} rounded-lg p-4 card-bg`}
+      style={{
+                flex: '0 0 1',
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: 0  // Important: allows flex item to shrink below content size
+                }}
     >
-      {/* Flex column to keep arrow at bottom */}
-      <div className="flex flex-col flex-1 justify-between min-h-0">
+      
 
         {/* TITLE + DESCRIPTION */}
-        <div>
+        <div style={{ minHeight: 0}}>
           <h2 className="card-title-sm whitespace-pre-line" style={{ color: "var(--black)" }}>
             {title}
           </h2>
@@ -38,7 +43,7 @@ const Card9 = ({ title, description, color }: Card9Props) => {
         </div>
 
       </div>
-    </div>
+ 
   );
 };
 

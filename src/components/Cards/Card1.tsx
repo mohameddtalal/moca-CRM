@@ -8,10 +8,18 @@ interface Card1Props {
 
 const Card1 = ({ title, description, color }: Card1Props) => {
   return (
-    <div className="relative col-start-1 col-end-6 row-start-1 row-end-6 ">
+    <div
+      className={`relative col-start-1 col-end-6 row-start-1 row-end-6`}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",   // stretch like Card2
+        minHeight: 0
+      }}
+    >
 
       {/* PROFILE PHOTO */}
-      <div className="absolute rounded-full overflow-hidden z-20 ">
+      <div className="absolute top-0 left-0 rounded-full overflow-hidden z-30">
         <img
           src="assets/profile-photo.svg"
           alt="Profile"
@@ -19,53 +27,60 @@ const Card1 = ({ title, description, color }: Card1Props) => {
         />
       </div>
 
-      {/* MAIN CARD */}
+      {/* background layer with clip-path */}
       <div
-        className={`${color} card-bg w-full h-full flex flex-col p-6`}
-        style={{ clipPath: "url(#cutout-rounded-px)" }}
+        className={`${color} card-bg p-4 relative`}
+        style={{
+          clipPath: "url(#cutout-rounded-px)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          flexGrow: 1,
+          minHeight: 0,
+          overflow: "hidden"
+        }}
       >
-        <div className="flex flex-col flex-1 justify-between min-h-0">
 
-          {/* TITLE + DESCRIPTION */}
-          <div className="flex flex-col">
-            <h2
-              className="card-title-lg whitespace-pre-line"
-              style={{ color: "var(--hot-purple)", marginLeft: "clamp(56px, 8vw, 88px)" }}
-            >
-              {title}
-            </h2>
-
-            <p
-              className="card-description-lg "
-              style={{ color: "var(--hot-purple)" }}
-            >
-              {description}
-            </p>
+        {/* TITLE + DESCRIPTION */}
+        <div style={{ minHeight: 0 }}>
+          <h2
+            className="card-title-lg whitespace-pre-line"
+            style={{ color: "var(--hot-purple)", paddingLeft: "clamp(56px, 8vw, 88px)" }}
+          >
+            {title}
+          </h2>
+          <div style={{ }}>
+          <p
+            className="card-description-lg"
+            style={{ color: "var(--hot-purple)"}}
+          >
+            {description}
+          </p>
           </div>
-
-          {/* ARROW BUTTON */}
-          <div className="self-start">
-            <button
-              className="bg-black rounded-full flex items-center justify-center"
-              style={{
-                width: "clamp(24px, 5vw, 44px)",
-                height: "clamp(24px, 5vw, 44px)",
-              }}
-            >
-              <Image
-                src="/assets/arrow_forward.svg"
-                alt="Arrow"
-                width={24}
-                height={24}
-                style={{
-                  width: "clamp(10px, 3vw, 18px)",
-                  height: "clamp(10px, 3vw, 18px)",
-                }}
-              />
-            </button>
-          </div>
-
         </div>
+
+        {/* ARROW BUTTON */}
+        <div className="self-start">
+          <button
+            className="bg-black rounded-full flex items-center justify-center"
+            style={{
+              width: "clamp(24px, 5vw, 44px)",
+              height: "clamp(24px, 5vw, 44px)"
+            }}
+          >
+            <Image
+              src="/assets/arrow_forward.svg"
+              alt="Arrow"
+              width={24}
+              height={24}
+              style={{
+                width: "clamp(10px, 3vw, 18px)",
+                height: "clamp(10px, 3vw, 18px)"
+              }}
+            />
+          </button>
+        </div>
+
       </div>
 
     </div>

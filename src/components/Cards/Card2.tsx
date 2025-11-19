@@ -8,13 +8,17 @@ interface Card2Props {
 
 const Card2 = ({ title, description, color }: Card2Props) => {
     return (
-        <div className={`${color} col-start-6 col-end-8 row-start-1 row-end-6 rounded-lg p-4 h-full w-full flex flex-col card-bg`}>
-            
-            {/* Use flex-col with justify-between for top + bottom spacing */}
-            <div className="flex flex-col flex-1 justify-between min-h-0">
+        <div className={`${color} col-start-6 col-end-8 row-start-1 row-end-6 rounded-lg p-4 card-bg`}
+        style={{
+                flex: '0 0 1',
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: 0  // Important: allows flex item to shrink below content size
+                }}>
+         
 
                 {/* Title & Description */}
-                <div>
+                <div style={{ minHeight: 0}}>
                     <h2 className="card-title-md whitespace-pre-line" style={{ color: 'var(--skin-pink)' }}>
                         {title}
                     </h2>
@@ -31,7 +35,7 @@ const Card2 = ({ title, description, color }: Card2Props) => {
                     </button>
                 </div>
             </div>
-        </div>
+ 
     );
 }
 
