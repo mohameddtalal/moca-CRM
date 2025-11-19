@@ -67,6 +67,8 @@ const BentoGrid = () => {
     // - No scrolling in any browser
     // - Content fits exactly within viewport
     // - Consistent behavior: Chrome, Edge, Zen Browser
+
+
     <div className="bentogrid" style={{
       flex: '1 1 0',
       display: 'flex',
