@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ButtonRounded } from "../Button";
 
 interface Card10Props {
   title: string;
@@ -72,26 +73,9 @@ const Card10 = ({ title, description, color }: Card10Props) => {
       </div>
 
       {/* ARROW BUTTON - Now properly aligned at bottom-left with responsive sizing */}
-      <div className="self-start">  {/* Changed from self-end to self-start for left alignment */}
-        <button
-          className="bg-black rounded-full flex items-center justify-center"
-          style={{
-            width: "clamp(24px, 5vw, 44px)",   // Responsive: 24px min (mobile) → 44px max (desktop)
-            height: "clamp(24px, 5vw, 44px)",  // Scales smoothly with viewport width
-          }}
-        >
-          <Image
-            src="/assets/arrow_forward.svg"
-            alt="Arrow"
-            width={16}
-            height={16}
-            style={{
-              width: "clamp(10px, 3vw, 18px)",   // Responsive icon: 10px min → 18px max
-              height: "clamp(10px, 3vw, 18px)",  // Scales proportionally with button
-            }}
-          />
-        </button>
-      </div>
+      <div className="self-start mt-auto">
+                <ButtonRounded />
+              </div>
 
     </div>
   );

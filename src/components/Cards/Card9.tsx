@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ButtonRounded } from "../Button";
 
 interface Card9Props {
   title: string;
@@ -71,27 +72,9 @@ const Card9 = ({ title, description, color }: Card9Props) => {
         </div>
 
         {/* ARROW BUTTON - Now properly aligned at bottom-left with responsive sizing */}
-        <div className="self-start">  {/* Changed from self-end to self-start for left alignment (consistent with Card3, Card4, Card8) */}
-          <button
-            className="bg-black rounded-full flex items-center justify-center"
-            style={{
-              width: "clamp(24px, 5vw, 44px)",   // Responsive width: 24px min, 5vw fluid, 44px max (matches Card3, Card8)
-              height: "clamp(24px, 5vw, 44px)",  // Responsive height: maintains aspect ratio
-            }}
-          >
-            <Image
-              src="/assets/arrow_forward.svg"
-              alt="Arrow"
-              width={16}   // Next.js optimization hint
-              height={16}  // Next.js optimization hint
-              style={{
-                width: "clamp(10px, 3vw, 18px)",   // Responsive icon width: scales with button
-                height: "clamp(10px, 3vw, 18px)",  // Responsive icon height: maintains aspect ratio
-              }}
-            />
-          </button>
-        </div>
-
+        <div className="self-start mt-auto">
+                  <ButtonRounded />
+                </div>
       </div>
 
   );

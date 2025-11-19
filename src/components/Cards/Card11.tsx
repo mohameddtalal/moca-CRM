@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ButtonRounded } from "../Button";
 
 interface Card11Props {
   title: string;
@@ -79,27 +80,9 @@ const Card11 = ({ title, description, color }: Card11Props) => {
       </div>
 
       {/* ARROW BUTTON - Already has responsive sizing */}
-      <div className="self-start ">
-        <button
-          className="bg-black rounded-full flex items-center justify-center"
-          style={{
-            width: "clamp(24px, 5vw, 44px)",
-            height: "clamp(24px, 5vw, 44px)",
-          }}
-        >
-          <Image
-            src="/assets/arrow_forward.svg"
-            alt="Arrow"
-            width={24}
-            height={24}
-            style={{
-              width: "clamp(10px, 3vw, 18px)",
-              height: "clamp(10px, 3vw, 18px)",
-            }}
-          />
-        </button>
-      </div>
-
+      <div className="self-start mt-auto">
+                <ButtonRounded />
+              </div>
     </div>
   );
 };
