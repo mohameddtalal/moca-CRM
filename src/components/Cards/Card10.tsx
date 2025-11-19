@@ -73,7 +73,7 @@ const Card10 = ({ title, description, color }: Card10Props) => {
       </div>
 
       {/* ARROW BUTTON - Now properly aligned at bottom-left with responsive sizing */}
-      <div className="self-start mt-auto">
+      <div className="self-end mt-auto">
                 <ButtonRounded />
               </div>
 

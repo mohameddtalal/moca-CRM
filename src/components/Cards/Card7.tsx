@@ -11,6 +11,13 @@ const Card7 = ({title, description,color}:Card7Props) => {
     return (  
     <div
         className={`col-start-6 col-end-8 row-start-6 row-end-8 ${color} rounded-lg p-4 h-full w-full flex flex-col card-bg`}
+        style={{
+            flex: '0 0 1',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',  // NEW: Prevents arrow overlap when height decreases
+            minHeight: 0  // Important: allows flex item to shrink below content size
+          }}
         >
         <div className="flex-1 flex items-center justify-center">
             <Image

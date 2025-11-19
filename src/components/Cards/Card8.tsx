@@ -80,7 +80,7 @@ const Card8 = ({ title, description, color }: Card8Props) => {
       </div>
 
       {/* ARROW BUTTON - Already has responsive sizing */}
-      <div className="self-start mt-auto">
+      <div className="self-end mt-auto">
                 <ButtonRounded />
               </div>
     </div>
