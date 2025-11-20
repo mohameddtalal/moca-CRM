@@ -1,12 +1,16 @@
 'use client'
 
 import Image from "next/image";
+import PathIcon1 from '../../public/assets/path.svg';
+import PathIcon2 from '../../public/assets/path2.svg';
+import PathIcon3 from '../../public/assets/path3.svg';
+
 
 const ScrollingHeader = () => {
   const items = [
-    { text: 'GREAT TEAMS.', icon: '/assets/path.svg', color: 'var(--black)' },
-    { text: 'GREATER', icon: '/assets/path2.svg', color: 'var(--black)' },
-    { text: 'MEMBER EXPERIENCES', icon: '/assets/path3.svg', color: 'var(--black)' },
+    { text: 'GREAT TEAMS.', icon: PathIcon1 },
+    { text: 'GREATER', icon: PathIcon2 },
+    { text: 'MEMBER EXPERIENCES', icon: PathIcon3 },
   ];
 
   // OLD IMPLEMENTATION #1 - kept for reference
@@ -158,7 +162,7 @@ const ScrollingHeader = () => {
 
   const renderItem = (item: typeof items[0], idx: string | number) => (
     <div key={idx} className="flex items-center gap-3 text-2xl md:text-4xl font-bold flex-shrink-0">
-      <span style={{ color: item.color }} className="scrollItem">{item.text}</span>
+      <span className="scrollItem text-var(--black)">{item.text}</span>
       <Image src={item.icon} alt={item.text} width={40} height={40} />
     </div>
   );
