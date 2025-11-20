@@ -66,7 +66,7 @@ const Card2 = ({ title, description, color }: Card2Props) => {
           </div>
 
           {/* Arrow button at the bottom - Now with responsive sizing */}
-          <div className="self-end mt-auto">
+          <div className="self-start mt-auto">
                     <ButtonRounded />
                   </div>
         </div>

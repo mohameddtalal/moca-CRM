@@ -114,7 +114,7 @@ const BentoGrid = () => {
             description="A gateway for partnerships and corporate deals that drive strategic growth."
             color="bg-[var(--yellow)]"/>
         <Card9 title="Data Hub"
-            description="A centralized hub to collect, analyze, and access data for informed decisions."
+            description="A centralized hub to collect, analyze, and access data for informed decisions. "
             color="bg-[var(--energy-green)]"/>
         <Card10 title="Security Control"
             description="Manage physical access & security to ensure a safe space."

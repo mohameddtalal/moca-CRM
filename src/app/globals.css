@@ -375,6 +375,10 @@ On 1366x768 screens (768px height):
   }
 }
 
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .animate-scroll-simple {
   display: inline-flex;
   animation: scroll-simple 20s linear infinite;
@@ -419,6 +423,7 @@ On 1366x768 screens (768px height):
   letter-spacing: 0;
   text-transform: none;
   font-family: "GT Walsheim";
+  margin-bottom: 0.2rem;
 }
 
 /* CARD TITLES */

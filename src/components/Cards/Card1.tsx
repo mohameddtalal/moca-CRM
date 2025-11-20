@@ -14,7 +14,7 @@ const Card1 = ({ title, description, color }: Card1Props) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        height: "100%",   // stretch like Card2
+        height: "100%", 
         minHeight: 0
       }}
     >
@@ -61,7 +61,7 @@ const Card1 = ({ title, description, color }: Card1Props) => {
         </div>
 
         {/* ARROW BUTTON */}
-        <div className="self-end mt-auto">
+        <div className="self-start mt-auto">
           <ButtonRounded />
         </div>
 

@@ -72,7 +72,7 @@ const Card9 = ({ title, description, color }: Card9Props) => {
         </div>
 
         {/* ARROW BUTTON - Now properly aligned at bottom-left with responsive sizing */}
-        <div className="self-end mt-auto">
+        <div className="self-start mt-auto">
                   <ButtonRounded />
                 </div>
       </div>
