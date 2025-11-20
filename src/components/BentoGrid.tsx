@@ -73,11 +73,11 @@ const BentoGrid = () => {
       flex: '1 1 0',
       display: 'flex',
       flexDirection: 'column',
-      minHeight: 0  // Important: allows flex item to shrink below content size
+      minHeight: 'auto'  // Important: allows flex item to shrink below content size
     }}>
       <div className="grid grid-cols-12 grid-rows-12 w-full" style={{
         flex: 1, // Grid fills all available space in the bentogrid container
-        minHeight: 0,  // Important: allows grid to shrink
+        minHeight: 'auto',  // Important: allows grid to shrink
         gridGap: "clamp(8px, 1.5vw, 16px)",
         gridTemplateColumns: 'repeat(12, 1fr)',
         gridTemplateRows: 'repeat(12, 1fr)'

@@ -115,7 +115,7 @@ export default function RootLayout({
     // by adjusting the flex calculations in child components
     <html lang="en" style={{ height: '100svh', minHeight: '100dvh' }}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col overflow-hidden` }
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col` }
         style={{ height: '100svh', minHeight: '100dvh' }}
       >
           <svg width="0" height="0"> 
