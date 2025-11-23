@@ -61,7 +61,7 @@ const Card1 = ({ title, description, color }: Card1Props) => {
         </div>
 
         {/* ARROW BUTTON */}
-        <div className="self-start mt-auto">
+        <div className="self-end mt-auto">
           <ButtonRounded />
         </div>
 

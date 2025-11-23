@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ButtonRounded } from "../Button";
+import {ButtonSmall } from "../Button_sm";
 
 interface Card4Props {
   title: string;
@@ -69,8 +69,8 @@ const Card4 = ({ title, description, color }: Card4Props) => {
       </div>
 
       {/* ARROW BUTTON - Now with responsive sizing */}
-      <div className="self-start mt-auto">
-                <ButtonRounded />
+      <div className="self-end mt-auto">
+                <ButtonSmall />
               </div>
     </div>
 
