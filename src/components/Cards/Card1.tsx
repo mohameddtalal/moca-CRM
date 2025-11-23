@@ -15,7 +15,7 @@ const Card1 = ({ title, description, color }: Card1Props) => {
         display: "flex",
         flexDirection: "column",
         height: "100%", 
-        minHeight: 0
+        minHeight: "auto"
       }}
     >
 
@@ -53,7 +53,7 @@ const Card1 = ({ title, description, color }: Card1Props) => {
      
           <p
             className="card-description-lg"
-            style={{ color: "var(--hot-purple)", paddingTop:'clamp(0.9375rem, 7.125rem + -6.4453vw, 3rem)'}}
+            style={{ color: "var(--hot-purple)", paddingTop:'clamp(1rem, 7.125rem + -6.4453vw, 3rem)'}}
           >
             {description}
           </p>

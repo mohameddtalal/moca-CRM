@@ -48,13 +48,13 @@ const Card5 = ({ title, description, color }: Card5Props) => {
      * 3. Added responsive icon sizing - Icon scales from 10px to 18px
      */
     <div
-      className={`col-start-1 col-end-3 row-start-6 row-end-10 ${color} rounded-lg p-4 card-bg`}
+      className={`col-start-1 col-end-3 row-start-6 row-end-10 ${color} rounded-lg p-6 card-bg`}
       style={{
         flex: '0 0 1',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',  // NEW: Prevents arrow overlap when height decreases
-        minHeight: 0  // Important: allows flex item to shrink below content size
+        minHeight: "auto" // Important: allows flex item to shrink below content size
       }}>
 
       {/* TITLE + DESCRIPTION */}

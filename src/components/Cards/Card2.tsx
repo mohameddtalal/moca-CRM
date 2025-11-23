@@ -45,13 +45,13 @@ const Card2 = ({ title, description, color }: Card2Props) => {
          * 2. Changed w-8 h-8 → responsive clamp() - Button scales from 24px to 44px
          * 3. Added responsive icon sizing - Icon scales from 10px to 18px
          */
-        <div className={`${color} col-start-6 col-end-8 row-start-1 row-end-6 rounded-lg p-4 card-bg`}
+        <div className={`${color} col-start-6 col-end-8 row-start-1 row-end-6 rounded-lg p-6 card-bg`}
           style={{
             flex: '0 0 1',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',  // NEW: Prevents arrow overlap when height decreases
-            minHeight: 0  // Important: allows flex item to shrink below content size
+            minHeight: "auto"  // Important: allows flex item to shrink below content size
           }}>
 
           {/* Title & Description */}

@@ -50,13 +50,13 @@ const Card9 = ({ title, description, color }: Card9Props) => {
     // 4. Added responsive sizing to arrow icon: clamp(10px, 3vw, 18px)
     // Result: Arrow now positioned at bottom-left, scales responsively, looks professional
     <div
-      className={`col-start-1 col-end-3 row-start-10 row-end-13 ${color} rounded-lg p-4 card-bg`}
+      className={`col-start-1 col-end-3 row-start-10 row-end-13 ${color} rounded-lg p-6 card-bg`}
       style={{
                 flex: '0 0 1',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',  // NEW: Pushes arrow to bottom, separates from description
-                minHeight: 0  // Important: allows flex item to shrink below content size
+                minHeight: "auto"  // Important: allows flex item to shrink below content size
                 }}
     >
 

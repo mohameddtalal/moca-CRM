@@ -47,13 +47,13 @@ const Card4 = ({ title, description, color }: Card4Props) => {
      * 3. Added responsive icon sizing - Icon scales from 10px to 18px
      */
     <div
-      className={`col-start-11 col-end-13 row-start-1 row-end-6 ${color} rounded-lg p-4 card-bg`}
+      className={`col-start-11 col-end-13 row-start-1 row-end-6 ${color} rounded-lg p-6 card-bg`}
       style={{
         flex: '0 0 1',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',  // NEW: Prevents arrow overlap when height decreases
-        minHeight: 0  // Important: allows flex item to shrink below content size
+        minHeight: "auto"  // Important: allows flex item to shrink below content size
       }}
     >
 
@@ -63,7 +63,7 @@ const Card4 = ({ title, description, color }: Card4Props) => {
           {title}
         </h2>
 
-        <p className="card-description-md mt-2" style={{ color: "var(--purple)" }}>
+        <p className="card-description-sm mt-2" style={{ color: "var(--purple)" }}>
           {description}
         </p>
       </div>

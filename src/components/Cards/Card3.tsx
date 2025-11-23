@@ -59,13 +59,13 @@ const Card3 = ({ title, description, color }: Card3Props) => {
      * Note: Button and icon sizing already correct (responsive clamp values)
      */
     <div
-      className={`col-start-8 col-end-11 row-start-1 row-end-8 ${color} rounded-lg p-4 card-bg`}
+      className={`col-start-8 col-end-11 row-start-1 row-end-8 ${color} rounded-lg p-6 card-bg`}
       style={{
         flex: '0 0 1',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',  // NEW: Prevents arrow overlap when height decreases
-        minHeight: 0  // Important: allows flex item to shrink below content size
+        minHeight: "auto"  // Important: allows flex item to shrink below content size
       }}
     >
 

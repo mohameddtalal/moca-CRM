@@ -53,18 +53,18 @@ const Card10 = ({ title, description, color }: Card10Props) => {
      * 5. Arrow now properly separated from content at all viewport heights (1080px, 768px, 600px)
      */
     <div
-      className={`col-start-3 col-end-6 row-start-10 row-end-13 ${color} rounded-lg p-4 card-bg`}
+      className={`col-start-3 col-end-6 row-start-10 row-end-13 ${color} rounded-lg p-6 card-bg`}
       style={{
         flex: '0 0 1',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',  // NEW: Pushes arrow to bottom, prevents overlap when height decreases
-        minHeight: 0  // Important: allows flex item to shrink below content size
+        minHeight: "auto"  // Important: allows flex item to shrink below content size
       }}>
 
       {/* TITLE + DESCRIPTION */}
       <div style={{ minHeight: 0 }}>
-        <h2 className="card-title-sm-m whitespace-pre-line" style={{ color: "var(--yellow)" }}>
+        <h2 className="card-title-sm whitespace-pre-line" style={{ color: "var(--yellow)" }}>
           {title}
         </h2>
 
