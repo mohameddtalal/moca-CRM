@@ -1,6 +1,8 @@
 import Card1 from "../components/Cards/Card1";
 import Card10 from "./Cards/Card10";
 import Card11 from "./Cards/Card11";
+import Card12 from "./Cards/Card12";
+import Card13 from "./Cards/card13";
 import Card2 from "./Cards/Card2";
 import Card3 from "./Cards/Card3";
 import Card4 from "./Cards/Card4";
@@ -66,6 +68,7 @@ const BentoGrid = () => {
         <Card11 title="Control Room"
             description="Serves as the central command center of the platform, giving administrators full oversight and configuration power across the entire system. "
             color="bg-[var(--skin-pink)]"/>
+
     
     </div>
 </div>

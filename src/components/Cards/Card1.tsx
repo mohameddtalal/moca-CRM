@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ButtonRounded } from "../Button";
 
 interface Card1Props {
