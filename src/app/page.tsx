@@ -5,7 +5,6 @@ const Page=() => {
   return (
     <div className="flex flex-col" style={{ flex: 1 }}>
       <ScrollingHeader />
-
         <BentoGrid/>
       </div>
 
