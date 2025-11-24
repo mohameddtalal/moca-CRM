@@ -68,35 +68,6 @@ body {
   font-family: "GT Walsheim";
 }
 
-/* OLD - Before small-height screen fix:
-.bentogrid{
-  margin-bottom: clamp(2rem, 0rem + 3.125vw, 3rem);  (32px min - too large for small-height screens)
-  margin-left: clamp(2rem, 0rem + 3.125vw, 3rem);    (32px min - too large for small-height screens)
-  margin-right: clamp(2rem, 0rem + 3.125vw, 3rem);   (32px min - too large for small-height screens)
-  grid-auto-flow:column;
-  grid:repeat(auto-fit, minmax(250px, 1fr)) / auto-flow;
-}
-.navbar {
-  background-color: var(--navbar);
-  margin-top:  clamp(2rem, 0rem + 3.125vw, 3rem);      (32px min - too large for small-height screens)
-  margin-right: clamp(2rem, 0rem + 3.125vw, 3rem);     (32px min - too large for small-height screens)
-  margin-bottom:  clamp(1rem, 0rem + 1.5625vw, 1.5rem); (16px min - could be smaller)
-  margin-left:   clamp(2rem, 0rem + 3.125vw, 3rem);    (32px min - too large for small-height screens)
-}
-PROBLEMS WITH OLD APPROACH:
-On 1366x768 screens (768px height):
-- Total vertical margins: ~96px (navbar top 32px + navbar bottom 16px + header bottom 16px + bentogrid bottom 32px)
-- This consumes 12.5% of viewport just for margins
-- Leaves only ~672px for actual content (navbar + header + bentogrid grid)
-- 12x12 grid gets cramped with only ~48-53px per cell
-- Content appears collapsed, text overlaps, cards look unprofessional
-- The 2rem (32px) minimum is too large for limited vertical space
-*/
-
-/* NEW IMPLEMENTATION - Small-height screen fix: */
-/* Reduced minimum values from 2rem (32px) to 1rem (16px) for better scaling on small-height screens */
-/* This saves ~16px per margin on 1366x768 screens, providing more space for content */
-/* Maximum values remain unchanged (3rem/1.5rem) for large screens */
 .bentogrid{
   margin-bottom: clamp(1rem, 0rem + 3.125vw, 3rem);  /* Reduced from 2rem to 1rem (32px → 16px min) - saves 16px on small-height screens */
   margin-left: clamp(1rem, 0rem + 3.125vw, 3rem);    /* Reduced from 2rem to 1rem (32px → 16px min) - saves 16px on small-height screens */
@@ -203,12 +174,6 @@ On 1366x768 screens (768px height):
   border: clamp(1px, 0.3vw, 2px) solid white; /* dynamic border */
 }
 
-/* OLD - Before small-height screen fix:
-.header {
-  height: auto;
-  margin-bottom: clamp(1rem, 0rem + 1.5625vw, 1.5rem);  (16px min - could be smaller for small-height screens)
-}
-*/
 
 /* NEW IMPLEMENTATION - Small-height screen fix: */
 .header {
@@ -216,34 +181,10 @@ On 1366x768 screens (768px height):
   margin-bottom: clamp(0.75rem, 0rem + 1.5625vw, 1.5rem); /* Reduced from 1rem to 0.75rem (16px → 12px min) - saves 4px on small-height screens */
 }
 
-/* MEDIA QUERY - Extra small-height screens (1366x768, 1920x1080, etc.) */
-/* On screens with max-height of 800px or less, apply even smaller margins to maximize content space */
-/* This targets common laptop/desktop resolutions where vertical space is limited */
-/* Total vertical space saved on 768px height screens: ~24-40px (3-5% of viewport) */
-@media (max-height: 800px) {
-  .bentogrid {
-    /* Further reduced margins for extra-small height screens */
-    /* 0.75rem = 12px min (instead of 16px) - saves additional 4px per margin */
-    /* 2vw fluid scaling (instead of 3.125vw) - more conservative growth */
-    /* 2rem = 32px max (instead of 48px) - prevents margins from getting too large */
-    margin-bottom: clamp(0.75rem, 0rem + 2vw, 2rem);  /* Saves 4px on 768px screens (16px → 12px) */
-    margin-left: clamp(0.75rem, 0rem + 2vw, 2rem);    /* Saves 4px on 768px screens (16px → 12px) */
-    margin-right: clamp(0.75rem, 0rem + 2vw, 2rem);   /* Saves 4px on 768px screens (16px → 12px) */
-  }
 
-  .navbar {
-    /* Further reduced margins for extra-small height screens */
-    margin-top: clamp(0.75rem, 0rem + 2vw, 2rem);        /* Saves 4px on 768px screens (16px → 12px) */
-    margin-right: clamp(0.75rem, 0rem + 2vw, 2rem);      /* Saves 4px on 768px screens (16px → 12px) */
-    margin-bottom: clamp(0.5rem, 0rem + 1vw, 1rem);      /* Saves 4px on 768px screens (12px → 8px) */
-    margin-left: clamp(0.75rem, 0rem + 2vw, 2rem);       /* Saves 4px on 768px screens (16px → 12px) */
-  }
 
-  .header {
-    /* Further reduced margin for extra-small height screens */
-    margin-bottom: clamp(0.5rem, 0rem + 1vw, 1rem);      /* Saves 4px on 768px screens (12px → 8px) */
-  }
-}
+
+
 
 .scrollItem {
   font-size: clamp(1.5rem, -0.75rem + 3.5156vw, 2.625rem); /* dynamic font size */
@@ -251,120 +192,6 @@ On 1366x768 screens (768px height):
   margin: 0 16px;
 }
 
-/* OLD IMPLEMENTATION #1 - kept for reference */
-/* @keyframes scroll {
-          0% {
-            transform: translate3d(0, 0, 0);
-          }
-          100% {
-            transform: translate3d(-12.5%, 0, 0);
-          }
-        }
-        .animate-scroll {
-          display: inline-flex;
-          animation: scroll 8s linear infinite;
-          will-change: transform;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          transform: translateZ(0);
-        }
-        .animate-scroll:hover {
-          animation-play-state: paused;
-        } */
-/* PROBLEMS WITH OLD APPROACH #1:
-   1. Animation moves only -12.5% (1/8 of total width with 8 duplicates)
-   2. When animation resets from -12.5% to 0%, there's a visible jump/lag
-   3. The reset is noticeable because the content doesn't align perfectly
-   4. Using 8 duplicates is inefficient and causes performance issues
-   5. The animation duration (8s) was trying to compensate for the long content */
-
-/* OLD IMPLEMENTATION #2 - kept for reference */
-/* @keyframes scroll-seamless {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-.animate-scroll-seamless {
-  display: inline-flex;
-  animation: scroll-seamless 20s linear infinite;
-  will-change: transform;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
-}
-.animate-scroll-seamless:hover {
-  animation-play-state: paused;
-} */
-/* PROBLEMS WITH OLD APPROACH #2:
-   1. Used percentage-based animation (-50%) which doesn't account for gaps
-   2. The gap-4 (1rem) between items creates spacing that percentage doesn't include
-   3. Percentage-based transforms don't align perfectly with pixel-based content
-   4. Browser rounding errors cause slight misalignment at the loop point
-   5. Still had visible lag/jump when animation resets
-
-   Why percentage-based animation fails for seamless scrolling:
-   - CSS percentage (transform: translateX(-50%)) is relative to the element's width
-   - But the actual content width includes gaps, padding, margins, and varies by viewport
-   - The element's width is the TOTAL width (all duplicates), not one set
-   - So -50% moves half of TOTAL width, which may not align with one set's width
-   - Even 1px misalignment is visible as a jump/lag
-   - Example: If total width is 2000px but one set is 997px (due to gaps/rounding),
-     -50% moves 1000px, creating a 3px jump - very noticeable!
-
-   The fundamental issue:
-   - We need PIXEL-PERFECT alignment, not percentage-based approximation
-   - The animation must move EXACTLY the width of one set of items (including gaps)
-   - This requires JavaScript to measure the actual rendered width
-   - Only then can we create an animation that moves exactly that many pixels */
-
-/* OLD IMPLEMENTATION #3 - kept for reference */
-/* JavaScript-Calculated Pixel-Perfect Animation */
-/* How it worked:
-   - JavaScript measured the exact pixel width of one set of items (including gaps)
-   - Created a dynamic @keyframes animation with that exact pixel value
-   - Animation moved exactly one set width (e.g., -997px, not -50%)
-   - When animation reset to 0px, it was pixel-perfect aligned
-
-   PROBLEMS WITH OLD APPROACH #3:
-   1. OVERLY COMPLEX: Required useEffect, useRef, dynamic keyframe generation
-   2. TOO MUCH CODE: ~50 lines of JavaScript just for animation
-   3. WHITE SPACE GAP: With only 2 duplicates, a gap appeared before loop
-      - When last item scrolled out, viewport showed empty white space
-      - This happened because we moved exactly one set width
-      - Not enough content to fill viewport during transition
-   4. Maintenance burden: Complex code harder to understand and modify
-   5. Performance: JavaScript calculations on every mount
-
-   Why white space appeared:
-   - With 2 sets, when animation reached 100%, last item exited viewport
-   - Before animation reset to 0%, there was a brief moment with no content
-   - Even though reset was "instant", the gap was visible
-   - Need MORE content visible to prevent gaps during transition */
-
-/* NEW IMPLEMENTATION #4: Simple CSS-Only with Sufficient Duplicates */
-/* How it works:
-   - Use 4 duplicates (12 items total) to ensure content always fills viewport
-   - Simple CSS percentage animation (-25% = 1/4 of total width = one set)
-   - With 4 sets, there's ALWAYS content visible - no white space gaps
-   - Small alignment imperfections are invisible with this much content
-   - Much simpler: pure CSS, no JavaScript, no refs, no useEffect
-
-   Benefits:
-   - Simple and clean (back to CSS-only solution)
-   - No white space gaps (always content visible)
-   - Easy to understand and maintain
-   - Excellent performance (CSS animations are hardware-accelerated)
-   - Works reliably across all browsers
-   - Only ~10 lines of CSS vs ~50 lines of JavaScript
-
-   Why this works better:
-   - 4 duplicates provide enough content to fill viewport at all times
-   - Even if -25% isn't pixel-perfect, the misalignment is negligible
-   - With so much content, small jumps are invisible to the human eye
-   - Simplicity > Complexity for this use case */
 
 @keyframes scroll-simple {
   0% {
@@ -401,29 +228,30 @@ On 1366x768 screens (768px height):
   letter-spacing: 0;
   text-transform: none;
     font-family: "GT Walsheim";
-    margin-bottom: 0.5rem;
+   
 }
 
 .card-description-md {
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(0.5rem, -0.5rem + 1.5625vw, 1rem); /* slightly smaller min and max */
+  font-size: clamp(0.5rem, -0.5rem + 1.5625vw, 2rem); /* slightly smaller min and max */
   line-height: clamp(0.5rem, -0.5rem + 1.5625vw, 1rem); /* slightly smaller max */
   letter-spacing: 0.7;
   text-transform: none;
   font-family: "GT Walsheim";
-  margin-bottom: 0.9rem;
+ 
 }
 
 .card-description-sm {
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(0.8rem, -0.4375rem + 1.3672vw, 0.875rem); /* slightly smaller min and max */
-  line-height: clamp(0.8rem, -0.4375rem + 1.3672vw, 1.3rem); /* slightly smaller max */
+  font-size: clamp(0.6rem, -0.4375rem + 1.3672vw, 1.3rem); /* slightly smaller min and max */
+  line-height: clamp(0.6rem, -0.4375rem + 1.3672vw, 1.3rem); /* slightly smaller max */
   letter-spacing: 0;
   text-transform: none;
   font-family: "GT Walsheim";
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
+  
 }
 
 /* CARD TITLES */
@@ -456,8 +284,8 @@ On 1366x768 screens (768px height):
   white-space: pre-line;
   font-weight: 600;
   font-style: normal;
-  font-size: clamp(0.5rem, -1.5rem + 3.125vw, 1.5rem);
-  line-height: clamp(0.5rem, -1.5rem + 3.125vw, 1.5rem);
+  font-size: clamp(0.8rem, -1.5rem + 3.125vw, 1.5rem);
+  line-height: clamp(0.8rem, -1.5rem + 3.125vw, 1.5rem);
   letter-spacing: clamp(-0.5px, -0.1vw, -2px);
   text-transform: capitalize;
   font-family: "GT Walsheim";

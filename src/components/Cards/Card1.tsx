@@ -46,14 +46,14 @@ const Card1 = ({ title, description, color }: Card1Props) => {
         <div style={{ minHeight: 0 }}>
           <h2
             className="card-title-lg whitespace-pre-line"
-            style={{ color: "var(--hot-purple)", paddingLeft: "clamp(56px, 8vw, 88px)" }}
+            style={{ color: "var(--hot-purple)", paddingLeft: "clamp(56px, 8vw, 80px)" }}
           >
             {title}
           </h2>
      
           <p
             className="card-description-lg"
-            style={{ color: "var(--hot-purple)", paddingTop:'clamp(1rem, 7.125rem + -6.4453vw, 3rem)'}}
+            style={{ color: "var(--hot-purple)", paddingTop:'clamp(0.5rem, 7.125rem + -6.4453vw, 1.5rem)'}}
           >
             {description}
           </p>
