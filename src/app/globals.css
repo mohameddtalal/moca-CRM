@@ -192,7 +192,8 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: clamp(0.8rem, -0.6875rem + 2.1484vw, 1.375rem); /* slightly smaller min and max */
-  line-height: clamp(0.8rem, -0.6875rem + 2.1484vw, 1.375rem);  /* slightly smaller max */
+ line-height: clamp(0.8rem, 1.2vw + 0.3rem, 1.4rem);
+ /* slightly smaller max */
   letter-spacing: 0;
   text-transform: none;
     font-family: "GT Walsheim";
@@ -213,7 +214,7 @@ body {
 .card-description-sm {
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(0.6rem, -0.4375rem + 1.3672vw, 1.3rem); /* slightly smaller min and max */
+  font-size: clamp(0.8rem, -0.4375rem + 1.3672vw, 1.3rem); /* slightly smaller min and max */
   line-height: clamp(0.6rem, 1vw + 0.2rem, 1rem); /* slightly smaller max */
   letter-spacing: 0;
   text-transform: none;
@@ -239,7 +240,7 @@ body {
     white-space: pre-line;
   font-weight: 600;
   font-style: normal;
-  font-size: clamp(1rem, -1rem + 3.125vw, 2rem);;
+  font-size: clamp(1.3rem, -1rem + 3.125vw, 2rem);;
   line-height: clamp(1rem, -1rem + 3.125vw, 2rem);;
   letter-spacing: clamp(-1px, -0.15vw, -2px);
   text-transform: capitalize;
@@ -252,8 +253,8 @@ body {
   white-space: pre-line;
   font-weight: 600;
   font-style: normal;
-  font-size: clamp(0.8rem, -1.5rem + 3.125vw, 1.5rem);
-  line-height: clamp(0.8rem, -1.5rem + 3.125vw, 1.5rem);
+  font-size: clamp(1.2rem, -1.5rem + 3.125vw, 1.5rem);
+  line-height: clamp(1.2rem, -1.5rem + 3.125vw, 1.5rem);
   letter-spacing: clamp(-0.5px, -0.1vw, -2px);
   text-transform: capitalize;
   font-family: "GT Walsheim";
