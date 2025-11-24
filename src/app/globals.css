@@ -46,8 +46,11 @@ body {
   margin-right: clamp(1rem, 0rem + 3.125vw, 3rem);   /* Reduced from 2rem to 1rem (32px → 16px min) - saves 16px on small-height screens */
   grid-auto-flow:column;  /*when add grid add in width */
 
-
 }
+.bentogrid::-webkit-scrollbar {
+  display: none;
+}
+
 .navbar {
   background-color: var(--navbar);
   margin-top:  clamp(1rem, 0rem + 3.125vw, 3rem);      /* Reduced from 2rem to 1rem (32px → 16px min) - saves 16px on small-height screens */
@@ -183,9 +186,7 @@ body {
   transform: translateZ(0);
 }
 
-.animate-scroll-simple:hover {
-  animation-play-state: paused;
-}
+
 
 /* CARD DESCRIPTIONS */
 .card-description-lg {
