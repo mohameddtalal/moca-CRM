@@ -16,7 +16,7 @@ const ScrollingHeader = () => {
 
   const renderItem = (item: typeof items[0], idx: string | number) => (
     <div key={idx} className="flex items-center gap-3 text-2xl md:text-4xl font-bold flex-shrink-0">
-      <span className="scrollItem text-var(--black)">{item.text}</span>
+      <span className="scrollItem " style={{color:"var(--black)"}}>{item.text}</span>
       <Image src={item.icon} alt={item.text} width={40} height={40} />
     </div>
   );

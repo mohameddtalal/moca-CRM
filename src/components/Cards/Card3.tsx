@@ -21,29 +21,13 @@ const Card3 = ({ title, description, color }: Card3Props) => {
     >
       <div
         onClick={handleFlip}
-        className={`${color} rounded-lg p-6 card-bg`}
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'relative',
-          transformStyle: 'preserve-3d',
-          transition: 'transform 0.6s',
-          cursor: 'pointer',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-        }}
+        className={`flip-wrapper ${color} rounded-lg p-6 card-bg`}
+        style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+      
       >
         {/* FRONT FACE */}
         <div
-          style={{
-            backfaceVisibility: 'hidden',
-            display: 'flex',
-            height: '100%',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}
+          className='flip-front'
         >
           <div style={{ minHeight: 0 }}>
             <h2 className="card-title-lg whitespace-pre-line" style={{ color: "var(--peach)" }}>
@@ -60,21 +44,9 @@ const Card3 = ({ title, description, color }: Card3Props) => {
 
         {/* BACK FACE */}
         <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+         className='flip-back '
         >
-          <h2 className="card-title-lg" style={{ color: "var(--peach)" }}>
+          <h2 className="card-title-lg" style={{ color: "var(--black)" }}>
             Back Content
           </h2>
           <p className="card-description-lg mt-2" style={{ color: "var(--peach)" }}>

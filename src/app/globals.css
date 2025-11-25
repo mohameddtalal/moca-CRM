@@ -13,9 +13,10 @@
   --skin-pink: #FFD3D2;
   --hot-purple: #B433FF;
   --peach: #FFA480;
-  --black: #1D1D1B;
+  --black: #2c2c2c;
   --radius: 0.625rem;
   --background: #f7f7f7;
+  --white:#FFFFFF;
  
 }
 
@@ -25,6 +26,7 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+    text-transform: capitalize;
 }
 
 @font-face {
@@ -33,6 +35,7 @@
   font-weight: 600;
   font-style: normal;
   font-display: swap;
+  text-transform: capitalize;
 }
 
 body {
@@ -192,8 +195,8 @@ body {
 .card-description-lg {
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(0.8rem, -0.6875rem + 2.1484vw, 1.375rem); /* slightly smaller min and max */
- line-height: clamp(0.8rem, 1.2vw + 0.3rem, 1.4rem);
+  font-size: clamp(1rem, -0.6875rem + 2.1484vw, 1.375rem); /* slightly smaller min and max */
+ line-height: clamp(1rem, 1.2vw + 0.3rem, 1.4rem);
  /* slightly smaller max */
   letter-spacing: 0;
   text-transform: none;
@@ -204,11 +207,12 @@ body {
 .card-description-md {
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(0.5rem, -0.5rem + 1.5625vw, 2rem); /* slightly smaller min and max */
-  line-height: clamp(0.5rem, -0.5rem + 1.5625vw, 1rem); /* slightly smaller max */
+  font-size: clamp(1rem, -0.5rem + 1.5625vw, 2rem); /* slightly smaller min and max */
+  line-height: clamp(1rem, -0.5rem + 1.5625vw, 1rem); /* slightly smaller max */
   letter-spacing: 0.7;
   text-transform: none;
   font-family: "GT Walsheim";
+   text-transform: capitalize;
  
 }
 
@@ -216,11 +220,12 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: clamp(0.8rem, -0.4375rem + 1.3672vw, 1.3rem); /* slightly smaller min and max */
-  line-height: clamp(0.8rem, 1vw + 0.2rem, 1rem); /* slightly smaller max */
+  line-height: clamp(0.8rem, 1vw + 0.2rem, 1.5rem); /* slightly smaller max */
   letter-spacing: 0;
   text-transform: none;
   font-family: "GT Walsheim";
   margin-bottom: 0.5rem;
+   text-transform: capitalize;
   
 }
 
@@ -242,7 +247,7 @@ body {
   font-weight: 600;
   font-style: normal;
   font-size: clamp(1.3rem, -1rem + 3.125vw, 2rem);;
-  line-height: clamp(1rem, -1rem + 3.125vw, 2rem);;
+  line-height: clamp(1.3rem, -1rem + 3.125vw, 2rem);;
   letter-spacing: clamp(-1px, -0.15vw, -2px);
   text-transform: capitalize;
     font-family: "GT Walsheim";
@@ -268,3 +273,50 @@ body {
 .card-bg {
   border-radius: 24px;
 }
+
+.flip-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.flip-front,
+.flip-back {
+  backface-visibility: hidden;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+ 
+
+}
+
+.flip-back{
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: rotateY(180deg);
+}
+
+.card-button{
+               padding: 8px 10px;
+                border-radius: 50px;
+                font-size: 14px;
+                font-weight: 600;
+                font-family: "GT Walsheim";
+              
+
+
+}
+
+
+
+

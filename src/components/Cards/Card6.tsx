@@ -1,5 +1,5 @@
 'use client'
-
+import Image from 'next/image';
 import { useState } from 'react';
 import { ButtonSmall } from "../Button_sm";
 
@@ -11,39 +11,26 @@ interface Card6Props {
 
 const Card6 = ({ title, description, color }: Card6Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(true);
 
   const handleFlip = () => setIsFlipped(!isFlipped);
+
 
   return (
     <div
       className={`col-start-3 col-end-6 row-start-6 row-end-10`}
       style={{ width: '100%' }}
     >
+      {isAuthorized ? (
       <div
         onClick={handleFlip}
-        className={`${color} rounded-lg p-6 card-bg`}
+        className={`flip-wrapper ${color} rounded-lg p-6 card-bg`}
         style={{
-          width: '100%',
-          height: '100%',
-          position: 'relative',
-          transformStyle: 'preserve-3d',
-          transition: 'transform 0.6s',
-          cursor: 'pointer',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
         }}
       >
         {/* FRONT FACE */}
-        <div
-          style={{
-            height: '100%',
-            backfaceVisibility: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}
+        <div className='flip-front'
         >
           <div style={{ minHeight: 0 }}>
             <h2 className="card-title-md whitespace-pre-line" style={{ color: "var(--yellow)" }}>
@@ -59,29 +46,76 @@ const Card6 = ({ title, description, color }: Card6Props) => {
         </div>
 
         {/* BACK FACE */}
-        <div
+        <div className='flip-back card-bg p-6 '
           style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
+            backgroundColor:"var(--black)",
+          }}
+        >
+           <div>
+            <p className="card-description-sm " style={{ 
+              marginBottom:"24px",
+              color: 'var(--white)' }}>
+              {description}
+            </p>
+          </div>
+
+          {/* Labels/Tags */}
+          <div style={{ display: 'flex', gap: '8px'}}>
+            <span className='card-button'
+              style={{
+                backgroundColor: 'var(--purple)',
+                color: 'var(--yellow)',
+              }}
+            >
+              label
+            </span>
+
+            <span className='card-button'
+              style={{
+                backgroundColor: 'var(--yellow)',
+                color: 'var(--purple)',
+              }}
+            >
+              label
+            </span>
+            <span className='card-button'
+              style={{
+                backgroundColor: '#F7f7f7',
+                color: '#2c2c2c',
+                borderRadius: '99999px',
+                alignItems:"center",
+                justifyContent:"center",
+                display:"flex"
+              }}
+            >
+              <Image src='/assets/icon-card6.svg' alt='planet'  width ={16} height ={16}/>
+            </span>
+          </div>
+        </div>
+      </div>
+       ): <div
+          className="card-bg rounded-lg "
+          style={{
             width: '100%',
             height: '100%',
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
+            backgroundColor: 'var(--purple)',
+            alignItems:'center',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            alignItems: 'center',
+            
           }}
         >
-          <h2 className="card-title-md" style={{ color: "var(--yellow)" }}>
-            Back Content
-          </h2>
-          <p className="card-description-sm mt-2" style={{ color: "var(--yellow)" }}>
-            Add your back content here
-          </p>
+          <Image className='mt-auto'
+          src="/assets/card6.svg"
+          alt="sea"
+          width={76}
+          height={160}
+           />
+         
+
         </div>
-      </div>
+        }
     </div>
   );
 };

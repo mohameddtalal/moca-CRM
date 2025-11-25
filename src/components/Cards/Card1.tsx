@@ -14,7 +14,7 @@ const Card1 = ({ title, description, color }: Card1Props) => {
         display: "flex",
         flexDirection: "column",
         height: "100%", 
-        minHeight: "auto"
+
       }}
     >
 

@@ -21,27 +21,11 @@ const Card5 = ({ title, description, color }: Card5Props) => {
     >
       <div
         onClick={handleFlip}
-        className={`${color} rounded-lg p-6 card-bg`}
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'relative',
-          transformStyle: 'preserve-3d',
-          transition: 'transform 0.6s',
-          cursor: 'pointer',
-          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-        }}
+        className={`flip-wrapper ${color} rounded-lg p-6 card-bg`}
+        style={{transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'}}
       >
         {/* FRONT FACE */}
-        <div
-          style={{
-            height: '100%',
-            backfaceVisibility: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}
-        >
+        <div className='flip-front'>
           <div>
             <h2 className="card-title-sm whitespace-pre-line" style={{ color: 'var(--green)' }}>
               {title}
@@ -56,21 +40,7 @@ const Card5 = ({ title, description, color }: Card5Props) => {
         </div>
 
         {/* BACK FACE */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <div className='flip-back' >
           <h2 className="card-title-sm" style={{ color: 'var(--green)' }}>
             Back Content
           </h2>
