@@ -46,7 +46,7 @@ const Card6 = ({ title, description, color }: Card6Props) => {
 
           {/* BACK FACE */}
           <div
-            className='flip-back card-bg '
+            className='flip-back card-back-shadow '
             style={{
               backgroundColor: "var(--black)",
             }}

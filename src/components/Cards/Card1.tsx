@@ -84,7 +84,7 @@ const Card1 = ({ title, description, color }: Card1Props) => {
           </div>
 
           {/* BACK */}
-          <div className="flip-back card-bg">
+          <div className="flip-back card-back-shadow">
             <p
               className="card-description-lg"
               style={{

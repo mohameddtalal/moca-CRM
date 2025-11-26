@@ -55,7 +55,7 @@ const Card9 = ({ title, description, color }: Card9Props) => {
 
           {/* BACK */}
           <div
-            className="flip-back card-bg"
+            className="flip-back card-back-shadow"
             style={{ backgroundColor: "var(--black)", padding: "1rem" }}
           >
             <p

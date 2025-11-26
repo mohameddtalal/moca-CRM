@@ -55,7 +55,7 @@ const Card8 = ({ title, description, color }: Card8Props) => {
 
           {/* ---------- BACK FACE (MIRRORING CARD6 STRUCTURE) ---------- */}
           <div
-            className="flip-back card-bg"
+            className="flip-back card-back-shadow"
             style={{
               backgroundColor: "var(--black)",
             }}

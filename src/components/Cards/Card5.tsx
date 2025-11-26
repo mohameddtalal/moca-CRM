@@ -46,8 +46,8 @@ const Card5 = ({ title, description, color }: Card5Props) => {
 
           {/* BACK FACE */}
          
-          <div className='flip-back  card-bg ' style={{backgroundColor:'var(--black)'}} >
-            <p className="card-description-sm mt-2" style={{ color: 'var(--white)' ,
+          <div className='flip-back card-back-shadow ' style={{backgroundColor:'var(--black)'}} >
+            <p className="card-description-sm " style={{ color: 'var(--white)' ,
               textTransform :"capitalize",
               fontSize:'clamp(0.375rem, -0.25rem + 0.9766vw, 0.6875rem)',
               fontWeight:'600',

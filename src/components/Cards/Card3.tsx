@@ -53,7 +53,7 @@ const Card3 = ({ title, description, color }: Card3Props) => {
 
           {/* BACK FACE */}
           <div
-            className="flip-back card-bg"
+            className="flip-back card-back-shadow"
             style={{
               backgroundColor: "var(--black)",
               padding: "1rem",
