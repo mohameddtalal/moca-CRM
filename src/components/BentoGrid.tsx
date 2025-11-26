@@ -15,15 +15,14 @@ const BentoGrid = () => {
     return (
   <div className="bentogrid min-h-screen overflow-auto " style={{
   display: "block",
-  minHeight:"auto",  
+
 }}>
 
   <div className="grid grid-cols-12 grid-rows-12 w-full " style={{
-    flex:1,
     gridGap: "clamp(8px, 1.5vw, 16px)",
-    gridTemplateColumns: "repeat(12, auto)",
+    gridTemplateColumns: "repeat(12, 1fr)",
     gridTemplateRows: "repeat(12, auto)",
-    minHeight:"auto",    
+   
   }}>
 
        

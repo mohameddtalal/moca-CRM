@@ -20,6 +20,8 @@ const Navbar = () => {
                 </Link>
                 <div className="navItems">
                     <div className="search">
+                        <button className="searchh">
+                         <Link href="/"> 
                         <Image 
                             className="search-img"
                             src="/assets/search.svg"
@@ -27,21 +29,23 @@ const Navbar = () => {
                             width={22}
                             height={22}
                         />
+                        </Link>
+                        </button>
                     </div>
                     <div className="line"></div>
                     <div className="notifications"> 
+                        <button className="notification"> 
                         <Link href="/"> 
-                            <button className="notification"> 
                                 <Image 
+                                
                                 className="notification-img" 
                                 src="/assets/notification.svg" 
                                 alt="notification" 
                                 width={24} 
                                 height={24} 
                                 /> 
-    
-                            </button> 
                         </Link> 
+                          </button> 
                     </div>
                     <div className="line"></div>
                     <div className="quote">
