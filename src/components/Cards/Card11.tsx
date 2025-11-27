@@ -1,47 +1,78 @@
 'use client'
 
-import Image from 'next/image';
-import { useState } from 'react';
+import { useState } from "react";
 import { ButtonRounded } from "../Button";
+import Image from 'next/image';
 
-interface Card11Props {
+interface Card1Props {
   title: string;
   description: string;
   color: string;
 }
 
-const Card11 = ({ title, description, color }: Card11Props) => {
+const Card1 = ({ title, description, color }: Card1Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isAuthorized, setIsAuthorized] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(true); // added
 
   const handleFlip = () => setIsFlipped(!isFlipped);
 
   return (
     <div
-      className={`col-start-6 col-end-11 row-start-8 row-end-13`}
-      style={{ width: '100%' }}
+      className="relative col-start-1 col-end-6 row-start-1 row-end-6"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+      }}
     >
+      {/* PROFILE PHOTO */}
+      <div className="absolute top-0 left-0 rounded-full overflow-hidden z-30">
+        <img
+          src="assets/profile-photo.svg"
+          alt="Profile"
+          className="w-[56px] h-[56px] object-cover"
+        />
+      </div>
+
       {isAuthorized ? (
         <div
-          onClick={handleFlip}
-          className={`flip-wrapper ${color} rounded-lg card-bg`}
+          // onClick={handleFlip}
+          className={`flip-wrapper ${color} card-bg p-4 relative`}
           style={{
-            transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+            clipPath: "url(#cutout-rounded-px)",
+            WebkitClipPath: "url(#cutout-rounded-px)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            flexGrow: 1,
+            minHeight: 0,
+            overflow: "hidden",
+            // transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+            cursor: "default",
           }}
         >
-          {/* FRONT FACE */}
-          <div className="flip-front">
+          {/* FRONT */}
+          <div
+            className="flip-front"
+            style={{ height: "100%", display: "flex", flexDirection: "column" }}
+          >
             <div style={{ minHeight: 0 }}>
               <h2
                 className="card-title-lg whitespace-pre-line"
-                style={{ color: "var(--purple)" }}
+                style={{
+                  color: "var(--hot-purple)",
+                  paddingLeft: "clamp(56px, 8vw, 80px)",
+                }}
               >
                 {title}
               </h2>
 
               <p
-                className="card-description-lg mt-2 mb-2"
-                style={{ color: "var(--purple)" }}
+                className="card-description-lg"
+                style={{
+                  color: "var(--hot-purple)",
+                  paddingTop: "clamp(0.5rem, 7.125rem + -6.4453vw, 1.5rem)",
+                }}
               >
                 {description}
               </p>
@@ -52,137 +83,73 @@ const Card11 = ({ title, description, color }: Card11Props) => {
             </div>
           </div>
 
-          {/* BACK FACE */}
-          <div
-            className="flip-back card-back-shadow"
-            style={{
-              backgroundColor: "var(--black)",
-            }}
-          >
+          {/* BACK */}
+          <div className="flip-back card-back-shadow">
             <p
               className="card-description-lg"
               style={{
                 marginBottom: "24px",
                 color: "var(--white)",
                 fontSize: 'clamp(0.5rem, -0.5rem + 1.5625vw, 1rem)',
-                textTransform: 'capitalize',
+                textTransform: 'capitalize'
               }}
             >
-              Configure & personalize modules settings for optimal space management.
+              {description}
             </p>
 
             <div className="card-back-scroller overflow-y-scroll">
-              <div
-                style={{
-                  display: "inline-flex",
-                  gap: "8px",
-                  flexWrap: "wrap",
-                }}
-              >
+              <div style={{ display: "inline-flex", gap: "8px", flexWrap: "wrap" }}>
                 <button
                   className="card-button btn"
-                  style={{
-                    backgroundColor: "var(--skin-pink)",
-                    color: "var(--hot-purple)",
-                  }}
+                  style={{ backgroundColor: "var(--hot-purple)", color: "var(--white)" }}
                 >
-                  Homepage
+                  Label
                 </button>
 
                 <button
                   className="card-button"
-                  style={{
-                    backgroundColor: "var(--hot-purple)",
-                    color: "var(--skin-pink)",
-                  }}
+                  style={{ backgroundColor: "var(--white)", color: "var(--hot-purple)" }}
                 >
-                  Permissions
+                  Label
                 </button>
-
-                <span
-                  className="card-button"
-                  style={{
-                    backgroundColor: "#F7f7f7",
-                    color: "#2c2c2c",
-                    borderRadius: "99999px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    display: "flex",
-                  }}
-                >
-                  <Image
-                    src="/assets/icon-card11.svg"
-                    alt="planet"
-                    width={16}
-                    height={16}
-                  />
-                </span>
-                <button
-                  className="card-button btn"
-                  style={{
-                    backgroundColor: "var(--skin-pink)",
-                    color: "var(--hot-purple)",
-                  }}
-                >
-                  Property Management
-                </button>
-
-                <button
-                  className="card-button"
-                  style={{
-                    backgroundColor: "var(--hot-purple)",
-                    color: "var(--skin-pink)",
-                  }}
-                >
-                  Dynamic Lists
-                </button>
-
-                <span
-                  className="card-button"
-                  style={{
-                    backgroundColor: "#F7f7f7",
-                    color: "#2c2c2c",
-                    borderRadius: "99999px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    display: "flex",
-                  }}
-                >
-                  <Image
-                    src="/assets/star.svg"
-                    alt="planet"
-                    width={16}
-                    height={16}
-                  />
-                </span>
-                
               </div>
             </div>
           </div>
         </div>
-
       ) : (
         // NOT AUTHORIZED VIEW
         <div
-          className=" rounded-lg"
+          className= "rounded-lg"
           style={{
+             clipPath: "url(#cutout-rounded-px)",
+            WebkitClipPath: "url(#cutout-rounded-px)",
+            padding: 'clamp(0.8rem, 0.5rem + 2vw, 2.5rem) clamp(0.8rem, 0.5rem + 2vw, 1rem) clamp(0.1875rem, -0.0625rem + 0.3906vw, 0.3125rem) clamp(0.8rem, 0.5rem + 2vw, 1rem)',
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+             borderRadius: '24px',
+            flexGrow: 1,
+            minHeight: 0,
+            overflow: "hidden",
             width: "100%",
             height: "100%",
-            borderRadius:'24px',
-            backgroundColor: "var(--skin-pink)",
+            backgroundColor: "var(--yellow)",
             alignItems: "center",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
+       
           }}
         >
-          
+          <p
+            className="card-title-lg"
+            style={{ color: "var(--hot-purple)", marginBottom: "24px" }}
+          >
+            Moca – My Office & Coffee Assistant
+          </p>
           <Image
-            className="mt-auto "style={{borderRadius:'clamp(0px, 24px + (1240px - 100vw), 24px)'}}
-            src="/assets/card11.svg"
+          className="mt-auto"
+            src="/assets/card1.svg"
             alt="locked"
-            width={472}
-            height={250}
+            width={152}
+            height={272}
           />
         </div>
       )}
@@ -190,4 +157,4 @@ const Card11 = ({ title, description, color }: Card11Props) => {
   );
 };
 
-export default Card11;
+export default Card1;
