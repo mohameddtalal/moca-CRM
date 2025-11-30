@@ -16,7 +16,7 @@ const Card10 = ({
   title,
   description,
   color = '',
-  isEditMode = false,
+  isEditMode = true,
   isAuthorized = true,
 }: Card10Props) => {
   if (!isAuthorized) return <LockedCard10 />;

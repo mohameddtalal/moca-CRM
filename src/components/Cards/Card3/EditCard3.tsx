@@ -13,6 +13,9 @@ interface Props {
 
 const EditCard3 = ({ title, description, color = '' }: Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [editableTitle, setEditableTitle] = useState(title);
+  const [editableDescription, setEditableDescription] = useState(description);
+
   const handleFlip = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     setIsFlipped(prev => !prev);
@@ -30,22 +33,47 @@ const EditCard3 = ({ title, description, color = '' }: Props) => {
         {/* FRONT FACE */}
         <div className="flip-front">
             <div style={{display:'flex' ,flexDirection:'row'}}>
-          <div style={{ minHeight: 0 }}>
-            <h2 className="card-title-lg whitespace-pre-line" style={{ color: 'var(--peach)' }}>
-              {title}
-            </h2>
+          <div style={{ minHeight: 0, flex: 1 }}>
+            <textarea
+              value={editableTitle}
+              onChange={(e) => setEditableTitle(e.target.value)}
+              className="card-title-lg whitespace-pre-line"
+              style={{ 
+                color: 'var(--peach)',
+                backgroundColor: 'transparent',
+                width: '100%',
+                whiteSpace: 'pre-line',
+                scrollbarWidth: 'none',
+                resize:'none',
+                outline:"none",
+                  marginBottom:'0'
+              }}
+            />
 
-            <p className="card-description-lg mt-2 mb-2" style={{ color: 'var(--peach)' }}>
-              {description}
-            </p>
+            <textarea
+              value={editableDescription}
+              onChange={(e) => setEditableDescription(e.target.value)}
+              className="card-description-lg mt-2 mb-2"
+              style={{ 
+                color: 'var(--peach)',
+                backgroundColor: 'transparent',
+                width: '100%',
+                height:'100%',
+                outline:"none",
+                scrollbarWidth: 'none',
+                 resize:'none'
+             
+              }}
+           
+            />
           </div>
           <div style={{display:'flex' , flexDirection:'column' , gap:'9px'}}>
-            <button onClick={() => console.log("Save clicked")} style={{cursor:"pointer"}}>
+            <button onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })} style={{cursor:"pointer"}}>
                 <Image 
                     src="/assets/Card3SaveEdit.svg" 
                     alt="save" 
-                    width="70" 
-                    height="70" 
+                    width="22" 
+                    height="27" 
                 />
                 </button>
 
@@ -53,8 +81,8 @@ const EditCard3 = ({ title, description, color = '' }: Props) => {
                 <Image 
                     src="/assets/Card3FlipEdit.svg" 
                     alt="flip" 
-                    width="70" 
-                    height="70"
+                    width="22" 
+                    height="27"
                 />
                 </button>
 
@@ -77,12 +105,12 @@ const EditCard3 = ({ title, description, color = '' }: Props) => {
           }}
         >
             <div className=" absolute top-6 right-6 " style={{display:'flex' , flexDirection:'column' , gap:'9px' }}>
-            <button onClick={() => console.log("Save clicked")} style={{cursor:"pointer"}}>
+            <button onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })} style={{cursor:"pointer"}}>
                 <Image 
                     src="/assets/Card3SaveEdit.svg" 
                     alt="save" 
-                    width="20" 
-                    height="22" 
+                    width="22" 
+                    height="27" 
                 />
                 </button>
 
@@ -90,8 +118,8 @@ const EditCard3 = ({ title, description, color = '' }: Props) => {
                 <Image 
                     src="/assets/Card3FlipEdit.svg" 
                     alt="flip" 
-                    width="20" 
-                    height="22"
+                    width="22" 
+                    height="27"
                 />
                 </button>
 

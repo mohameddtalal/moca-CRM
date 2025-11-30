@@ -4,6 +4,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { ButtonRounded } from '../../Button';
+import { ButtonSmall } from '@/components/Button_sm';
 
 interface Props {
   title: string;
@@ -13,6 +14,9 @@ interface Props {
 
 const EditCard2 = ({ title, description, color = '' }: Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [editableTitle, setEditableTitle] = useState(title);
+  const [editableDescription, setEditableDescription] = useState(description);
+
   const handleFlip = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     setIsFlipped(prev => !prev);
@@ -30,22 +34,47 @@ const EditCard2 = ({ title, description, color = '' }: Props) => {
         {/* FRONT FACE */}
         <div className="flip-front">
             <div style={{display:'flex' ,flexDirection:'row'}}>
-          <div style={{ minHeight: 0 }}>
-            <h2 className="card-title-md whitespace-pre-line" style={{ color: 'var(--skin-pink)' }}>
-              {title}
-            </h2>
+          <div style={{ minHeight: 0, flex: 1 }}>
+            <textarea
+              value={editableTitle}
+              onChange={(e) => setEditableTitle(e.target.value)}
+              className="card-title-md whitespace-pre-line"
+              style={{ 
+                color: 'var(--skin-pink)',
+                backgroundColor: 'transparent',
+                width: '100%',
+                whiteSpace: 'pre-line',
+                outline:"none",
+                scrollbarWidth: 'none',
+                resize:'none',
+                marginBottom:'0'
+              
+              }}
+            />
 
-            <p className="card-description-sm mt-2" style={{ color: 'var(--skin-pink)' }}>
-              {description}
-            </p>
+            <textarea
+              value={editableDescription}
+              onChange={(e) => setEditableDescription(e.target.value)}
+              className="card-description-sm mt-2"
+              style={{ 
+                color: 'var(--skin-pink)',
+                backgroundColor: 'transparent',
+                width: '100%',
+                height:"100%",
+                outline:"none",
+                scrollbarWidth: 'none',
+                 resize:'none'
+               
+              }}
+            />
           </div>
           <div style={{display:'flex' , flexDirection:'column' , gap:'9px'}}>
-            <button onClick={() => console.log("Save clicked")} style={{cursor:"pointer"}}>
+            <button onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })} style={{cursor:"pointer"}}>
                 <Image 
                     src="/assets/Card2SaveEdit.svg" 
                     alt="save" 
-                    width="50" 
-                    height="50" 
+                    width="14" 
+                    height="19" 
                 />
                 </button>
 
@@ -53,8 +82,8 @@ const EditCard2 = ({ title, description, color = '' }: Props) => {
                 <Image 
                     src="/assets/Card2FlipEdit.svg" 
                     alt="flip" 
-                    width="50" 
-                    height="50"
+                    width="14" 
+                    height="19"
                 />
                 </button>
 
@@ -62,7 +91,7 @@ const EditCard2 = ({ title, description, color = '' }: Props) => {
           </div>
 
           <div className="self-end mt-auto">
-            <ButtonRounded />
+            <ButtonSmall />
           </div>
         </div>
 
@@ -77,7 +106,7 @@ const EditCard2 = ({ title, description, color = '' }: Props) => {
           }}
         >
             <div className=" absolute top-6 right-6 " style={{display:'flex' , flexDirection:'column' , gap:'9px' }}>
-            <button onClick={() => console.log("Save clicked")} style={{cursor:"pointer"}}>
+            <button onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })} style={{cursor:"pointer"}}>
                 <Image 
                     src="/assets/Card2SaveEdit.svg" 
                     alt="save" 

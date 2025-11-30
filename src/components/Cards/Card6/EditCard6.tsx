@@ -1,9 +1,10 @@
-// components/Cards/Card11/Normal.tsx
+
 'use client';
 
 import Image from 'next/image';
 import { useState } from 'react';
 import { ButtonRounded } from '../../Button';
+import { ButtonSmall } from '@/components/Button_sm';
 
 interface Props {
   title: string;
@@ -13,6 +14,11 @@ interface Props {
 
 const EditCard6 = ({ title, description, color = '' }: Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
+
+  // ADDED (editable states)
+  const [editableTitle, setEditableTitle] = useState(title);
+  const [editableDescription, setEditableDescription] = useState(description);
+
   const handleFlip = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     setIsFlipped(prev => !prev);
@@ -23,46 +29,81 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
       <div
         className={`flip-wrapper ${color} rounded-lg card-bg`}
         style={{
-        transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-        cursor:"default"
+          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          cursor: "default"
         }}
       >
         {/* FRONT FACE */}
         <div className="flip-front">
-            <div style={{display:'flex' ,flexDirection:'row'}}>
-          <div style={{ minHeight: 0 }}>
-            <h2 className="card-title-md whitespace-pre-line" style={{ color: 'var(--yellow)' }}>
-              {title}
-            </h2>
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <div style={{ minHeight: 0 }}>
+              
+              {/* TEXTAREA TITLE */}
+              <input
+                value={editableTitle}
+                onChange={(e) => setEditableTitle(e.target.value)}
+                className="card-title-md whitespace-pre-line"
+                style={{
+                  color: 'var(--yellow)',
+                  backgroundColor: 'transparent',
+                  width: '100%',
+                  scrollbarWidth: 'none',
+                  resize: 'none',
+                  outline:"none",
+                  marginBottom:'0',
+                  height:'auto-fit'
+                  
+                }}
+              />
 
-            <p className="card-description-sm mt-2" style={{ color: 'var(--yellow)' }}>
-              {description}
-            </p>
-          </div>
-          <div style={{display:'flex' , flexDirection:'column' , gap:'9px'}}>
-            <button onClick={() => console.log("Save clicked")} style={{cursor:"pointer"}}>
+              {/* TEXTAREA DESCRIPTION */}
+              <textarea
+                value={editableDescription}
+                onChange={(e) => setEditableDescription(e.target.value)}
+                className="card-description-sm mt-2"
+                style={{
+                  color: 'var(--yellow)',
+                  backgroundColor: 'transparent',
+                  width: '100%',
+                  scrollbarWidth: 'none',
+                  outline:"none",
+                  resize: 'none',
+                  height:'80%'
+                }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap:'9px' }}>
+              <button
+                onClick={() =>
+                  console.log("Save clicked", {
+                    title: editableTitle,
+                    description: editableDescription
+                  })
+                }
+                style={{ cursor:"pointer" }}
+              >
                 <Image 
-                    src="/assets/Card10SaveEdit.svg" 
-                    alt="save" 
-                    width="22" 
-                    height="25" 
+                  src="/assets/Card10SaveEdit.svg"
+                  alt="save"
+                  width="22"
+                  height="27"
                 />
-                </button>
+              </button>
 
-                <button onClick={handleFlip} style={{cursor:"pointer"}} >
+              <button onClick={handleFlip} style={{ cursor:"pointer" }}>
                 <Image 
-                    src="/assets/Card10FlipEdit.svg" 
-                    alt="flip" 
-                    width="30" 
-                    height="33"
+                  src="/assets/Card10FlipEdit.svg"
+                  alt="flip"
+                  width="22"
+                  height="27"
                 />
-                </button>
-
-          </div>
+              </button>
+            </div>
           </div>
 
           <div className="self-end mt-auto">
-            <ButtonRounded />
+            <ButtonSmall/>
           </div>
         </div>
 
@@ -76,30 +117,48 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
             alignItems:"center"
           }}
         >
-            <div className=" absolute top-6 right-6 " style={{display:'flex' , flexDirection:'column' , gap:'9px' }}>
-            <button onClick={() => console.log("Save clicked")} style={{cursor:"pointer"}}>
-                <Image 
-                    src="/assets/Card10SaveEdit.svg" 
-                    alt="save" 
-                    width="18" 
-                    height="20" 
-                />
-                </button>
-
-                <button onClick={handleFlip} style={{cursor:"pointer"}} >
-                <Image 
-                    src="/assets/Card10FlipEdit.svg" 
-                    alt="flip" 
-                    width="18" 
-                    height="20"
-                />
-                </button>
-
-          </div>
-          <div style={{display:'flex' ,justifyContent:'center', flexDirection:'column', alignItems:'center' , textAlign:'center' , justifyItems:'center',gap:"20px" }}>
+          <div className=" absolute top-6 right-6 " style={{ display:'flex', flexDirection:'column', gap:'9px' }}>
             <button
-                onClick={() => document.getElementById("fileInputYellow")?.click()}
-                style={{
+              onClick={() =>
+                console.log("Save clicked", {
+                  title: editableTitle,
+                  description: editableDescription
+                })
+              }
+              style={{ cursor:"pointer" }}
+            >
+              <Image 
+                src="/assets/Card10SaveEdit.svg"
+                alt="save"
+                width="14"
+                height="19"
+              />
+            </button>
+
+            <button onClick={handleFlip} style={{ cursor:"pointer" }}>
+              <Image 
+                src="/assets/Card10FlipEdit.svg"
+                alt="flip"
+                width="14"
+                height="19"
+              />
+            </button>
+          </div>
+
+          <div
+            style={{
+              display:'flex',
+              justifyContent:'center',
+              flexDirection:'column',
+              alignItems:'center',
+              textAlign:'center',
+              justifyItems:'center',
+              gap:"20px"
+            }}
+          >
+            <button
+              onClick={() => document.getElementById("fileInputYellow")?.click()}
+              style={{
                 color: "var(--yellow)",
                 backgroundColor: "transparent",
                 border: "1px solid var(--yellow)",
@@ -110,27 +169,27 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
                 fontFamily: "GT Walsheim",
                 fontWeight: "400",
                 cursor: "pointer",
-                }}
+              }}
             >
-                Upload
+              Upload
             </button>
 
-  <input type="file" id="fileInputYellow" style={{ display: "none" }} />
-          <p
-            className="card-description-sm"
-            style={{
-             
-              color: 'var(--yellow)',
-              
-              textTransform: 'capitalize',
-              textAlign:"center"
-            }}
-          >
-            Browse  here to start uploading<br/>
-            Supports PNG, JPG,JPEG, Video Max. xxx MB 
-          </p>
+            <input type="file" id="fileInputYellow" style={{ display:"none" }} />
+
+            <p
+              className="card-description-sm"
+              style={{
+                color: 'var(--yellow)',
+                textTransform: 'capitalize',
+                textAlign:"center"
+              }}
+            >
+              Browse here to start uploading<br/>
+              Supports PNG, JPG, JPEG, Video Max. xxx MB
+            </p>
+          </div>
+
         </div>
-    </div>
       </div>
     </div>
   );

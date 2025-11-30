@@ -4,6 +4,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { ButtonRounded } from '../../Button';
+import { ButtonSmall } from '@/components/Button_sm';
 
 interface Props {
   title: string;
@@ -40,7 +41,7 @@ const NormalCard6 = ({ title, description, color = '' }: Props) => {
           </div>
 
           <div className="self-end mt-auto">
-            <ButtonRounded />
+            <ButtonSmall />
           </div>
         </div>
 

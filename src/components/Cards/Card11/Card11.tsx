@@ -13,7 +13,7 @@ interface Card11Props {
   isAuthorized?: boolean;
 }
 
-const Card11 = ({ title, description, color = '', isEditMode = false, isAuthorized = true }: Card11Props) => {
+const Card11 = ({ title, description, color = '', isEditMode = true, isAuthorized = true }: Card11Props) => {
   if (!isAuthorized) return <LockedCard11 />;
 
   return isEditMode ? (

@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { useState } from "react";
 import { ButtonRounded } from "@/components/Button";
-import Image from 'next/image';
+import Image from "next/image";
 
 interface Card1Props {
   title: string;
@@ -10,8 +10,12 @@ interface Card1Props {
   color: string;
 }
 
-const Card1 = ({ title, description, color }: Card1Props) => {
+const EditCard1 = ({ title, description, color }: Card1Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
+
+  // Editable states (same system as EditCard3)
+  const [editableTitle, setEditableTitle] = useState(title);
+  const [editableDescription, setEditableDescription] = useState(description);
 
   const handleFlip = () => setIsFlipped(!isFlipped);
 
@@ -20,7 +24,6 @@ const Card1 = ({ title, description, color }: Card1Props) => {
       className="relative col-start-1 col-end-6 row-start-1 row-end-6"
       style={{ display: "flex", flexDirection: "column", height: "100%" }}
     >
-
       {/* Profile Image */}
       <div className="absolute top-0 left-0 rounded-full overflow-hidden z-30">
         <img
@@ -41,9 +44,7 @@ const Card1 = ({ title, description, color }: Card1Props) => {
           overflow: "hidden",
         }}
       >
-
-        {/* --- FIXED FLIP STRUCTURE --- */}
-        <div style={{  width: "100%", height: "100%" }}>
+        <div style={{ width: "100%", height: "100%" }}>
           <div
             className="flip-inner"
             style={{
@@ -55,50 +56,65 @@ const Card1 = ({ title, description, color }: Card1Props) => {
               transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
             }}
           >
-
-            {/* ------------ FRONT ------------ */}
+            {/* FRONT */}
             <div
               className="flip-front"
               style={{
-                position: "absolute",
+                
                 width: "100%",
                 height: "100%",
                 backfaceVisibility: "hidden",
-            
               }}
             >
-              <div className={`card-bg ${color} p-4`} style={{
-                display: "flex",
-                flexDirection: "column",
-                height: "100%",
-              }}>
-
-                {/* Title + Right Actions */}
+              <div
+                className={`card-bg ${color} p-4`}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "100%",
+                }}
+              >
+                {/* Title + Buttons Row */}
                 <div style={{ display: "flex", flexDirection: "row" }}>
-                  <div style={{ minHeight: 0 }}>
-                    <h2
+                  <div style={{ minHeight: 0, flex: 1 }}>
+                    {/* Editable Title (textarea) */}
+                    <input
+                      value={editableTitle}
+                      onChange={(e) => setEditableTitle(e.target.value)}
                       className="card-title-lg whitespace-pre-line"
                       style={{
-                        color: "var(--purple)",
+                        color: "var(--hot-purple)",
+                        background: "transparent",
+                        width: "100%",
                         paddingLeft: "clamp(56px, 8vw, 80px)",
+                        whiteSpace: "pre-line",
+                        scrollbarWidth: "none",
+                        outline:"none",
+                        resize: "none",
+                        marginBottom: 0,
                       }}
-                    >
-                      {title}
-                    </h2>
+                    />
 
-                    <p
+                    {/* Editable Description */}
+                    <textarea
+                      value={editableDescription}
+                      onChange={(e) =>
+                        setEditableDescription(e.target.value)
+                      }
                       className="card-description-lg mt-2 mb-2"
                       style={{
-                        color: "var(--purple)",
+                        color: "var(--hot-purple)",
+                        background: "transparent",
+                        width: "100%",
+                        scrollbarWidth: "none",
+                        resize: "none",
                         paddingTop:
                           "clamp(0.5rem, 7.125rem + -6.4453vw, 1.5rem)",
                       }}
-                    >
-                      {description}
-                    </p>
+                    />
                   </div>
 
-                  {/* Edit Buttons */}
+                  {/* Edit Icons */}
                   <div
                     style={{
                       display: "flex",
@@ -106,24 +122,42 @@ const Card1 = ({ title, description, color }: Card1Props) => {
                       gap: "9px",
                     }}
                   >
-                    <button onClick={() => console.log("Save clicked")} style={{ cursor: "pointer" }}>
-                      <Image src="/assets/Card11SaveEdit.svg" alt="save" width={40} height={40} />
+                    <button
+                      onClick={() =>
+                        console.log("Save clicked", {
+                          title: editableTitle,
+                          description: editableDescription,
+                        })
+                      }
+                      style={{ cursor: "pointer" }}
+                    >
+                      <Image
+                        src="/assets/Card11SaveEdit.svg"
+                        alt="save"
+                        width={20}
+                        height={25}
+                      />
                     </button>
 
                     <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-                      <Image src="/assets/Card11FlipEdit.svg" alt="flip" width={40} height={40} />
+                      <Image
+                        src="/assets/Card11FlipEdit.svg"
+                        alt="flip"
+                        width={20}
+                        height={25}
+                      />
                     </button>
                   </div>
                 </div>
 
-                {/* CTA Button */}
+                {/* CTA */}
                 <div className="self-end mt-auto">
                   <ButtonRounded />
                 </div>
               </div>
             </div>
 
-            {/* ------------ BACK ------------ */}
+            {/* BACK */}
             <div
               className="flip-back-edit"
               style={{
@@ -146,18 +180,39 @@ const Card1 = ({ title, description, color }: Card1Props) => {
                   position: "relative",
                 }}
               >
-
                 {/* Edit Buttons */}
                 <div
                   className="absolute top-6 right-6"
-                  style={{ display: "flex", flexDirection: "column", gap: "9px" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "9px",
+                  }}
                 >
-                  <button onClick={() => console.log("Save clicked")} style={{ cursor: "pointer" }}>
-                    <Image src="/assets/Card4SaveEdit.svg" alt="save" width="25" height="30" />
+                  <button
+                    onClick={() =>
+                      console.log("Save clicked", {
+                        title: editableTitle,
+                        description: editableDescription,
+                      })
+                    }
+                    style={{ cursor: "pointer" }}
+                  >
+                    <Image
+                      src="/assets/Card4SaveEdit.svg"
+                      alt="save"
+                      width="20"
+                      height="25"
+                    />
                   </button>
 
                   <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-                    <Image src="/assets/Card4FlipEdit.svg" alt="flip" width="25" height="30" />
+                    <Image
+                      src="/assets/Card4FlipEdit.svg"
+                      alt="flip"
+                      width="20"
+                      height="25"
+                    />
                   </button>
                 </div>
 
@@ -191,19 +246,26 @@ const Card1 = ({ title, description, color }: Card1Props) => {
                     Upload
                   </button>
 
-                  <input type="file" id="hiddenFileInput2" style={{ display: "none" }} />
+                  <input
+                    type="file"
+                    id="hiddenFileInput2"
+                    style={{ display: "none" }}
+                  />
 
                   <p
                     className="card-description-md"
                     style={{
                       color: "var(--hot-purple)",
-                      fontSize: "clamp(0.5rem, -0.5rem + 1.5625vw, 1rem)",
-                      lineHeight: "clamp(1.2rem, 1.5625vw - .5rem, 1.6rem)",
+                      fontSize:
+                        "clamp(0.5rem, -0.5rem + 1.5625vw, 1rem)",
+                      lineHeight:
+                        "clamp(1.2rem, 1.5625vw - .5rem, 1.6rem)",
                       textTransform: "capitalize",
                       textAlign: "center",
                     }}
                   >
-                    Browse here to start uploading <br />
+                    Browse here to start uploading
+                    <br />
                     Supports PNG, JPG, JPEG, Video Max. xxx MB
                   </p>
                 </div>
@@ -212,10 +274,9 @@ const Card1 = ({ title, description, color }: Card1Props) => {
 
           </div>
         </div>
-
       </div>
     </div>
   );
 };
 
-export default Card1;
+export default EditCard1;
