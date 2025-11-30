@@ -10,10 +10,10 @@ export function ButtonSmall() {
         className="rounded-full"
         style={{
           backgroundColor: "var(--black)",
-          padding: "clamp(0.25rem, 0.0944rem + 1.1019vw, 0.5rem)",
-          width: "clamp(1rem, -2.0959rem + 21.9178vw, 2rem)",
-          height: "clamp(1rem, -2.0959rem + 21.9178vw, 2rem)",
-        }}
+         padding: "clamp(0.25rem, 0.18rem + 0.4vw, 0.5rem)",
+          width: "clamp(1rem, 0.6rem + 1.6vw, 2rem)",
+          height: "clamp(1rem, 0.6rem + 1.6vw, 2rem)"
+                }}
       >
         <Image
           src="/assets/Vector.svg"

@@ -12,7 +12,7 @@ import Card9 from "./Cards/Card9/Card9";
 
 
 interface BentoGridProps {
-isEditMode: boolean;
+isEditMode?: boolean;
   // optionally pass a map/object describing which cards are authorized
   // e.g. { Card11: true, Card3: false }
   authorizationMap?: Record<string, boolean>;
@@ -24,7 +24,7 @@ const isAuthorized = (cardKey: string) =>
  authorizationMap[cardKey] ?? true; // default true for demo
   
     return (
-  <div className="bentogrid min-h-screen overflow-auto " style={{
+  <div className="bentogrid overflow-auto " style={{
   display: "block",
 
 }}>

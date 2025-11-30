@@ -23,8 +23,16 @@ const EditCard4 = ({ title, description, color = '' }: Props) => {
   const [size, setSize] = useState({ width: 300, height: 300 });
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
+   const [scale, setScale] = useState(1);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
+    const handleDeleteImage = () => {
+  setUploadedImage(null);
+  setZoom(1);
+  setScale(1);
+  setSize({ width: 300, height: 300 });
+  setPosition({ x: 0, y: 0 });
+};
 
   const handleFlip = () => setIsFlipped(prev => !prev);
 
@@ -71,7 +79,8 @@ const EditCard4 = ({ title, description, color = '' }: Props) => {
                   backgroundColor: "transparent",
                   width: "100%",
                   outline: "none",
-                  marginBottom: "0"
+                  scrollbarWidth:'none',
+                  marginBottom: "0",
                 }}
               />
 
@@ -85,6 +94,7 @@ const EditCard4 = ({ title, description, color = '' }: Props) => {
                   width: "100%",
                   height: "100%",
                   outline: "none",
+                   scrollbarWidth:'none',
                   resize: "none"
                 }}
               />
@@ -93,11 +103,11 @@ const EditCard4 = ({ title, description, color = '' }: Props) => {
             {/* Buttons */}
             <div style={{ display: "flex", flexDirection: "column", gap: "9px" }}>
               <button style={{ cursor: "pointer" }}>
-                <Image src="/assets/Card4SaveEdit.svg" alt="save" width={14} height={19} />
+                <Image src="/assets/Save.svg" alt="save" width={14} height={19} />
               </button>
 
               <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Card4FlipEdit.svg" alt="flip" width={14} height={19} />
+                <Image src="/assets/Refresh.svg" alt="flip" width={14} height={19} />
               </button>
             </div>
           </div>
@@ -123,11 +133,17 @@ const EditCard4 = ({ title, description, color = '' }: Props) => {
           {/* Top-right controls */}
           <div className="absolute top-6 right-6" style={{ display: "flex", flexDirection: "column", gap: "9px", zIndex: 10 }}>
             <button style={{ cursor: "pointer" }}>
-              <Image src="/assets/Card4SaveEdit.svg" alt="save" width={14} height={19} />
+              <Image src="/assets/Save.svg" alt="save" width={14} height={19} />
             </button>
 
             <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-              <Image src="/assets/Card4FlipEdit.svg" alt="flip" width={14} height={19} />
+              <Image src="/assets/Refresh.svg" alt="flip" width={14} height={19} />
+            </button>
+            <button
+              onClick={handleDeleteImage}
+              style={{ cursor: "pointer", pointerEvents: "auto" }}
+            >
+              <Image src="/assets/Trash.svg" alt="delete" width="14" height="19" />
             </button>
           </div>
 

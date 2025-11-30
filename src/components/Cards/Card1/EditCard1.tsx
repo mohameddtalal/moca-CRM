@@ -19,8 +19,16 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
   const [zoom, setZoom] = useState(1);
   const [size, setSize] = useState({ width: 400, height: 400 });
   const [position, setPosition] = useState({ x: 0, y: 0 });
+   const [scale, setScale] = useState(1);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
+    const handleDeleteImage = () => {
+  setUploadedImage(null);
+  setZoom(1);
+  setScale(1);
+  setSize({ width: 300, height: 300 });
+  setPosition({ x: 0, y: 0 });
+};
 
   const handleFlip = () => setIsFlipped(!isFlipped);
   const handleUploadClick = () => document.getElementById("fileInputCard1")?.click();
@@ -94,10 +102,10 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
                       onClick={() => console.log({ title: editableTitle, description: editableDescription })}
                       style={{ cursor: 'pointer' }}
                     >
-                      <Image src="/assets/Card11SaveEdit.svg" alt="save" width={20} height={25} />
+                      <Image src="/assets/Save.svg" alt="save" width={20} height={25} />
                     </button>
                     <button onClick={handleFlip} style={{ cursor: 'pointer' }}>
-                      <Image src="/assets/Card11FlipEdit.svg" alt="flip" width={20} height={25} />
+                      <Image src="/assets/Refresh.svg" alt="flip" width={20} height={25} />
                     </button>
                   </div>
                 </div>
@@ -131,11 +139,17 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
                 }}
               >
                 <div className="absolute top-6 right-6" style={{ display: "flex", flexDirection: "column", gap: '9px', zIndex: 10 }}>
-                  <button onClick={() => console.log({ title: editableTitle, description: editableDescription })}>
-                    <Image src="/assets/Card4SaveEdit.svg" alt="save" width={20} height={25} />
+                  <button onClick={() => console.log({ title: editableTitle, description: editableDescription })} style={{cursor:"pointer"}}>
+                    <Image src="/assets/Save.svg" alt="save" width={20} height={20} />
                   </button>
-                  <button onClick={handleFlip}>
-                    <Image src="/assets/Card4FlipEdit.svg" alt="flip" width={20} height={25} />
+                  <button onClick={handleFlip} style={{cursor:"pointer"}}>
+                    <Image src="/assets/Refresh.svg" alt="flip" width={20} height={20} />
+                  </button>
+                  <button
+                   onClick={handleDeleteImage}
+                   style={{ cursor: "pointer", pointerEvents: "auto" }}
+                  >
+                   <Image src="/assets/Trash.svg" alt="delete" width="20" height="20" />
                   </button>
                 </div>
 

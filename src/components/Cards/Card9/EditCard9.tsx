@@ -23,8 +23,16 @@ const EditCard9 = ({ title, description, color = '' }: Props) => {
 
   // Zoom scale
   const [zoom, setZoom] = useState(1);
+   const [scale, setScale] = useState(1);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
+    const handleDeleteImage = () => {
+  setUploadedImage(null);
+  setZoom(1);
+  setScale(1);
+  setSize({ width: 300, height: 300 });
+  setPosition({ x: 0, y: 0 });
+};
 
   const handleFlip = () => setIsFlipped(prev => !prev);
 
@@ -95,11 +103,11 @@ const EditCard9 = ({ title, description, color = '' }: Props) => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
               <button onClick={handleSave} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Card8SaveEdit.svg" alt="save" width={14} height={19} />
+                <Image src="/assets/Save8.svg" alt="save" width={14} height={19} />
               </button>
 
               <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Card8FlipEdit.svg" alt="flip" width={14} height={19} />
+                <Image src="/assets/Refresh8.svg" alt="flip" width={14} height={19} />
               </button>
             </div>
           </div>
@@ -124,10 +132,16 @@ const EditCard9 = ({ title, description, color = '' }: Props) => {
           {/* Top-right buttons */}
           <div className="absolute top-6 right-6" style={{ display: 'flex', flexDirection: 'column', gap: '11px', zIndex: 10 }}>
             <button onClick={handleSave} style={{ cursor: "pointer", pointerEvents: 'auto' }}>
-              <Image src="/assets/Card8SaveEdit.svg" alt="save" width={14} height={19} />
+              <Image src="/assets/Save8.svg" alt="save" width={14} height={19} />
             </button>
             <button onClick={handleFlip} style={{ cursor: "pointer", pointerEvents: 'auto' }}>
-              <Image src="/assets/Card8FlipEdit.svg" alt="flip" width={14} height={19} />
+              <Image src="/assets/Refresh8.svg" alt="flip" width={14} height={19} />
+            </button>
+            <button
+              onClick={handleDeleteImage}
+              style={{ cursor: "pointer", pointerEvents: "auto" }}
+            >
+              <Image src="/assets/Trash8.svg" alt="delete" width="14" height="19" />
             </button>
           </div>
 
@@ -187,7 +201,7 @@ const EditCard9 = ({ title, description, color = '' }: Props) => {
               </button>
 
               <p className="card-description-sm" style={{ color: 'var(--black)', textAlign: "center" }}>
-                Browse here to start uploading <br /> Supports PNG, JPG, JPEG, Video Max. xxx MB
+                Browse here to start uploading Supports PNG, JPG, JPEG, Video Max. xxx MB
               </p>
             </div>
           )}

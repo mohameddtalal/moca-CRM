@@ -23,8 +23,16 @@ const EditCard10 = ({ title, description, color = '' }: Props) => {
 
   // Zoom scale
   const [zoom, setZoom] = useState(1);
+   const [scale, setScale] = useState(1);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
+    const handleDeleteImage = () => {
+  setUploadedImage(null);
+  setZoom(1);
+  setScale(1);
+  setSize({ width: 300, height: 300 });
+  setPosition({ x: 0, y: 0 });
+};
 
   const handleFlip = () => setIsFlipped(prev => !prev);
 
@@ -95,11 +103,11 @@ const EditCard10 = ({ title, description, color = '' }: Props) => {
 
             <div style={{ display: "flex", flexDirection: "column", gap: "9px" }}>
               <button onClick={handleSave} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Card10SaveEdit.svg" alt="save" width={14} height={20} />
+                <Image src="/assets/Save6.svg" alt="save" width={14} height={20} />
               </button>
 
               <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Card10FlipEdit.svg" alt="flip" width={14} height={20} />
+                <Image src="/assets/Refresh6.svg" alt="flip" width={14} height={20} />
               </button>
             </div>
           </div>
@@ -124,10 +132,16 @@ const EditCard10 = ({ title, description, color = '' }: Props) => {
           {/* Top-right buttons */}
           <div className="absolute top-6 right-6" style={{ display: 'flex', flexDirection: 'column', gap: '11px', zIndex: 10 }}>
             <button onClick={handleSave} style={{ cursor: "pointer", pointerEvents: 'auto' }}>
-              <Image src="/assets/Card10SaveEdit.svg" alt="save" width={14} height={20} />
+              <Image src="/assets/Save6.svg" alt="save" width={14} height={20} />
             </button>
             <button onClick={handleFlip} style={{ cursor: "pointer", pointerEvents: 'auto' }}>
-              <Image src="/assets/Card10FlipEdit.svg" alt="flip" width={14} height={20} />
+              <Image src="/assets/Refresh6.svg" alt="flip" width={14} height={20} />
+            </button>
+            <button
+              onClick={handleDeleteImage}
+              style={{ cursor: "pointer", pointerEvents: "auto" }}
+            >
+              <Image src="/assets/Trash6.svg" alt="delete" width="14" height="19" />
             </button>
           </div>
 
