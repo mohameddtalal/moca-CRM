@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion } from 'motion/react';
 import { ButtonRounded } from "@/components/Button";
 import Image from "next/image";
 
@@ -12,12 +13,31 @@ interface Card1Props {
 
 const EditCard1 = ({ title, description, color }: Card1Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
-
-  // Editable states (same system as EditCard3)
   const [editableTitle, setEditableTitle] = useState(title);
   const [editableDescription, setEditableDescription] = useState(description);
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [scale, setScale] = useState(1);
+
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const handleFlip = () => setIsFlipped(!isFlipped);
+
+  const handleUploadClick = () => document.getElementById("fileInputCard1")?.click();
+  
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadedImage(URL.createObjectURL(file));
+    setScale(1); // reset zoom
+  };
+
+  // Free zoom with mouse wheel
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    const delta = -e.deltaY * 0.0001; // adjust sensitivity
+    setScale(prev => prev + delta); // no limits
+  };
 
   return (
     <div
@@ -60,7 +80,6 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
             <div
               className="flip-front"
               style={{
-                
                 width: "100%",
                 height: "100%",
                 backfaceVisibility: "hidden",
@@ -108,6 +127,7 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
                         width: "100%",
                         scrollbarWidth: "none",
                         resize: "none",
+                        outline:"none",
                         paddingTop:
                           "clamp(0.5rem, 7.125rem + -6.4453vw, 1.5rem)",
                       }}
@@ -166,6 +186,19 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
                 height: "100%",
                 backfaceVisibility: "hidden",
                 transform: "rotateY(180deg)",
+                overflow: "hidden",
+              }}
+              ref={containerRef}
+              onWheel={uploadedImage ? handleWheel : undefined}
+              onMouseEnter={() => {
+                if (uploadedImage) {
+                  document.body.style.overflow = 'hidden';
+                }
+              }}
+              onMouseLeave={() => {
+                if (uploadedImage) {
+                  document.body.style.overflow = 'auto';
+                }
               }}
             >
               <div
@@ -187,6 +220,7 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
                     display: "flex",
                     flexDirection: "column",
                     gap: "9px",
+                    zIndex: 10,
                   }}
                 >
                   <button
@@ -196,7 +230,7 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
                         description: editableDescription,
                       })
                     }
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", pointerEvents: 'auto' }}
                   >
                     <Image
                       src="/assets/Card4SaveEdit.svg"
@@ -206,7 +240,7 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
                     />
                   </button>
 
-                  <button onClick={handleFlip} style={{ cursor: "pointer" }}>
+                  <button onClick={handleFlip} style={{ cursor: "pointer", pointerEvents: 'auto' }}>
                     <Image
                       src="/assets/Card4FlipEdit.svg"
                       alt="flip"
@@ -216,59 +250,87 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
                   </button>
                 </div>
 
-                {/* Upload Section */}
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    textAlign: "center",
-                    gap: "24px",
-                  }}
-                >
-                  <button
-                    onClick={() =>
-                      document.getElementById("hiddenFileInput2")?.click()
-                    }
+                {uploadedImage ? (
+                  <motion.div
+                    drag
+                    dragConstraints={containerRef}
+                    dragElastic={0}
+                    dragMomentum={false}
+                    className="absolute"
                     style={{
-                      color: "var(--hot-purple)",
-                      backgroundColor: "transparent",
-                      border: "1px solid var(--hot-purple)",
-                      width: "94px",
-                      height: "48px",
-                      borderRadius: "1536px",
-                      fontSize: "clamp(0.5rem, 1vw + 0.2rem, 0.8rem)",
-                      fontFamily: "GT Walsheim",
-                      fontWeight: "400",
-                      cursor: "pointer",
+                      cursor: "grab",
+                      touchAction: "none",
                     }}
+                    whileDrag={{ cursor: "grabbing" }}
                   >
-                    Upload
-                  </button>
-
-                  <input
-                    type="file"
-                    id="hiddenFileInput2"
-                    style={{ display: "none" }}
-                  />
-
-                  <p
-                    className="card-description-md"
+                    <img
+                      src={uploadedImage}
+                      alt="uploaded"
+                      style={{
+                        width: 'auto',
+                        height: 'auto',
+                        maxWidth: '600px',
+                        maxHeight: '600px',
+                        userSelect: "none",
+                        pointerEvents: "none",
+                        transform: `scale(${scale})`,
+                        transformOrigin: "center center",
+                      }}
+                    />
+                  </motion.div>
+                ) : (
+                  <div
                     style={{
-                      color: "var(--hot-purple)",
-                      fontSize:
-                        "clamp(0.5rem, -0.5rem + 1.5625vw, 1rem)",
-                      lineHeight:
-                        "clamp(1.2rem, 1.5625vw - .5rem, 1.6rem)",
-                      textTransform: "capitalize",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
                       textAlign: "center",
+                      gap: "24px",
                     }}
                   >
-                    Browse here to start uploading
-                    <br />
-                    Supports PNG, JPG, JPEG, Video Max. xxx MB
-                  </p>
-                </div>
+                    <button
+                      onClick={handleUploadClick}
+                      style={{
+                        color: "var(--hot-purple)",
+                        backgroundColor: "transparent",
+                        border: "1px solid var(--hot-purple)",
+                        width: "94px",
+                        height: "48px",
+                        borderRadius: "1536px",
+                        fontSize: "clamp(0.5rem, 1vw + 0.2rem, 0.8rem)",
+                        fontFamily: "GT Walsheim",
+                        fontWeight: "400",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Upload
+                    </button>
+
+                    <p
+                      className="card-description-md"
+                      style={{
+                        color: "var(--hot-purple)",
+                        fontSize:
+                          "clamp(0.5rem, -0.5rem + 1.5625vw, 1rem)",
+                        lineHeight:
+                          "clamp(1.2rem, 1.5625vw - .5rem, 1.6rem)",
+                        textTransform: "capitalize",
+                        textAlign: "center",
+                      }}
+                    >
+                      Browse here to start uploading
+                      <br />
+                      Supports PNG, JPG, JPEG, Video Max. xxx MB
+                    </p>
+                  </div>
+                )}
+
+                <input
+                  type="file"
+                  id="fileInputCard1"
+                  style={{ display: "none" }}
+                  onChange={handleFileChange}
+                />
               </div>
             </div>
 

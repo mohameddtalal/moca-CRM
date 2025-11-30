@@ -1,8 +1,8 @@
-
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { motion } from 'motion/react';
 import { ButtonRounded } from '../../Button';
 import { ButtonSmall } from '@/components/Button_sm';
 
@@ -14,14 +14,33 @@ interface Props {
 
 const EditCard6 = ({ title, description, color = '' }: Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
-
-  // ADDED (editable states)
   const [editableTitle, setEditableTitle] = useState(title);
   const [editableDescription, setEditableDescription] = useState(description);
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [scale, setScale] = useState(1);
+
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const handleFlip = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     setIsFlipped(prev => !prev);
+  };
+
+  const handleUploadClick = () => document.getElementById("fileInputCard6")?.click();
+  
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadedImage(URL.createObjectURL(file));
+    setScale(1); // reset zoom
+  };
+
+  // Free zoom with mouse wheel
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    const delta = -e.deltaY * 0.0001; // adjust sensitivity
+    setScale(prev => prev + delta); // no limits
   };
 
   return (
@@ -30,13 +49,17 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
         className={`flip-wrapper ${color} rounded-lg card-bg`}
         style={{
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-          cursor: "default"
+          cursor: "default",
+          transformStyle: "preserve-3d",
+          transition: "transform 0.6s",
+          position: "relative",
+          height: "100%",
         }}
       >
         {/* FRONT FACE */}
         <div className="flip-front">
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <div style={{ minHeight: 0 }}>
+            <div style={{ minHeight: 0, flex: 1 }}>
               
               {/* TEXTAREA TITLE */}
               <input
@@ -52,7 +75,6 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
                   outline:"none",
                   marginBottom:'0',
                   height:'auto-fit'
-                  
                 }}
               />
 
@@ -86,8 +108,8 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
                 <Image 
                   src="/assets/Card10SaveEdit.svg"
                   alt="save"
-                  width="22"
-                  height="27"
+                  width="14"
+                  height="17"
                 />
               </button>
 
@@ -95,8 +117,8 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
                 <Image 
                   src="/assets/Card10FlipEdit.svg"
                   alt="flip"
-                  width="22"
-                  height="27"
+                  width="14"
+                  height="17"
                 />
               </button>
             </div>
@@ -109,15 +131,28 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
 
         {/* BACK FACE */}
         <div
-          className="flip-back-edit card-bg"
+          className="flip-back-edit card-bg absolute w-full h-full overflow-hidden"
           style={{
             backgroundColor: 'var(--purple)',
             display:"flex",
             justifyContent:"center",
-            alignItems:"center"
+            alignItems:"center",
+            transform: "rotateY(180deg)"
+          }}
+          ref={containerRef}
+          onWheel={uploadedImage ? handleWheel : undefined}
+          onMouseEnter={() => {
+            if (uploadedImage) {
+              document.body.style.overflow = 'hidden';
+            }
+          }}
+          onMouseLeave={() => {
+            if (uploadedImage) {
+              document.body.style.overflow = 'auto';
+            }
           }}
         >
-          <div className=" absolute top-6 right-6 " style={{ display:'flex', flexDirection:'column', gap:'9px' }}>
+          <div className="absolute top-6 right-6" style={{ display:'flex', flexDirection:'column', gap:'9px', zIndex: 10 }}>
             <button
               onClick={() =>
                 console.log("Save clicked", {
@@ -125,7 +160,7 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
                   description: editableDescription
                 })
               }
-              style={{ cursor:"pointer" }}
+              style={{ cursor:"pointer", pointerEvents: 'auto' }}
             >
               <Image 
                 src="/assets/Card10SaveEdit.svg"
@@ -135,7 +170,7 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
               />
             </button>
 
-            <button onClick={handleFlip} style={{ cursor:"pointer" }}>
+            <button onClick={handleFlip} style={{ cursor:"pointer", pointerEvents: 'auto' }}>
               <Image 
                 src="/assets/Card10FlipEdit.svg"
                 alt="flip"
@@ -145,49 +180,79 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
             </button>
           </div>
 
-          <div
-            style={{
-              display:'flex',
-              justifyContent:'center',
-              flexDirection:'column',
-              alignItems:'center',
-              textAlign:'center',
-              justifyItems:'center',
-              gap:"20px"
-            }}
-          >
-            <button
-              onClick={() => document.getElementById("fileInputYellow")?.click()}
+          {uploadedImage ? (
+            <motion.div
+              drag
+              dragConstraints={containerRef}
+              dragElastic={0}
+              dragMomentum={false}
+              className="absolute"
               style={{
-                color: "var(--yellow)",
-                backgroundColor: "transparent",
-                border: "1px solid var(--yellow)",
-                width: "78px",
-                height: "32px",
-                borderRadius: "1536px",
-                fontSize: "clamp(0.5rem, 1vw + 0.2rem, 0.8rem)",
-                fontFamily: "GT Walsheim",
-                fontWeight: "400",
-                cursor: "pointer",
+                cursor: "grab",
+                touchAction: "none",
+              }}
+              whileDrag={{ cursor: "grabbing" }}
+            >
+              <img
+                src={uploadedImage}
+                alt="uploaded"
+                style={{
+                  width: 'auto',
+                  height: 'auto',
+                  maxWidth: '600px',
+                  maxHeight: '600px',
+                  userSelect: "none",
+                  pointerEvents: "none",
+                  transform: `scale(${scale})`,
+                  transformOrigin: "center center",
+                }}
+              />
+            </motion.div>
+          ) : (
+            <div
+              style={{
+                display:'flex',
+                justifyContent:'center',
+                flexDirection:'column',
+                alignItems:'center',
+                textAlign:'center',
+                justifyItems:'center',
+                gap:"20px"
               }}
             >
-              Upload
-            </button>
+              <button
+                onClick={handleUploadClick}
+                style={{
+                  color: "var(--yellow)",
+                  backgroundColor: "transparent",
+                  border: "1px solid var(--yellow)",
+                  width: "78px",
+                  height: "32px",
+                  borderRadius: "1536px",
+                  fontSize: "clamp(0.5rem, 1vw + 0.2rem, 0.8rem)",
+                  fontFamily: "GT Walsheim",
+                  fontWeight: "400",
+                  cursor: "pointer",
+                }}
+              >
+                Upload
+              </button>
 
-            <input type="file" id="fileInputYellow" style={{ display:"none" }} />
+              <p
+                className="card-description-sm"
+                style={{
+                  color: 'var(--yellow)',
+                  textTransform: 'capitalize',
+                  textAlign:"center"
+                }}
+              >
+                Browse here to start uploading<br/>
+                Supports PNG, JPG, JPEG, Video Max. xxx MB
+              </p>
+            </div>
+          )}
 
-            <p
-              className="card-description-sm"
-              style={{
-                color: 'var(--yellow)',
-                textTransform: 'capitalize',
-                textAlign:"center"
-              }}
-            >
-              Browse here to start uploading<br/>
-              Supports PNG, JPG, JPEG, Video Max. xxx MB
-            </p>
-          </div>
+          <input type="file" id="fileInputCard6" style={{ display:"none" }} onChange={handleFileChange} />
 
         </div>
       </div>
