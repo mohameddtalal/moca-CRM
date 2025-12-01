@@ -84,8 +84,10 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
                     <textarea
                       value={editableDescription}
                       onChange={(e) => setEditableDescription(e.target.value)}
-                      className="card-description-lg mt-2 mb-2"
+                      className="card-description-lg mt-2 mb-2"                 
+                       rows={3} 
                       style={{
+                      paddingTop: "clamp(0.5rem, 7.125rem + -6.4453vw, 1.5rem)",
                         color: "var(--hot-purple)",
                         background: "transparent",
                         width: "100%",
@@ -102,10 +104,10 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
                       onClick={() => console.log({ title: editableTitle, description: editableDescription })}
                       style={{ cursor: 'pointer' }}
                     >
-                      <Image src="/assets/Save.svg" alt="save" width={20} height={25} />
+                      <Image src="/assets/Save.svg" alt="save" width={20} height={25} className="icons-clamp-lg"/>
                     </button>
                     <button onClick={handleFlip} style={{ cursor: 'pointer' }}>
-                      <Image src="/assets/Refresh.svg" alt="flip" width={20} height={25} />
+                      <Image src="/assets/Refresh.svg" alt="flip" width={20} height={25} className="icons-clamp-lg"/>
                     </button>
                   </div>
                 </div>
@@ -140,16 +142,16 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
               >
                 <div className="absolute top-6 right-6" style={{ display: "flex", flexDirection: "column", gap: '9px', zIndex: 10 }}>
                   <button onClick={() => console.log({ title: editableTitle, description: editableDescription })} style={{cursor:"pointer"}}>
-                    <Image src="/assets/Save.svg" alt="save" width={20} height={20} />
+                    <Image src="/assets/Save.svg" alt="save" width={20} height={20} className="icons-clamp-lg"/>
                   </button>
                   <button onClick={handleFlip} style={{cursor:"pointer"}}>
-                    <Image src="/assets/Refresh.svg" alt="flip" width={20} height={20} />
+                    <Image src="/assets/Refresh.svg" alt="flip" width={20} height={20} className="icons-clamp-lg"/>
                   </button>
                   <button
                    onClick={handleDeleteImage}
                    style={{ cursor: "pointer", pointerEvents: "auto" }}
                   >
-                   <Image src="/assets/Trash.svg" alt="delete" width="20" height="20" />
+                   <Image src="/assets/Trash.svg" alt="delete" width="20" height="20" className="icons-clamp-lg"/>
                   </button>
                 </div>
 
@@ -179,24 +181,16 @@ const EditCard1 = ({ title, description, color }: Card1Props) => {
                   </Rnd>
                 ) : (
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "24px", textAlign: "center" }}>
-                    <button
+                    <button className="upload-button-style-lg"
                       onClick={handleUploadClick}
                       style={{
                         color: "var(--hot-purple)",
-                        backgroundColor: "transparent",
                         border: "1px solid var(--hot-purple)",
-                        width: "94px",
-                        height: "48px",
-                        borderRadius: "1536px",
-                        fontSize: "clamp(0.5rem, 1vw + 0.2rem, 0.8rem)",
-                        fontFamily: "GT Walsheim",
-                        fontWeight: "400",
-                        cursor: "pointer"
                       }}
                     >
                       Upload
                     </button>
-                    <p style={{ color: "var(--hot-purple)" }}>
+                    <p className="card-description-md" style={{ color: "var(--hot-purple)", lineHeight:'clamp(0.7rem, 1.5vw, 1.5rem)'}}>
                       Browse here to start uploading<br />
                       Supports PNG, JPG, JPEG, Video Max. xxx MB
                     </p>

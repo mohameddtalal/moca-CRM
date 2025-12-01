@@ -58,10 +58,6 @@ const EditCard3 = ({ title, description, color = '' }: Props) => {
         style={{
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
           cursor: "default",
-          transformStyle: "preserve-3d",
-          transition: "transform 0.6s",
-          position: "relative",
-          height: "100%",
         }}
       >
         {/* FRONT FACE */}
@@ -86,6 +82,7 @@ const EditCard3 = ({ title, description, color = '' }: Props) => {
                 value={editableDescription}
                 onChange={(e) => setEditableDescription(e.target.value)}
                 className="card-description-lg mt-2 mb-2"
+                  rows={3} 
                 style={{
                   color: 'var(--peach)',
                   backgroundColor: 'transparent',
@@ -100,11 +97,11 @@ const EditCard3 = ({ title, description, color = '' }: Props) => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
               <button style={{ cursor: "pointer" }}>
-                <Image src="/assets/Save3.svg" alt="save" width="22" height="27" />
+                <Image src="/assets/Save3.svg" alt="save" width="22" height="27" className="icons-clamp-lg"/>
               </button>
 
               <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Refresh3.svg" alt="flip" width="22" height="27" />
+                <Image src="/assets/Refresh3.svg" alt="flip" width="22" height="27" className="icons-clamp-lg"/>
               </button>
             </div>
           </div>
@@ -116,30 +113,26 @@ const EditCard3 = ({ title, description, color = '' }: Props) => {
 
         {/* BACK FACE */}
         <div
-          className="flip-back-edit card-bg absolute w-full h-full overflow-hidden"
+          className="flip-back-edit card-bg "
           style={{
             backgroundColor: `${color}`,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            transform: "rotateY(180deg)"
           }}
           ref={containerRef}
         >
           {/* Top-right controls */}
           <div className="absolute top-6 right-6" style={{ display: "flex", flexDirection: "column", gap: "9px", zIndex: 10 }}>
             <button style={{ cursor: "pointer", pointerEvents: "auto" }}>
-              <Image src="/assets/Save3.svg" alt="save" width="22" height="27" />
+              <Image src="/assets/Save3.svg" alt="save" width="22" height="27" className="icons-clamp-lg"/>
             </button>
 
             <button onClick={handleFlip} style={{ cursor: "pointer", pointerEvents: "auto" }}>
-              <Image src="/assets/Refresh3.svg" alt="flip" width="22" height="27" />
+              <Image src="/assets/Refresh3.svg" alt="flip" width="22" height="27" className="icons-clamp-lg" />
             </button>
             <button
               onClick={handleDeleteImage}
               style={{ cursor: "pointer", pointerEvents: "auto" }}
             >
-              <Image src="/assets/Trash3.svg" alt="delete" width="22" height="27" />
+              <Image src="/assets/Trash3.svg" alt="delete" width="22" height="27" className="icons-clamp-lg"/>
             </button>
           </div>
 
@@ -204,19 +197,11 @@ const EditCard3 = ({ title, description, color = '' }: Props) => {
                 gap: "20px"
               }}
             >
-              <button
+              <button className='upload-button-style-lg'
                 onClick={handleUploadClick}
                 style={{
                   color: "var(--peach)",
-                  backgroundColor: "transparent",
                   border: "1px solid var(--peach)",
-                  width: "78px",
-                  height: "32px",
-                  borderRadius: "1536px",
-                  fontSize: "clamp(0.5rem, 1vw + 0.2rem, 0.8rem)",
-                  fontFamily: "GT Walsheim",
-                  fontWeight: "400",
-                  cursor: "pointer",
                 }}
               >
                 Upload
@@ -225,8 +210,7 @@ const EditCard3 = ({ title, description, color = '' }: Props) => {
               <p className="card-description-md"
                 style={{
                   color: 'var(--peach)',
-                  fontSize: 'clamp(0.5rem, -0.5rem + 1.5625vw, 1rem)',
-                  lineHeight:"clamp(1.2rem, 1.5625vw - .5rem, 1.6rem)",
+                  lineHeight:'clamp(0.7rem, 1.5vw, 1.5rem)',
                   textTransform: 'capitalize',
                   textAlign:"center"
                 }}>

@@ -59,10 +59,7 @@ const EditCard4 = ({ title, description, color = '' }: Props) => {
         style={{
           transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
           cursor: "default",
-          transformStyle: "preserve-3d",
-          transition: "transform 0.6s",
-          position: "relative",
-          height: "100%",
+
         }}
       >
 
@@ -88,6 +85,7 @@ const EditCard4 = ({ title, description, color = '' }: Props) => {
                 value={editableDescription}
                 onChange={(e) => setEditableDescription(e.target.value)}
                 className="card-description-sm mt-2"
+                 rows={3} 
                 style={{
                   color: "var(--hot-purple)",
                   backgroundColor: "transparent",
@@ -101,13 +99,13 @@ const EditCard4 = ({ title, description, color = '' }: Props) => {
             </div>
 
             {/* Buttons */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "9px" }}>
+            <div style={{ display: "flex", flexDirection: "column",gap: 'clamp(0.2rem, -0.25rem + 0.9766vw, 0.4rem)' }}>
               <button style={{ cursor: "pointer" }}>
-                <Image src="/assets/Save.svg" alt="save" width={14} height={19} />
+                <Image src="/assets/Save.svg" alt="save" width={14} height={19} className='icons-clamp-sm'/>
               </button>
 
               <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Refresh.svg" alt="flip" width={14} height={19} />
+                <Image src="/assets/Refresh.svg" alt="flip" width={14} height={19} className='icons-clamp-sm'/>
               </button>
             </div>
           </div>
@@ -119,31 +117,27 @@ const EditCard4 = ({ title, description, color = '' }: Props) => {
 
         {/* ------------------------- BACK FACE ------------------------- */}
         <div
-          className="flip-back-edit card-bg absolute w-full h-full overflow-hidden"
+          className="flip-back-edit card-bg"
           style={{
             backgroundColor: "var(--energy-green)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            transform: "rotateY(180deg)"
           }}
           ref={containerRef}
         >
 
           {/* Top-right controls */}
-          <div className="absolute top-6 right-6" style={{ display: "flex", flexDirection: "column", gap: "9px", zIndex: 10 }}>
+          <div className="absolute top-6 right-6" style={{ display: "flex", flexDirection: "column", gap: 'clamp(0.2rem, -0.25rem + 0.9766vw, 0.4rem)', zIndex: 10 }}>
             <button style={{ cursor: "pointer" }}>
-              <Image src="/assets/Save.svg" alt="save" width={14} height={19} />
+              <Image src="/assets/Save.svg" alt="save" width={14} height={19} className='icons-clamp-sm'/>
             </button>
 
             <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-              <Image src="/assets/Refresh.svg" alt="flip" width={14} height={19} />
+              <Image src="/assets/Refresh.svg" alt="flip" width={14} height={19} className='icons-clamp-sm'/>
             </button>
             <button
               onClick={handleDeleteImage}
               style={{ cursor: "pointer", pointerEvents: "auto" }}
             >
-              <Image src="/assets/Trash.svg" alt="delete" width="14" height="19" />
+              <Image src="/assets/Trash.svg" alt="delete" width="14" height="19" className='icons-clamp-sm'/>
             </button>
           </div>
 
@@ -207,16 +201,11 @@ const EditCard4 = ({ title, description, color = '' }: Props) => {
                 alignItems: "center"
               }}
             >
-              <button
+              <button className='upload-button-style-sm'
                 onClick={handleUploadClick}
                 style={{
                   color: "var(--hot-purple)",
-                  backgroundColor: "transparent",
                   border: "1px solid var(--hot-purple)",
-                  width: "78px",
-                  height: "32px",
-                  borderRadius: "1536px",
-                  cursor: "pointer"
                 }}
               >
                 Upload

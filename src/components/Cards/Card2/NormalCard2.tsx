@@ -23,7 +23,7 @@ const NormalCard2 = ({ title, description, color = '' }: Props) => {
     <div className="col-start-6 col-end-8 row-start-1 row-end-6" style={{ width: '100%' }}>
       <div
         // onClick={handleFlip}
-        className={`flip-wrapper ${color} rounded-lg card-bg`}
+        className={`flip-wrapper ${color} card-bg`}
         style={{
         //   transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
         cursor:"default"
@@ -67,7 +67,7 @@ const NormalCard2 = ({ title, description, color = '' }: Props) => {
           <div className="card-back-scroller overflow-y-scroll">
             <div style={{ display: 'inline-flex', gap: '8px', flexWrap: 'wrap' }}>
               <button
-                                className="card-button btn"
+                                className="card-button "
                                 style={{ backgroundColor: "var(--skin-pink)", color: "var(--black)" }}
                               >
                                 Label

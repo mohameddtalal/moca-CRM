@@ -161,7 +161,7 @@ body {
 
 
 .scrollItem {
-  font-size: clamp(1.5rem, -0.75rem + 3.5156vw, 2.625rem); /* dynamic font size */
+  font-size: clamp(1.5rem, -1.5rem + 4.6875vw, 3rem); /* dynamic font size */
   font-family: "GT Walsheim";
   margin: 0 16px;
 }
@@ -195,8 +195,8 @@ body {
 .card-description-lg {
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(1rem, -0.6875rem + 2.1484vw, 1.375rem); /* slightly smaller min and max */
- line-height: clamp(1rem, 1.2vw + 0.3rem, 1.4rem);
+  font-size:  clamp(0.9375rem, 0.3125rem + 0.9766vw, 1.25rem); /* slightly smaller min and max */
+ line-height:  clamp(0.9375rem, 0.3125rem + 0.9766vw, 1.25rem);
  /* slightly smaller max */
   letter-spacing: 0;
   text-transform: none;
@@ -207,8 +207,8 @@ body {
 .card-description-md {
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(1rem, -0.5rem + 1.5625vw, 2rem); /* slightly smaller min and max */
-  line-height: clamp(1rem, -0.5rem + 1.5625vw, 1rem); /* slightly smaller max */
+  font-size: clamp(0.625rem, -0.125rem + 1.1719vw, 1rem); /* slightly smaller min and max */
+  line-height: clamp(0.625rem, -0.125rem + 1.1719vw, 1rem); /* slightly smaller max */
   letter-spacing: 0.7;
   font-family: "GT Walsheim";
    text-transform: capitalize;
@@ -218,12 +218,12 @@ body {
 .card-description-sm {
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(0.5rem, 1vw + 0.2rem, 0.8rem); /* slightly smaller min and max */
-  line-height: clamp(0.8rem, 1vw + 0.2rem, 1.5rem); /* slightly smaller max */
+  font-size: clamp(0.625rem, 0.275rem + 0.5469vw, 0.8rem); /* slightly smaller min and max */
+  line-height: clamp(0.75rem, 0rem + 1.1719vw, 1.125rem);/* slightly smaller max */
   letter-spacing: 0;
   font-family: "GT Walsheim";
   margin-bottom: 0.5rem;
-   text-transform: capitalize;
+  text-transform: capitalize;
   
 }
 
@@ -232,8 +232,8 @@ body {
     white-space: pre-line;
   font-weight: 600;
   font-style: normal;
-  font-size: clamp(1.5rem, -0.75rem + 3.5156vw, 2.625rem);/* keep as is */
-  line-height:clamp(1.5rem, -0.75rem + 3.5156vw, 2.625rem);
+  font-size: clamp(1.5rem, -1.5rem + 4.6875vw, 3rem);/* keep as is */
+  line-height:clamp(1.5rem, -1.5rem + 4.6875vw, 3rem);
   letter-spacing: clamp(-1px, -0.2vw, -2px);
   text-transform: capitalize;
   font-family: "GT Walsheim";
@@ -244,8 +244,8 @@ body {
     white-space: pre-line;
   font-weight: 600;
   font-style: normal;
-  font-size: clamp(1.3rem, -1rem + 3.125vw, 2rem);;
-  line-height: clamp(1.3rem, -1rem + 3.125vw, 2rem);;
+  font-size: clamp(1rem, -1rem + 3.125vw, 2rem);
+  line-height: clamp(1rem, -1rem + 3.125vw, 2rem);
   letter-spacing: clamp(-1px, -0.15vw, -2px);
   text-transform: capitalize;
     font-family: "GT Walsheim";
@@ -257,8 +257,8 @@ body {
   white-space: pre-line;
   font-weight: 600;
   font-style: normal;
-  font-size: clamp(1.2rem, -1.5rem + 3.125vw, 1.5rem);
-  line-height: clamp(1.2rem, -1.5rem + 3.125vw, 1.5rem);
+  font-size: clamp(0.75rem, -0.75rem + 2.3438vw, 1.5rem);
+  line-height: clamp(0.75rem, -0.75rem + 2.3438vw, 1.5rem);
   letter-spacing: clamp(-0.5px, -0.1vw, -2px);
   text-transform: capitalize;
   font-family: "GT Walsheim";
@@ -270,7 +270,7 @@ body {
 /* CARD BACKGROUND */
 .card-bg {
   border-radius: 24px;
- padding: clamp(1rem, 0.5rem + 2vw, 1.5rem);
+padding:clamp(0.875rem, -0.375rem + 1.9531vw, 1.5rem);
 
 }
 
@@ -320,6 +320,8 @@ body {
   display: flex;
   height: 100%;
   flex-direction: column;
+  justify-content:center;
+  align-items:center;
 }
 .flip-back::after {
      content: "";
@@ -366,13 +368,39 @@ body {
 
 
 }
-.image{
-  max-width: 0%;
+
+
+.icons-clamp-lg{
+  width: clamp(8px,1.5vw,24px);
+  height: clamp(8px,1.5vw,24px);
 }
 
+.icons-clamp-sm{
+  height: clamp(4px,1vw,15px);
+  width: clamp(4px,1vw,15px) ;
+}
+.upload-button-style-lg{
+    background-color: transparent;
+    width: clamp(3rem, -2.75rem + 8.9844vw, 5.875rem);
+    height: clamp(1.5rem, -1.5rem + 4.6875vw, 3rem);
+    font-size: clamp(0.625rem, 0.125rem + 0.7813vw, 0.875rem);
+    border-radius: 1536px;
+    font-family: 'GT Walsheim';
+    font-weight: 600;
+    cursor: pointer;
 
+}
+.upload-button-style-sm{
+    background-color: transparent;
+    border-radius: 1536px;
+    width: clamp(2.1875rem, 0.2679rem + 4.7991vw, 4.875rem);
+    font-size: clamp(0.5rem, 0.0924rem + 0.8152vw, 0.875rem);
+    height: clamp(1rem, 0.2857rem + 1.7857vw, 2rem);
+    font-family: "GT Walsheim";
+    font-weight: 600;
+    cursor: pointer;
 
-
+}
 
 
 

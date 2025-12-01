@@ -57,10 +57,6 @@ const EditCard8 = ({ title, description, color = '' }: Props) => {
         style={{
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
           cursor: "default",
-          transformStyle: "preserve-3d",
-          transition: "transform 0.6s",
-          position: "relative",
-          height: "100%",
         }}
       >
         {/* FRONT FACE */}
@@ -84,11 +80,12 @@ const EditCard8 = ({ title, description, color = '' }: Props) => {
                 value={editableDescription}
                 onChange={(e) => setEditableDescription(e.target.value)}
                 className="card-description-lg mt-2 mb-2"
+                 rows={3} 
                 style={{
                   color: 'var(--black)',
                   backgroundColor: 'transparent',
                   width: '100%',
-                  height: "80%",
+                  height: "100%",
                   outline:"none",
                   scrollbarWidth: 'none',
                   resize: 'none'
@@ -101,11 +98,11 @@ const EditCard8 = ({ title, description, color = '' }: Props) => {
                 onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })}
                 style={{ cursor: "pointer" }}
               >
-                <Image src="/assets/Save8.svg" alt="save" width={14} height={22} />
+                <Image src="/assets/Save8.svg" alt="save" width={14} height={22} className="icons-clamp-lg"/>
               </button>
 
               <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Refresh8.svg" alt="flip" width={14} height={22} />
+                <Image src="/assets/Refresh8.svg" alt="flip" width={14} height={22} className="icons-clamp-lg"/>
               </button>
             </div>
           </div>
@@ -117,13 +114,9 @@ const EditCard8 = ({ title, description, color = '' }: Props) => {
 
         {/* BACK FACE */}
         <div
-          className="flip-back-edit card-bg absolute w-full h-full overflow-hidden"
+          className="flip-back-edit card-bg"
           style={{
             backgroundColor: 'var(--yellow)',
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            transform: "rotateY(180deg)"
           }}
           ref={containerRef}
         >
@@ -133,17 +126,17 @@ const EditCard8 = ({ title, description, color = '' }: Props) => {
               onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })}
               style={{ cursor: "pointer", pointerEvents: 'auto' }}
             >
-              <Image src="/assets/Save8.svg" alt="save" width={14} height={19} />
+              <Image src="/assets/Save8.svg" alt="save" width={14} height={19} className="icons-clamp-lg"/>
             </button>
 
             <button onClick={handleFlip} style={{ cursor: "pointer", pointerEvents: 'auto' }}>
-              <Image src="/assets/Refresh8.svg" alt="flip" width={14} height={19} />
+              <Image src="/assets/Refresh8.svg" alt="flip" width={14} height={19} className="icons-clamp-lg"/>
             </button>
             <button
               onClick={handleDeleteImage}
               style={{ cursor: "pointer", pointerEvents: "auto" }}
             >
-              <Image src="/assets/Trash8.svg" alt="delete" width="14" height="19" />
+              <Image src="/assets/Trash8.svg" alt="delete" width="14" height="19" className="icons-clamp-lg"/>
             </button>
           </div>
 
@@ -195,25 +188,17 @@ const EditCard8 = ({ title, description, color = '' }: Props) => {
                 gap: "20px"
               }}
             >
-              <button
+              <button className='upload-button-style-lg'
                 onClick={handleUploadClick}
                 style={{
                   color: "var(--black)",
-                  backgroundColor: "transparent",
                   border: "1px solid var(--black)",
-                  width: "78px",
-                  height: "32px",
-                  borderRadius: "1536px",
-                  fontSize: "clamp(0.5rem, 1vw + 0.2rem, 0.8rem)",
-                  fontFamily: "GT Walsheim",
-                  fontWeight: "400",
-                  cursor: "pointer",
                 }}
               >
                 Upload
               </button>
 
-              <p className="card-description-sm" style={{ color: 'var(--black)', textAlign: "center" }}>
+              <p className="card-description-sm" style={{ color: 'var(--black)', textAlign: "center"}}>
                 Browse here to start uploading <br />
                 Supports PNG, JPG, JPEG, Video Max. xxx MB
               </p>

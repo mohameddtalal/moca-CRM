@@ -51,23 +51,19 @@ const EditCard2 = ({ title, description, color = '' }: Props) => {
 
 
   return (
-    <div className="col-start-6 col-end-8 row-start-1 row-end-6 w-full h-full relative">
+    <div className="col-start-6 col-end-8 row-start-1 row-end-6 ">
       <div
-        className={`flip-wrapper ${color} rounded-lg card-bg`}
+        className={`flip-wrapper ${color} card-bg `}
         style={{
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
           cursor: "default",
-          transformStyle: "preserve-3d",
-          transition: "transform 0.6s",
-          position: "relative",
-          height: "100%",
         }}
       >
         {/* FRONT FACE */}
         <div className="flip-front">
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <div style={{ minHeight: 0, flex: 1 }}>
-              <textarea
+            <div style={{ minHeight: 0, flex: 1  }}>
+              <textarea 
                 value={editableTitle}
                 onChange={(e) => setEditableTitle(e.target.value)}
                 className="card-title-md whitespace-pre-line"
@@ -86,6 +82,7 @@ const EditCard2 = ({ title, description, color = '' }: Props) => {
                 value={editableDescription}
                 onChange={(e) => setEditableDescription(e.target.value)}
                 className="card-description-sm mt-2"
+                 rows={3} 
                 style={{
                   color: 'var(--skin-pink)',
                   backgroundColor: 'transparent',
@@ -97,12 +94,12 @@ const EditCard2 = ({ title, description, color = '' }: Props) => {
                 }}
               />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column',gap: 'clamp(0.2rem, -0.25rem + 0.9766vw, 0.4rem)'}}>
               <button onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Save2.svg" alt="save" width="14" height="19" />
+                <Image src="/assets/Save2.svg" alt="save" width="14" height="19" className='icons-clamp-sm' />
               </button>
               <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Refresh2.svg" alt="flip" width="14" height="19" />
+                <Image src="/assets/Refresh2.svg" alt="flip" width="14" height="19" className='icons-clamp-sm' />
               </button>
             </div>
           </div>
@@ -114,13 +111,9 @@ const EditCard2 = ({ title, description, color = '' }: Props) => {
 
         {/* BACK FACE */}
         <div
-          className="flip-back-edit card-bg absolute w-full h-full overflow-hidden"
+          className="flip-back-edit card-bg  "
           style={{
             backgroundColor: `${color}`,
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            transform: "rotateY(180deg)"
           }}
           ref={containerRef}
           onWheel={uploadedImage ? handleWheel : undefined}
@@ -138,25 +131,25 @@ const EditCard2 = ({ title, description, color = '' }: Props) => {
           {/* Top-right buttons */}
           <div
             className="absolute top-6 right-6"
-            style={{ display: "flex", flexDirection: "column", gap: "9px", zIndex: 10 }}
+            style={{ display: "flex", flexDirection: "column", gap: 'clamp(0.2rem, -0.25rem + 0.9766vw, 0.4rem)', zIndex: 10 }}
           >
             <button
               onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })}
               style={{ cursor: "pointer", pointerEvents: "auto" }}
             >
-              <Image src="/assets/Save2.svg" alt="save" width="14" height="19" />
+              <Image src="/assets/Save2.svg" alt="save" width="14" height="19" className='icons-clamp-sm'/>
             </button>
             <button
               onClick={handleFlip}
               style={{ cursor: "pointer", pointerEvents: "auto" }}
             >
-              <Image src="/assets/Refresh2.svg" alt="flip" width="14" height="19" />
+              <Image src="/assets/Refresh2.svg" alt="flip" width="14" height="19" className='icons-clamp-sm'/>
             </button>
              <button
               onClick={handleDeleteImage}
               style={{ cursor: "pointer", pointerEvents: "auto" }}
             >
-              <Image src="/assets/Trash2.svg" alt="delete" width="14" height="19" />
+              <Image src="/assets/Trash2.svg" alt="delete" width="14" height="19" className='icons-clamp-sm'/>
             </button>
           </div>
 
@@ -210,19 +203,11 @@ const EditCard2 = ({ title, description, color = '' }: Props) => {
                 gap: "20px"
               }}
             >
-              <button
+              <button className='upload-button-style-sm'
                 onClick={handleUploadClick}
                 style={{
                   color: "var(--skin-pink)",
-                  backgroundColor: "transparent",
                   border: "1px solid var(--skin-pink)",
-                  width: "78px",
-                  height: "32px",
-                  borderRadius: "1536px",
-                  fontSize: "clamp(0.5rem, 1vw + 0.2rem, 0.8rem)",
-                  fontFamily: "GT Walsheim",
-                  fontWeight: "400",
-                  cursor: "pointer",
                 }}
               >
                 Upload

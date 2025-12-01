@@ -61,10 +61,6 @@ const EditCard9 = ({ title, description, color = '' }: Props) => {
         style={{
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
           cursor: "default",
-          transformStyle: "preserve-3d",
-          transition: "transform 0.6s",
-          position: "relative",
-          height: "100%",
         }}
       >
         {/* FRONT FACE */}
@@ -75,6 +71,7 @@ const EditCard9 = ({ title, description, color = '' }: Props) => {
                 value={editableTitle}
                 onChange={(e) => setEditableTitle(e.target.value)}
                 className="card-title-sm whitespace-pre-line"
+                
                 style={{
                   color: 'var(--black)',
                   background: 'transparent',
@@ -89,6 +86,7 @@ const EditCard9 = ({ title, description, color = '' }: Props) => {
                 value={editableDescription}
                 onChange={(e) => setEditableDescription(e.target.value)}
                 className="card-description-sm mt-2"
+                 rows={3} 
                 style={{
                   color: 'var(--black)',
                   background: 'transparent',
@@ -101,13 +99,13 @@ const EditCard9 = ({ title, description, color = '' }: Props) => {
               />
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.2rem, -0.25rem + 0.9766vw, 0.4rem)' }}>
               <button onClick={handleSave} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Save8.svg" alt="save" width={14} height={19} />
+                <Image src="/assets/Save8.svg" alt="save" width={14} height={19} className='icons-clamp-sm'/>
               </button>
 
               <button onClick={handleFlip} style={{ cursor: "pointer" }}>
-                <Image src="/assets/Refresh8.svg" alt="flip" width={14} height={19} />
+                <Image src="/assets/Refresh8.svg" alt="flip" width={14} height={19} className='icons-clamp-sm'/>
               </button>
             </div>
           </div>
@@ -119,29 +117,25 @@ const EditCard9 = ({ title, description, color = '' }: Props) => {
 
         {/* BACK FACE */}
         <div
-          className="flip-back-edit card-bg absolute w-full h-full overflow-hidden"
+          className="flip-back-edit card-bg "
           style={{
             backgroundColor: 'var(--energy-green)',
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            transform: "rotateY(180deg)"
           }}
           ref={containerRef}
         >
           {/* Top-right buttons */}
-          <div className="absolute top-6 right-6" style={{ display: 'flex', flexDirection: 'column', gap: '11px', zIndex: 10 }}>
+          <div className="absolute top-6 right-6" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.2rem, -0.25rem + 0.9766vw, 0.4rem)', zIndex: 10 }}>
             <button onClick={handleSave} style={{ cursor: "pointer", pointerEvents: 'auto' }}>
-              <Image src="/assets/Save8.svg" alt="save" width={14} height={19} />
+              <Image src="/assets/Save8.svg" alt="save" width={14} height={19} className='icons-clamp-sm'/>
             </button>
             <button onClick={handleFlip} style={{ cursor: "pointer", pointerEvents: 'auto' }}>
-              <Image src="/assets/Refresh8.svg" alt="flip" width={14} height={19} />
+              <Image src="/assets/Refresh8.svg" alt="flip" width={14} height={19} className='icons-clamp-sm'/>
             </button>
             <button
               onClick={handleDeleteImage}
               style={{ cursor: "pointer", pointerEvents: "auto" }}
             >
-              <Image src="/assets/Trash8.svg" alt="delete" width="14" height="19" />
+              <Image src="/assets/Trash8.svg" alt="delete" width="14" height="19" className='icons-clamp-sm'/>
             </button>
           </div>
 
@@ -182,19 +176,11 @@ const EditCard9 = ({ title, description, color = '' }: Props) => {
                 gap: "8px"
               }}
             >
-              <button
+              <button className='upload-button-style-sm'
                 onClick={handleUploadClick}
                 style={{
                   color: "var(--black)",
-                  backgroundColor: "transparent",
                   border: "1px solid var(--black)",
-                  width: "78px",
-                  height: "32px",
-                  borderRadius: "1536px",
-                  fontSize: "clamp(0.5rem, 1vw + 0.2rem, 0.8rem)",
-                  fontFamily: "GT Walsheim",
-                  fontWeight: "400",
-                  cursor: "pointer",
                 }}
               >
                 Upload
