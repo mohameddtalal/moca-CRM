@@ -28,10 +28,10 @@ export default function RootLayout({
 }>) {
   return (
    
-    <html lang="en" style={{ height: '100svh', minHeight: '100dvh' }}>
+    <html lang="en" >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased hide-scrollbar flex flex-col` }
-        style={{ height: '100svh', minHeight: '100dvh' }}
+        
       >
           <svg width="0" height="0"> 
           <defs>
@@ -51,7 +51,7 @@ export default function RootLayout({
      </clipPath>
    </defs>
 </svg>    
-          <Navbar/>
+         
           {children}
       </body>
     </html>

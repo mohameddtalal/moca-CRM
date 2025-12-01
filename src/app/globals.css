@@ -43,6 +43,12 @@ body {
   background-color: var(--background);
 }
 
+html, body, #__next {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+
 .bentogrid{
   margin-bottom: clamp(1rem, 0rem + 3.125vw, 3rem);  /* Reduced from 2rem to 1rem (32px → 16px min) - saves 16px on small-height screens */
   margin-left: clamp(1rem, 0rem + 3.125vw, 3rem);    /* Reduced from 2rem to 1rem (32px → 16px min) - saves 16px on small-height screens */
