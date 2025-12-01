@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
+import NavbarDynamic from "@/components/NavbarDynamic";
 
 
 
@@ -33,20 +34,20 @@ export default function RootLayout({
         style={{ height: '100svh', minHeight: '100dvh' }}
       >
           <svg width="0" height="0"> 
-   <defs>
-     <clipPath id="cutout-rounded-px" clipPathUnits="userSpaceOnUse">
-       <path d="
-        M0 93
-         Q0 65 28 65
-         L37 65
-         Q65 65 65 37
-         L65 28
-         Q65 0 93 0
-         L1000 0
-         L1000 1000
-         L0 1000
-       Z
-       " />
+          <defs>
+            <clipPath id="cutout-rounded-px" clipPathUnits="userSpaceOnUse">
+              <path d="
+                M0 93
+                Q0 65 28 65
+                L37 65
+                Q65 65 65 37
+                L65 28
+                Q65 0 93 0
+                L1000 0
+                L1000 1000
+                L0 1000
+              Z
+              " />
      </clipPath>
    </defs>
 </svg>    
