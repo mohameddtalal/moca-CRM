@@ -29,13 +29,13 @@ export default function AuthLayout({
       >
         {/* Background Image */}
         <div className="absolute w-full h-full overflow-hidden" >
-          <Image 
-            src="/assets/Login.svg"
-            alt="background"
-            fill
-            style={{ objectFit: "cover" ,display:"block" , maxInlineSize:'100%'}}
-            priority
-          />
+          <Image
+          src="/assets/Login.svg"
+          alt="background"
+          fill
+          priority
+          className="object-cover w-full h-full"
+      />
         </div>
 
         {/* Content */}

@@ -3,11 +3,12 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
-
+import { useNav } from "@/components/Context/Navcontext";
 
 const Navbar = () => {
 const [isSearchOpen, setIsSearchOpen] = useState(false)
 const [searchText, setSearchText] = useState("")
+ const { selectedTitle, selectedButton } = useNav();
 
   const handleSearch = () => {
 setIsSearchOpen(prev => !prev)   // toggle input
@@ -27,10 +28,10 @@ setIsSearchOpen(prev => !prev)   // toggle input
                 </Link>
                 <div className="" style={{display:'flex' , flexDirection:'column' , justifyContent:'center' ,alignItems:'center', padding:'16px 0px', gap:'3px' }}>
                  <div className="card-title-sm" style={{marginBottom:'0px' , color:'var(--black)'}}>
-                    <p>DYNAMIC LISTS</p>
+                    <p>{selectedTitle}</p>
                  </div>
                   <div className="card-description-md" style={{marginTop:'0px',color:'var(--black)'}}  >
-                    <p>Control Room</p>
+                    <p>{selectedButton}</p>
                  </div>
 
 

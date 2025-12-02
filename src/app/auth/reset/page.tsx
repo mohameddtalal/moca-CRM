@@ -1,18 +1,24 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Page = () => {
   const [email, setEmail] = useState("");
-  const [step, setStep] = useState(1); // 1 = email, 2 = new password
+  const [step, setStep] = useState(1); // 1 = email, 2 = mail sent, 3 = new password
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+ const router = useRouter();
 
   const handleSend = () => {
     if (!email) return alert("Please enter your email");
-    setStep(2); // show new password fields
+    setStep(2); // go to mail sent page
+  };
+
+  const handleGoToReset = () => {
+    setStep(3); // go to new password page
   };
 
   const conditions = {
@@ -22,13 +28,9 @@ const Page = () => {
     specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(newPassword),
   };
 
-  const handleSave = () => {
-    if (!newPassword || !confirmPassword) return alert("Please fill all fields");
-    if (newPassword !== confirmPassword) return alert("Passwords do not match");
-
-    console.log("Password saved:", newPassword);
-    alert("Password saved successfully!");
-    setStep(1); // optionally reset to step 1 or clear fields
+    const handleSave = () => {
+    // After saving password
+    router.push("/auth/success");
   };
 
   return (
@@ -49,24 +51,25 @@ const Page = () => {
           width: "clamp(15.625rem, 1.7663rem + 27.7174vw, 28.375rem)",
         }}
       >
-        {/* Title */}
-        <div className="text-center justify-center items-center mb-10">
-          <p
-            className="text-[34px]"
-            style={{ fontFamily: "Athena Signature", color: "var(--hot-purple)" }}
-          >
-            hello
-          </p>
-          <Image
-            src="/assets/Asset1.svg"
-            alt="logo"
-            width={115}
-            height={24}
-            style={{ display: "flex", justifyContent: "center" }}
-          />
-        </div>
+        {/* ---------------- HEADER ONLY IN STEP 1 & STEP 3 ---------------- */}
+        {(step === 1 || step === 3) && (
+          <div className="text-center justify-center items-center mb-10">
+            <p
+              className="text-[34px]"
+              style={{ fontFamily: "Athena Signature", color: "var(--hot-purple)" }}
+            >
+              hello
+            </p>
+            <Image
+              src="/assets/Asset1.svg"
+              alt="logo"
+              width={115}
+              height={24}
+            />
+          </div>
+        )}
 
-        {/* Step 1: Email */}
+        {/* ---------------- STEP 1: EMAIL ---------------- */}
         {step === 1 && (
           <div className="text-center w-full">
             <h2
@@ -83,12 +86,8 @@ const Page = () => {
               Enter your Moca email address & we’ll send you instructions to reset your password.
             </p>
 
-            {/* Email Input */}
             <div className="w-full mb-4">
-              <label
-                className="card-description-sm"
-                style={{ color: "#9E9E9E", marginBottom: "8px" }}
-              >
+              <label className="card-description-sm" style={{ color: "#9E9E9E" }}>
                 E-Mail
               </label>
 
@@ -119,18 +118,63 @@ const Page = () => {
           </div>
         )}
 
-        {/* Step 2: New Password */}
+        {/* ---------------- STEP 2: MAIL SENT PAGE (NO HEADER) ---------------- */}
         {step === 2 && (
+          <div className="flex flex-col items-center w-full text-center">
+            <Image src="/assets/Mailheader.svg" alt="mail" width={418} height={226} />
+
+            <h2
+              className="card-title-md font-semibold mt-6"
+              style={{ color: "var(--hot-purple)" }}
+            >
+              Reset password!
+            </h2>
+
+            <p
+              className="card-description-md mt-2"
+              style={{ color: "var(--black)", fontSize: 'clamp(0.625rem, -0.125rem + 1.1719vw, 1rem)' }}
+            >
+              We’ve received your request to change your password.
+            </p>
+
+            <p
+              className="mt-4"
+              style={{ color: "#565656", fontSize: '10px' }}
+            >
+              Click on the button below to reset your password, you have 24 hours before it expires. <br />
+              After that you will have to request for a new one.
+            </p>
+
+            <button
+              onClick={handleGoToReset}
+              style={{
+                backgroundColor: "var(--hot-purple)",
+                width: "182px",
+                height: "48px",
+                borderRadius: "1536px",
+                color: "#F7F7F7",
+                cursor: "pointer",
+                marginTop: "40px",
+              }}
+            >
+              Reset Password
+            </button>
+          </div>
+        )}
+
+        {/* ---------------- STEP 3: NEW PASSWORD ---------------- */}
+        {step === 3 && (
           <div className="flex flex-col items-center w-full">
             {/* New Password */}
             <div className="w-full mb-4">
               <label
                 className="card-description-sm"
-                style={{ color: "#9E9E9E", marginBottom: "4px" }}
+                style={{ color: "#9E9E9E" }}
               >
                 New Password
               </label>
-              <div className="mt-2 w-full flex items-center rounded-full px-4 py-3 border border-gray-300 focus-within:border-black">
+
+              <div className="mt-2 w-full flex items-center rounded-full px-4 py-3 border border-gray-300">
                 <input
                   type={showNewPassword ? "text" : "password"}
                   value={newPassword}
@@ -139,6 +183,7 @@ const Page = () => {
                   className="flex-1 outline-none text-[#9E9E9E]"
                   style={{ fontSize: "13px", fontWeight: "bold" }}
                 />
+
                 <Image
                   src={showNewPassword ? "/assets/OpenEye.svg" : "/assets/Eyeclosed.svg"}
                   alt="toggle password"
@@ -149,74 +194,52 @@ const Page = () => {
                 />
               </div>
 
-              {/* Password checklist */}
               {newPassword.length > 0 && (
                 <div className="text-sm mt-2 space-y-1">
-                  <p
-                    className={`flex items-center gap-2 ${
-                      conditions.uppercaseLowercase ? "text-[#00B576]" : "text-[#9E9E9E]"
-                    }`}
-                  >
-                    <Image
-                      src={conditions.uppercaseLowercase ? "/assets/Correct.svg" : "/assets/Wrong.svg"}
-                      alt={conditions.uppercaseLowercase ? "Correct" : "Wrong"}
-                      width={14}
-                      height={14}
-                    />
-                    At least 1 Uppercase & 1 lowercase character
-                  </p>
-                  <p
-                    className={`flex items-center gap-2 ${
-                      conditions.minLength ? "text-[#00B576]" : "text-[#9E9E9E]"
-                    }`}
-                  >
-                    <Image
-                      src={conditions.minLength ? "/assets/Correct.svg" : "/assets/Wrong.svg"}
-                      alt={conditions.minLength ? "Correct" : "Wrong"}
-                      width={14}
-                      height={14}
-                    />
-                    At least 8 Characters
-                  </p>
-                  <p
-                    className={`flex items-center gap-2 ${
-                      conditions.number ? "text-[#00B576]" : "text-[#9E9E9E]"
-                    }`}
-                  >
-                    <Image
-                      src={conditions.number ? "/assets/Correct.svg" : "/assets/Wrong.svg"}
-                      alt={conditions.number ? "Correct" : "Wrong"}
-                      width={14}
-                      height={14}
-                    />
-                    At least 1 Number
-                  </p>
-                  <p
-                    className={`flex items-center gap-2 ${
-                      conditions.specialChar ? "text-[#00B576]" : "text-[#9E9E9E]"
-                    }`}
-                  >
-                    <Image
-                      src={conditions.specialChar ? "/assets/Correct.svg" : "/assets/Wrong.svg"}
-                      alt={conditions.specialChar ? "Correct" : "Wrong"}
-                      width={14}
-                      height={14}
-                    />
-                    At least 1 Special character
-                  </p>
+                  {[
+                    {
+                      label: "At least 1 Uppercase & 1 lowercase character",
+                      valid: conditions.uppercaseLowercase,
+                    },
+                    {
+                      label: "At least 8 Characters",
+                      valid: conditions.minLength,
+                    },
+                    {
+                      label: "At least 1 Number",
+                      valid: conditions.number,
+                    },
+                    {
+                      label: "At least 1 Special character",
+                      valid: conditions.specialChar,
+                    },
+                  ].map((item, i) => (
+                    <p
+                      key={i}
+                      className={`flex items-center gap-2 ${
+                        item.valid ? "text-[#00B576]" : "text-[#9E9E9E]"
+                      }`}
+                    >
+                      <Image
+                        src={item.valid ? "/assets/Correct.svg" : "/assets/Wrong.svg"}
+                        alt="status"
+                        width={14}
+                        height={14}
+                      />
+                      {item.label}
+                    </p>
+                  ))}
                 </div>
               )}
             </div>
 
             {/* Confirm Password */}
             <div className="w-full mb-6">
-              <label
-                className="card-description-sm"
-                style={{ color: "#9E9E9E", marginBottom: "4px" }}
-              >
+              <label className="card-description-sm" style={{ color: "#9E9E9E" }}>
                 Confirm Password
               </label>
-              <div className="mt-2 w-full flex items-center rounded-full px-4 py-3 border border-gray-300 focus-within:border-black">
+
+              <div className="mt-2 w-full flex items-center rounded-full px-4 py-3 border border-gray-300">
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   value={confirmPassword}
@@ -225,6 +248,7 @@ const Page = () => {
                   className="flex-1 outline-none text-[#9E9E9E]"
                   style={{ fontSize: "13px", fontWeight: "bold" }}
                 />
+
                 <Image
                   src={showConfirmPassword ? "/assets/OpenEye.svg" : "/assets/Eyeclosed.svg"}
                   alt="toggle password"
@@ -236,7 +260,6 @@ const Page = () => {
               </div>
             </div>
 
-            {/* Save Button */}
             <button
               onClick={handleSave}
               style={{

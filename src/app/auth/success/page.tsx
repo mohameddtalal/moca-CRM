@@ -1,10 +1,10 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
 
 const Page = () => {
-  
+  const router = useRouter();
 
   return (
     <div
@@ -61,6 +61,7 @@ const Page = () => {
        
         {/* Sign In */}
         <button
+         onClick={() => router.push("/dashboard")} 
           style={{
             backgroundColor: "var(--hot-purple)",
             width: "182px",

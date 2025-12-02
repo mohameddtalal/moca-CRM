@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import NavbarDynamic from "@/components/NavbarDynamic";
+import { NavProvider } from "@/components/Context/Navcontext";
 
 
 
@@ -51,8 +52,9 @@ export default function RootLayout({
      </clipPath>
    </defs>
 </svg>    
-         
+         <NavProvider>
           {children}
+          </NavProvider>
       </body>
     </html>
   );

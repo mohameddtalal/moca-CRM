@@ -1,12 +1,13 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
 
 const Page = () => {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const router = useRouter();
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
@@ -31,6 +32,7 @@ const Page = () => {
     if (!valid) return;
 
     console.log("Logging in...");
+    router.push("/dashboard");
   };
 
   return (
@@ -161,6 +163,7 @@ const Page = () => {
         {/* Forgot Password */}
         <button
           className="mt-2"
+          onClick={() => router.push("/auth/reset")} 
           style={{
             fontSize: "14px",
             color: "#565656",

@@ -1,9 +1,10 @@
 // components/Cards/Card11/Normal.tsx
 'use client';
-
+import { useRouter } from "next/navigation";
 import Image from 'next/image';
 import { useState } from 'react';
 import { ButtonRounded } from '../../Button';
+import { useNav } from "@/components/Context/Navcontext";
 
 interface Props {
   title: string;
@@ -12,12 +13,18 @@ interface Props {
 }
 
 const NormalCard11 = ({ title, description, color = '' }: Props) => {
+  const router = useRouter();
   const [isFlipped, setIsFlipped] = useState(false);
+   const { setSelectedTitle, setSelectedButton } = useNav();
   const handleFlip = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     setIsFlipped(prev => !prev);
-  };
 
+  };
+  const handleSelect = (buttonName: string) => {
+    setSelectedTitle(title);           
+    setSelectedButton(buttonName);      
+  };
   return (
     <div className="col-start-6 col-end-11 row-start-8 row-end-13" style={{ width: '100%' }}>
       <div
@@ -64,12 +71,16 @@ const NormalCard11 = ({ title, description, color = '' }: Props) => {
           </p>
 
           <div className="card-back-scroller overflow-y-scroll" style={{ maxHeight: '50%' }}>
-            <div style={{ display: 'inline-flex', gap: '8px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'inline-flex', gap: '8px', flexWrap: 'wrap' ,cursor:'default'}}>
               <button
-                className="card-button btn"
-                style={{ backgroundColor: 'var(--skin-pink)', color: 'var(--hot-purple)' }}
+               onClick={() => {
+                    handleSelect("Design Settings");   // 1️⃣ store title in context
+                    router.push("/dashboard-edit");    // 2️⃣ navigate to new page
+                  }}
+                className="card-button "
+                style={{ backgroundColor: 'var(--skin-pink)', color: 'var(--hot-purple)', cursor:'pointer'}}
               >
-                Homepage
+                Design Settings
               </button>
 
               <button className="card-button" style={{ backgroundColor: 'var(--hot-purple)', color: 'var(--skin-pink)' }}>
