@@ -23,7 +23,7 @@ const BentoGrid = ({ isEditMode={}, authorizationMap = {} }: BentoGridProps) => 
 const isAuthorized = (cardKey: string) =>
  authorizationMap[cardKey] ?? true; // default true for demo
 const isEdit = (cardKey:string)=>
-isEditMode[cardKey]??true;
+isEditMode[cardKey]??false;
     return (
   <div className="bentogrid overflow-auto " style={{
   display: "block",

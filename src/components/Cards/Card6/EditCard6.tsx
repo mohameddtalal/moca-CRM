@@ -1,9 +1,8 @@
 'use client';
-
 import Image from 'next/image';
-import { useState, useRef } from 'react';
 import { Rnd } from 'react-rnd';
 import { ButtonSmall } from '@/components/Button_sm';
+import { useCardEditor } from '@/components/hooks/useCardEditor';
 
 interface Props {
   title: string;
@@ -11,45 +10,32 @@ interface Props {
   color?: string;
 }
 
-const EditCard6 = ({ title, description, color = '' }: Props) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [editableTitle, setEditableTitle] = useState(title);
-  const [editableDescription, setEditableDescription] = useState(description);
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
-
-  // Drag + Resize state
-  const [size, setSize] = useState({ width: 300, height: 300 });
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  // Zoom scale
-  const [zoom, setZoom] = useState(1);
-   const [scale, setScale] = useState(1);
-
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
-  const handleFlip = () => setIsFlipped(prev => !prev);
-    const handleDeleteImage = () => {
-  setUploadedImage(null);
-  setZoom(1);
-  setScale(1);
-  setSize({ width: 300, height: 300 });
-  setPosition({ x: 0, y: 0 });
-};
-
-  const handleUploadClick = () => document.getElementById("fileInputCard6")?.click();
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setUploadedImage(URL.createObjectURL(file));
-
-    // Reset transformations
-    setZoom(1);
-    setSize({ width: 300, height: 300 });
-    setPosition({ x: 0, y: 0 });
-  };
-
+const EditCard6 = ({ title, description, color = "" }: Props) => {
+ const {
+     // flip
+     isFlipped,
+   handleFlip,
+ 
+   title: editableTitle,
+   setTitle: setEditableTitle,
+   description: editableDescription,
+   setDescription: setEditableDescription,
+ 
+   uploadedImage,
+   handleUploadClick,
+   handleFileChange,
+   resetImage: handleDeleteImage,
+ 
+   size,
+   setSize,
+   position,
+   setPosition,
+   zoom,
+   setZoom,
+   handleWheel,
+  inputId,
+  containerRef
+   } = useCardEditor(title, description,"card6");
   return (
     <div className="col-start-3 col-end-6 row-start-6 row-end-10" style={{ width: '100%' }}>
       <div
@@ -215,11 +201,11 @@ const EditCard6 = ({ title, description, color = '' }: Props) => {
           )}
 
           <input
-            id="fileInputCard6"
-            type="file"
-            style={{ display: "none" }}
-            onChange={handleFileChange}
-          />
+                id={inputId}
+                type="file"
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+            />
         </div>
       </div>
     </div>

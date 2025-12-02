@@ -1,7 +1,6 @@
 'use client';
-
+import { useCardEditor } from '@/components/hooks/useCardEditor';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
 import { Rnd } from 'react-rnd';
 import { ButtonRounded } from '../../Button';
 
@@ -11,44 +10,32 @@ interface Props {
   color?: string;
 }
 
-const EditCard11 = ({ title, description, color = '' }: Props) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [editableTitle, setEditableTitle] = useState(title);
-  const [editableDescription, setEditableDescription] = useState(description);
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
-
-  // Drag & Resize state
-  const [size, setSize] = useState({ width: 400, height: 400 });
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-   const [scale, setScale] = useState(1);
-
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
-    const handleDeleteImage = () => {
-  setUploadedImage(null);
-  setZoom(1);
-  setScale(1);
-  setSize({ width: 300, height: 300 });
-  setPosition({ x: 0, y: 0 });
-};
-
-  const handleFlip = () => setIsFlipped(prev => !prev);
-
-  const handleSave = () => {
-    console.log("Save clicked", { title: editableTitle, description: editableDescription });
-  };
-
-  const handleUploadClick = () => document.getElementById("fileInputCard11")?.click();
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setUploadedImage(URL.createObjectURL(file));
-    setZoom(1);
-    setSize({ width: 400, height: 400 });
-    setPosition({ x: 0, y: 0 });
-  };
+const EditCard11 = ({ title, description, color = "" }: Props) => {
+ const {
+     // flip
+     isFlipped,
+   handleFlip,
+ 
+   title: editableTitle,
+   setTitle: setEditableTitle,
+   description: editableDescription,
+   setDescription: setEditableDescription,
+ 
+   uploadedImage,
+   handleUploadClick,
+   handleFileChange,
+   resetImage: handleDeleteImage,
+ 
+   size,
+   setSize,
+   position,
+   setPosition,
+   zoom,
+   setZoom,
+   handleWheel,
+   inputId,
+   containerRef
+   } = useCardEditor(title, description,"card11");
 
   return (
     <div className="col-start-6 col-end-11 row-start-8 row-end-13" style={{ width: '100%' }}>
@@ -95,7 +82,8 @@ const EditCard11 = ({ title, description, color = '' }: Props) => {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
-              <button onClick={handleSave} style={{ cursor: "pointer" }}>
+            <button onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })}
+            style={{ cursor: "pointer", pointerEvents: 'auto' }}>
                 <Image src="/assets/Save.svg" alt="save" width={22} height={27} className="icons-clamp-lg"/>
               </button>
               <button onClick={handleFlip} style={{ cursor: "pointer" }}>
@@ -119,7 +107,8 @@ const EditCard11 = ({ title, description, color = '' }: Props) => {
         >
           {/* Top-right buttons */}
           <div className="absolute top-6 right-6" style={{ display: 'flex', flexDirection: 'column', gap: '9px', zIndex: 10 }}>
-            <button onClick={handleSave} style={{ cursor: "pointer", pointerEvents: 'auto' }}>
+            <button onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })}
+            style={{ cursor: "pointer", pointerEvents: 'auto' }}>
               <Image src="/assets/Save.svg" alt="save" width={22} height={27} className="icons-clamp-lg"/>
             </button>
             <button onClick={handleFlip} style={{ cursor: "pointer", pointerEvents: 'auto' }}>
@@ -195,8 +184,12 @@ const EditCard11 = ({ title, description, color = '' }: Props) => {
               </p>
             </div>
           )}
-
-          <input type="file" id="fileInputCard11" style={{ display: "none" }} onChange={handleFileChange} />
+          <input
+                id={inputId}
+                type="file"
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+            />
         </div>
       </div>
     </div>

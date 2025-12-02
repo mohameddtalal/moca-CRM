@@ -17,7 +17,9 @@
   --radius: 0.625rem;
   --background: #f7f7f7;
   --white:#FFFFFF;
- 
+  --focus-border:#565656;
+  --wrong-border:#f54E60;
+  
 }
 
 @font-face {
@@ -36,6 +38,14 @@
   font-style: normal;
   font-display: swap;
   text-transform: capitalize;
+}
+
+@font-face {
+  font-family: "Athena Signature";
+  src: url("../../public/assets/fonts/Athena\ Signature.otf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 body {

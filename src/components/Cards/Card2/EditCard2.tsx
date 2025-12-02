@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { Rnd } from 'react-rnd';
 import { ButtonSmall } from '@/components/Button_sm';
+import { useCardEditor } from '@/components/hooks/useCardEditor';
 
 interface Props {
   title: string;
@@ -11,44 +12,32 @@ interface Props {
   color?: string;
 }
 
-const EditCard2 = ({ title, description, color = '' }: Props) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [editableTitle, setEditableTitle] = useState(title);
-  const [editableDescription, setEditableDescription] = useState(description);
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+const EditCard2 = ({ title, description, color = "" }: Props) => {
+   const {
+    // flip
+    isFlipped,
+  handleFlip,
 
-  // For drag/resize
-  const [size, setSize] = useState({ width: 300, height: 300 });
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1);
-  const [scale, setScale] = useState(1);
+  title: editableTitle,
+  setTitle: setEditableTitle,
+  description: editableDescription,
+  setDescription: setEditableDescription,
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const handleDeleteImage = () => {
-  setUploadedImage(null);
-  setZoom(1);
-  setScale(1);
-  setSize({ width: 300, height: 300 });
-  setPosition({ x: 0, y: 0 });
-};
+  uploadedImage,
+  handleUploadClick,
+  handleFileChange,
+  resetImage: handleDeleteImage,
 
-  const handleFlip = () => setIsFlipped(prev => !prev);
-  const handleUploadClick = () => document.getElementById("fileInputYellow")?.click();
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setUploadedImage(URL.createObjectURL(file));
-    setZoom(1);
-    setSize({ width: 300, height: 300 });
-    setPosition({ x: 0, y: 0 });
-  };
-  // Free zoom with mouse wheel
-  const handleWheel = (e: React.WheelEvent) => {
-    e.preventDefault();
-    const delta = -e.deltaY * 0.0001; // adjust sensitivity
-    setScale(prev => prev + delta); // no limits
-  };
-
+  size,
+  setSize,
+  position,
+  setPosition,
+  zoom,
+  setZoom,
+  handleWheel,
+  inputId,
+  containerRef
+  } = useCardEditor(title, description,"card2");
 
   return (
     <div className="col-start-6 col-end-8 row-start-1 row-end-6 ">
@@ -218,7 +207,12 @@ const EditCard2 = ({ title, description, color = '' }: Props) => {
             </div>
           )}
 
-          <input type="file" id="fileInputYellow" style={{ display: "none" }} onChange={handleFileChange} />
+           <input
+                id={inputId}
+                type="file"
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+            />
         </div>
       </div>
     </div>

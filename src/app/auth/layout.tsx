@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,33 +19,31 @@ export const metadata: Metadata = {
 
 export default function AuthLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-   
-    <html lang="en" >
+    <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased hide-scrollbar flex flex-col ` }
-    
+        className={`${geistSans.variable} ${geistMono.variable} antialiased hide-scrollbar flex flex-col`}
       >
-        <div className="absolute w-full h-full overflow-hidden">
-          <Image
+        {/* Background Image */}
+        <div className="absolute w-full h-full overflow-hidden" >
+          <Image 
             src="/assets/Login.svg"
             alt="background"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" ,display:"block" , maxInlineSize:'100%'}}
+            priority
           />
         </div>
-        
-        
+
+        {/* Content */}
         <div className="flex flex-row ml-auto h-full w-full">
-                {/* Right section */}
-                <div className="flex  items-center justify-center flex-1">
-                   {children}
-                </div>
-            </div>
-         
+          <div className="flex items-center justify-center flex-1">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );
