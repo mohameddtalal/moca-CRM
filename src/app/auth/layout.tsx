@@ -28,9 +28,9 @@ export default function AuthLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased hide-scrollbar flex flex-col`}
       >
         {/* Background Image */}
-        <div className="absolute w-full h-full overflow-hidden" >
+        <div className="overflow-hidden" >
           <Image
-          src="/assets/Login.svg"
+          src="/assets/Login.png"
           alt="background"
           fill
           priority
@@ -39,7 +39,7 @@ export default function AuthLayout({
         </div>
 
         {/* Content */}
-        <div className="flex flex-row ml-auto h-full w-full">
+        <div className=" flex flex-row ml-auto h-full w-full">
           <div className="flex items-center justify-center flex-1">
             {children}
           </div>
