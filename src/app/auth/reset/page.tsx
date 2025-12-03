@@ -115,6 +115,7 @@ const Page = () => {
             >
               Send
             </button>
+            
           </div>
         )}
 
@@ -132,14 +133,14 @@ const Page = () => {
 
             <p
               className="card-description-md mt-2"
-              style={{ color: "var(--black)", fontSize: 'clamp(0.625rem, -0.125rem + 1.1719vw, 1rem)' }}
+              style={{ color: "var(--black)", fontSize: 'clamp(0.625rem, -0.125rem + 1.1719vw, 1.1rem)' }}
             >
               We’ve received your request to change your password.
             </p>
 
             <p
               className="mt-4"
-              style={{ color: "#565656", fontSize: '10px' }}
+              style={{ color: "var(--focus-border)", fontSize: '14px' }}
             >
               Click on the button below to reset your password, you have 24 hours before it expires. <br />
               After that you will have to request for a new one.
@@ -152,13 +153,32 @@ const Page = () => {
                 width: "182px",
                 height: "48px",
                 borderRadius: "1536px",
-                color: "#F7F7F7",
+                color: "var(--background)",
                 cursor: "pointer",
                 marginTop: "40px",
               }}
             >
               Reset Password
             </button>
+            <div style={{height:"1px", background:"var(--hot-purple)", marginBottom:"12px",marginTop:"32px",width:"100%"}}></div>
+             <div style={{display:'flex', justifyContent:'center', gap:'24px',
+              flexDirection:'row'
+             }}>
+                <Image
+                  src="/assets/linked.svg"
+                  alt="linkedin"
+                  width={25}
+                  height={25}/>
+                  <Image
+                  src="/assets/instagram.svg"
+                  alt="instagram"
+                  width={25}
+                  height={25}/>
+             </div>
+             <div style={{height:"1px", background:"var(--hot-purple)", margin:"12px 0",width:"100%"}}></div>
+             <p className="card-description-sm" style={{ color: "#9E9E9E", fontSize: '11px' }}>
+              Sent from <span style={{color:"var(--hot-purple)"}}>Moca</span><br/> Together, We Reshape The Future of Work..
+             </p>
           </div>
         )}
 
