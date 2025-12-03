@@ -1,6 +1,7 @@
-'use client'; // keep this if children (LoginEdit) uses state/events
+"use client"; 
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
+import { useEffect, useState } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,24 +13,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function AuthLayout({ children }: { children: React.ReactNode }) {
+interface AuthLayoutProps {
+  children: React.ReactNode;
+  backgroundImage?: string | null; // <-- added
+}
+
+export default function AuthLayout({ children, backgroundImage }: AuthLayoutProps) {
+  const defaultBg = "/assets/Login.png";
+
+
   return (
     <div
       className={`${geistSans.variable} ${geistMono.variable} antialiased hide-scrollbar flex flex-col relative w-full h-full`}
     >
-      {/* Background Image */}
-      <div className="-z-10 h-full ">
-        <Image
-          src="/assets/Login.png"
-          alt="background"
-          fill
-          priority
-          className="object-cover h-full"
-        />
-      </div>
+      {/* Background */} 
+      {backgroundImage ? (
+        <div className="-z-10 absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})`}} /> ) : (
+        <div className="-z-10 absolute inset-0"> <Image src={defaultBg} alt="background" fill priority className="object-cover" /> </div> )}
 
       {/* Content */}
-      <div className="flex flex-row ml-auto h-full w-full">
+      <div className="flex flex-row ml-auto h-full w-full relative z-10">
         <div className="flex items-center justify-center flex-1">
           {children}
         </div>

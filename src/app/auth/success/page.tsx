@@ -25,7 +25,7 @@ const Page = () => {
         }}
       >
         {/* Title */}
-        <div className="text-center justify-center items-center mb-10">
+        <div className="text-center justify-center items-center ">
           <p
             className="text-[34px]"
             style={{ fontFamily: "Athena Signature", color: "var(--hot-purple)" }}
@@ -38,9 +38,15 @@ const Page = () => {
             alt="logo"
             width={115}
             height={24}
-            style={{ display: "flex", justifyContent: "center" ,marginBottom:'100px'}}
+            style={{ display: "flex", justifyContent: "center" ,marginBottom:'48px'}}
           />
+
         </div>
+        <Image src="/assets/gif.gif"  style={{marginBottom:'48px'}}
+        alt="gif"
+        width={106}
+        height={95}
+        />
         <div className="text-center w-full">
             <h2
               className="card-title-md font-semibold"

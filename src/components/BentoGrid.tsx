@@ -97,7 +97,7 @@ isEditMode[cardKey]??false;
             isAuthorized={isAuthorized("Card10")}
             />
         <Card11 title="Control Room"
-            description="Serves as the central command center of the platform, giving administrators full oversight and configuration power across the entire system. "
+            description="Configure & personalize modules settings for optimal space management. "
             color="bg-[var(--skin-pink)]"
             isEditMode={isEdit("Card11")}
             isAuthorized={isAuthorized("Card11")}

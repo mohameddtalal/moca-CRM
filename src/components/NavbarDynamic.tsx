@@ -30,7 +30,7 @@ setIsSearchOpen(prev => !prev)   // toggle input
                  <div className="card-title-sm" style={{marginBottom:'0px' , color:'var(--black)'}}>
                     <p>{selectedTitle}</p>
                  </div>
-                  <div className="card-description-md" style={{marginTop:'0px',color:'var(--black)'}}  >
+                  <div className="" style={{marginTop:'0px',color:'var(--black)',fontSize:'16px'}}  >
                     <p>{selectedButton}</p>
                  </div>
 
