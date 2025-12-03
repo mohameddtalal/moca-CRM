@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { ButtonRounded } from "@/components/Button";
 import Image from 'next/image';
+import { useCardEditor } from "@/components/hooks/useCardEditor";
+import { useRouter } from "next/navigation";
 
 interface Card1Props {
   title: string;
@@ -11,10 +13,13 @@ interface Card1Props {
 }
 
 const Card1 = ({ title, description, color }: Card1Props) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [isAuthorized, setIsAuthorized] = useState(true); // added
-
-  const handleFlip = () => setIsFlipped(!isFlipped);
+  const router = useRouter();
+   const {
+    handleSelect,
+    isFlipped,
+    handleFlip,
+     } = useCardEditor(title, description,"card1");
+   
 
   return (
     <div

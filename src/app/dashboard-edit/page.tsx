@@ -8,7 +8,7 @@ const Page=() => {
   return (
     <div className="flex flex-col" style={{ flex: 1 }}>
       <NavbarDynamic/>
-      <ScrollingHeader />
+      
         <BentoGrid/>
         
       </div>

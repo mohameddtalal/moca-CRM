@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { ButtonSmall } from '../../Button_sm';
+import { useCardEditor } from '@/components/hooks/useCardEditor';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   title: string;
@@ -11,9 +13,13 @@ interface Props {
 }
 
 const NormalCard10 = ({ title, description, color = '' }: Props) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  const handleFlip = () => setIsFlipped(prev => !prev);
+  const router = useRouter();
+   const {
+    handleSelect,
+    isFlipped,
+    handleFlip,
+     } = useCardEditor(title, description,"card10");
+   
 
   return (
     <div className="col-start-3 col-end-6 row-start-10 row-end-13" style={{ width: '100%' }}>

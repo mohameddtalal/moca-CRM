@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { ButtonRounded } from '../../Button';
 import { ButtonSmall } from '@/components/Button_sm';
+import { useCardEditor } from '@/components/hooks/useCardEditor';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   title: string;
@@ -13,11 +15,13 @@ interface Props {
 }
 
 const NormalCard2 = ({ title, description, color = '' }: Props) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const handleFlip = (e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    setIsFlipped(prev => !prev);
-  };
+ const router = useRouter();
+  const {
+   handleSelect,
+   isFlipped,
+   handleFlip,
+    } = useCardEditor(title, description,"card2");
+  
 
   return (
     <div className="col-start-6 col-end-8 row-start-1 row-end-6" style={{ width: '100%' }}>

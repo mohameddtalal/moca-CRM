@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { useNav } from '../Context/Navcontext';
 
 export function useCardEditor(
   initialTitle: string,
@@ -11,7 +12,13 @@ export function useCardEditor(
   // TEXT STATE
   // -----------------------
   const [title, setTitle] = useState(initialTitle);
+  const { setSelectedTitle, setSelectedButton } = useNav();
   const [description, setDescription] = useState(initialDescription);
+
+   const handleSelect = (buttonName: string) => {
+    setSelectedTitle(title);           
+    setSelectedButton(buttonName);      
+  };
 
   // -----------------------
   // FLIP CARD STATE
@@ -93,5 +100,6 @@ export function useCardEditor(
 
     // ref
     containerRef,
+     handleSelect
   };
 }
