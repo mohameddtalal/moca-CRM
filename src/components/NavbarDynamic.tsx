@@ -26,7 +26,7 @@ setIsSearchOpen(prev => !prev)   // toggle input
                         />
                     </div>
                 </Link>
-                <div className="" style={{display:'flex' , flexDirection:'column' , justifyContent:'center' ,alignItems:'center', padding:'16px 0px', gap:'3px' }}>
+                <div className="" style={{display:'flex' , flexDirection:'column' , justifyContent:'center' ,alignItems:'center', padding:'16px 0px', gap:'3px',width:"100%" }}>
                  <div className="card-title-sm" style={{marginBottom:'0px' , color:'var(--black)'}}>
                     <p>{selectedTitle}</p>
                  </div>
