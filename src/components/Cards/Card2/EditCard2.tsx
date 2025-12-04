@@ -13,31 +13,31 @@ interface Props {
 }
 
 const EditCard2 = ({ title, description, color = "" }: Props) => {
+  
    const {
-    // flip
     isFlipped,
-  handleFlip,
+    handleFlip,
+    title: editableTitle,
+    setTitle: setEditableTitle,
+    description: editableDescription,
+    setDescription: setEditableDescription,
+    uploadedImage,
+    handleUploadClick,
+    handleFileChange,
+    resetImage: handleDeleteImage,
+    size,
+    setSize,
+    position,
+    setPosition,
+    zoom,
+    setZoom,
+    handleWheel,
+    inputId,
+    containerRef,
+    saveToLocal   // ⬅ HERE
+} = useCardEditor(title, description,"card2");
 
-  title: editableTitle,
-  setTitle: setEditableTitle,
-  description: editableDescription,
-  setDescription: setEditableDescription,
-
-  uploadedImage,
-  handleUploadClick,
-  handleFileChange,
-  resetImage: handleDeleteImage,
-
-  size,
-  setSize,
-  position,
-  setPosition,
-  zoom,
-  setZoom,
-  handleWheel,
-  inputId,
-  containerRef
-  } = useCardEditor(title, description,"card2");
+  
 
   return (
     <div className="col-start-6 col-end-8 row-start-1 row-end-6 ">
@@ -84,7 +84,7 @@ const EditCard2 = ({ title, description, color = "" }: Props) => {
               />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column',gap: 'clamp(0.2rem, -0.25rem + 0.9766vw, 0.4rem)'}}>
-              <button onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })} style={{ cursor: "pointer" }}>
+              <button onClick={saveToLocal} style={{ cursor: "pointer" }}>
                 <Image src="/assets/Save2.svg" alt="save" width="14" height="19" className='icons-clamp-sm' />
               </button>
               <button onClick={handleFlip} style={{ cursor: "pointer" }}>
@@ -123,7 +123,7 @@ const EditCard2 = ({ title, description, color = "" }: Props) => {
             style={{ display: "flex", flexDirection: "column", gap: 'clamp(0.2rem, -0.25rem + 0.9766vw, 0.4rem)', zIndex: 10 }}
           >
             <button
-              onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })}
+              onClick={saveToLocal}
               style={{ cursor: "pointer", pointerEvents: "auto" }}
             >
               <Image src="/assets/Save2.svg" alt="save" width="14" height="19" className='icons-clamp-sm'/>

@@ -34,7 +34,8 @@ const EditCard6 = ({ title, description, color = "" }: Props) => {
    setZoom,
    handleWheel,
   inputId,
-  containerRef
+  containerRef,
+  saveToLocal
    } = useCardEditor(title, description,"card6");
   return (
     <div className="col-start-3 col-end-6 row-start-6 row-end-10" style={{ width: '100%' }}>
@@ -80,7 +81,7 @@ const EditCard6 = ({ title, description, color = "" }: Props) => {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column',gap: 'clamp(0.2rem, -0.25rem + 0.9766vw, 0.4rem)' }}>
-              <button style={{ cursor: "pointer" }}>
+              <button onClick={saveToLocal} style={{ cursor: "pointer" }}>
                 <Image src="/assets/Save6.svg" alt="save" width={14} height={17} className='icons-clamp-sm'/>
               </button>
               <button onClick={handleFlip} style={{ cursor: "pointer" }}>
@@ -104,7 +105,7 @@ const EditCard6 = ({ title, description, color = "" }: Props) => {
         >
           {/* Top-right controls */}
           <div className="absolute top-6 right-6" style={{ display: "flex", flexDirection: "column", gap: 'clamp(0.2rem, -0.25rem + 0.9766vw, 0.4rem)', zIndex: 10 }}>
-            <button style={{ cursor: "pointer", pointerEvents: "auto" }}>
+            <button onClick={saveToLocal} style={{ cursor: "pointer", pointerEvents: "auto" }}>
               <Image src="/assets/Save6.svg" alt="save" width={14} height={19} className='icons-clamp-sm'/>
             </button>
             <button onClick={handleFlip} style={{ cursor: "pointer", pointerEvents: "auto" }}>

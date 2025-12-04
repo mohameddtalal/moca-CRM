@@ -34,7 +34,8 @@ const EditCard8 = ({ title, description, color = "" }: Props) => {
    setZoom,
    handleWheel,
    inputId,
-   containerRef
+   containerRef,
+   saveToLocal
    } = useCardEditor(title, description,"card8");
 
   return (
@@ -82,7 +83,7 @@ const EditCard8 = ({ title, description, color = "" }: Props) => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
               <button
-                onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })}
+                onClick={saveToLocal}
                 style={{ cursor: "pointer" }}
               >
                 <Image src="/assets/Save8.svg" alt="save" width={14} height={22} className="icons-clamp-sm"/>
@@ -110,7 +111,7 @@ const EditCard8 = ({ title, description, color = "" }: Props) => {
           {/* Top-right buttons */}
           <div className="absolute top-6 right-6" style={{ display: 'flex', flexDirection: 'column', gap: '9px', zIndex: 10 }}>
             <button
-              onClick={() => console.log("Save clicked", { title: editableTitle, description: editableDescription })}
+              onClick={saveToLocal}
               style={{ cursor: "pointer", pointerEvents: 'auto' }}
             >
               <Image src="/assets/Save8.svg" alt="save" width={14} height={19} className="icons-clamp-sm"/>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNav } from '../Context/Navcontext';
 
 export function useCardEditor(
@@ -9,29 +9,76 @@ export function useCardEditor(
   cardId: string
 ) {
   // -----------------------
-  // TEXT STATE
+  // Load saved data from localStorage on mount
   // -----------------------
   const [title, setTitle] = useState(initialTitle);
-  const { setSelectedTitle, setSelectedButton } = useNav();
   const [description, setDescription] = useState(initialDescription);
 
-   const handleSelect = (buttonName: string) => {
-    setSelectedTitle(title);           
-    setSelectedButton(buttonName);      
-  };
+  useEffect(() => {
+  const saved = localStorage.getItem(`card-${cardId}`);
+
+  if (saved) {
+    const {
+      savedTitle,
+      savedDescription,
+      savedImage,
+      savedSize,
+      savedPosition,
+      savedZoom,
+    } = JSON.parse(saved);
+
+    if (savedTitle) setTitle(savedTitle);
+    if (savedDescription) setDescription(savedDescription);
+    if (savedImage) setUploadedImage(savedImage);
+    if (savedSize) setSize(savedSize);
+    if (savedPosition) setPosition(savedPosition);
+    if (savedZoom) setZoom(savedZoom);
+  }
+}, [cardId]);
+
+
 
   // -----------------------
-  // FLIP CARD STATE
+  // Save function
+  // -----------------------
+  const saveToLocal = () => {
+  localStorage.setItem(
+    `card-${cardId}`,
+    JSON.stringify({
+      savedTitle: title,
+      savedDescription: description,
+      savedImage: uploadedImage,
+      savedSize: size,
+      savedPosition: position,
+      savedZoom: zoom,
+    })
+  );
+};
+
+
+
+  // -----------------------
+  // SELECTED CARD (your existing)
+  // -----------------------
+  const { setSelectedTitle, setSelectedButton } = useNav();
+
+  const handleSelect = (buttonName: string) => {
+    setSelectedTitle(title);
+    setSelectedButton(buttonName);
+  };
+
+
+  // -----------------------
+  // FLIP CARD
   // -----------------------
   const [isFlipped, setIsFlipped] = useState(false);
   const handleFlip = () => setIsFlipped((prev) => !prev);
+
 
   // -----------------------
   // IMAGE STATE
   // -----------------------
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
-
-  // Unique input ID per card
   const inputId = `fileInput-${cardId}`;
 
   const handleUploadClick = () => {
@@ -49,10 +96,22 @@ export function useCardEditor(
     reader.readAsDataURL(file);
   };
 
-  const resetImage = () => setUploadedImage(null);
+  const resetImage = () => {
+  setUploadedImage(null);
+
+  // remove image only from stored card data
+  const saved = localStorage.getItem(`card-${cardId}`);
+  if (saved) {
+    const parsed = JSON.parse(saved);
+    parsed.savedImage = null;
+    localStorage.setItem(`card-${cardId}`, JSON.stringify(parsed));
+  }
+};
+
+
 
   // -----------------------
-  // IMAGE POSITIONING + ZOOM
+  // IMAGE POSITION + ZOOM
   // -----------------------
   const [size, setSize] = useState({ width: 250, height: 200 });
   const [position, setPosition] = useState({ x: 20, y: 20 });
@@ -64,29 +123,32 @@ export function useCardEditor(
     setZoom((prev) => Math.min(Math.max(prev + delta, 0.2), 4));
   };
 
+
   // -----------------------
-  // PARENT CONTAINER REF
+  // REF
   // -----------------------
   const containerRef = useRef<HTMLDivElement>(null);
 
+
+  // -----------------------
+  // RETURN everything
+  // -----------------------
   return {
-    // flip
     isFlipped,
     handleFlip,
 
-    // text
     title,
     setTitle,
     description,
     setDescription,
 
-    // image
+    saveToLocal,
+
     uploadedImage,
     handleUploadClick,
     handleFileChange,
     resetImage,
 
-    // image manipulation
     size,
     setSize,
     position,
@@ -95,11 +157,9 @@ export function useCardEditor(
     setZoom,
     handleWheel,
 
-    // unique input ID
     inputId,
-
-    // ref
     containerRef,
-     handleSelect
+
+    handleSelect
   };
 }

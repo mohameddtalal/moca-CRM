@@ -34,7 +34,8 @@ const EditCard1 = ({ title, description, color = "" }: Card1Props) => {
    setZoom,
    handleWheel,
    inputId,
-   containerRef
+   containerRef,
+   saveToLocal
    } = useCardEditor(title, description,"card1");
   
 
@@ -98,7 +99,7 @@ const EditCard1 = ({ title, description, color = "" }: Card1Props) => {
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
                     <button
-                      onClick={() => console.log({ title: editableTitle, description: editableDescription })}
+                      onClick={saveToLocal}
                       style={{ cursor: 'pointer' }}
                     >
                       <Image src="/assets/Save.svg" alt="save" width={20} height={25} className="icons-clamp-lg"/>
@@ -138,7 +139,7 @@ const EditCard1 = ({ title, description, color = "" }: Card1Props) => {
                 }}
               >
                 <div className="absolute top-6 right-6" style={{ display: "flex", flexDirection: "column", gap: '9px', zIndex: 10 }}>
-                  <button onClick={() => console.log({ title: editableTitle, description: editableDescription })} style={{cursor:"pointer"}}>
+                  <button onClick={saveToLocal} style={{cursor:"pointer"}}>
                     <Image src="/assets/Save.svg" alt="save" width={20} height={20} className="icons-clamp-lg"/>
                   </button>
                   <button onClick={handleFlip} style={{cursor:"pointer"}}>
