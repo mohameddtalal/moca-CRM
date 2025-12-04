@@ -8,7 +8,7 @@ const LockedCard3 = () => {
     <div
               className="col-start-8 col-end-11 row-start-1 row-end-8 card-bg"
               style={{
-                backgroundColor: "var(--purple)",
+                backgroundColor: "var(--purple)",  //color
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
