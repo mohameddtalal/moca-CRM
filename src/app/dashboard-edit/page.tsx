@@ -144,7 +144,14 @@ const handleBack = () => {
         ) : (
           <>
             <ScrollingHeader />
+            <div style={{display:'flex',flexDirection:'row'}}>
             <BentoGrid />
+            <div className="absolute top-1/3.01 right-0" style={{marginRight:'clamp(0.1875rem, 0.0462rem + 0.3425vw, 0.375rem)',marginLeft:'clamp(0.1875rem, 0.0462rem + 0.3425vw, 0.375rem)'}}>
+             <button onClick={handlePublish} style={buttonStyle} >
+                  <Image src="/assets/publish.svg" alt="Arrow" width={22} height={22} />
+                </button>
+              </div>
+            </div>
           </>
         )}
       </div>
