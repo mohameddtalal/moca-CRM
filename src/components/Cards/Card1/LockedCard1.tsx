@@ -1,9 +1,9 @@
-// components/Cards/Card11/Locked.tsx
+
 'use client';
 
 import Image from 'next/image';
 
-const LockedCard11 = () => {
+const LockedCard1 = () => {
   return (
     <div
       className="relative col-start-1 col-end-6 row-start-1 row-end-6"
@@ -42,17 +42,11 @@ const LockedCard11 = () => {
             }}
           >
         
-            <p
-              className="card-title-lg"
-              style={{ color: "var(--hot-purple)", marginBottom: "24px" }}
-            >
-              Moca – My Office & Coffee Assistant
-            </p>
             <Image
             className="mt-auto"
               src="/assets/card1.svg"
               alt="locked"
-              width={152}
+              width={645}
               height={272}
             />
           </div>
@@ -60,4 +54,4 @@ const LockedCard11 = () => {
   );
 };
 
-export default LockedCard11;
+export default LockedCard1;

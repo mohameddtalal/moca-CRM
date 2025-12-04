@@ -8,8 +8,6 @@ const LockedCard5 = () => {
    <div
              className="col-start-1 col-end-3 row-start-6 row-end-10 card-bg"
              style={{
-               width: '100%',
-               height: '100%',
                backgroundColor: 'var(--skin-pink)',
                alignItems: 'center',
                display: 'flex',
@@ -20,8 +18,8 @@ const LockedCard5 = () => {
              <Image
                src="/assets/card5.svg"
                alt="locked"
-               width={150}
-               height={150}
+               width={162}
+               height={162}
              />
            </div>
   );

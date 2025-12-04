@@ -8,8 +8,6 @@ const LockedCard6 = () => {
     <div
       className="col-start-3 col-end-6 row-start-6 row-end-10 rounded-lg"
       style={{
-        width: '100%',
-        height: '100%',
         borderRadius: '24px',
         backgroundColor: 'var(--purple)',
         alignItems: 'center',
