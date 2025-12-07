@@ -1,14 +1,9 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 
-const NotificationList: React.FC = () => {
+
+const NotificationList = () => {
   const [activeNotifications, setActiveNotifications] = useState("Today");
-  const [activeTodos, setActiveTodos] = useState("Open");
-  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
-  const [showCalendar, setShowCalendar] = useState<number | null>(null);
-  const [isStarred, setIsStarred] = useState(false);
-
-  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const notifications = [
     {
@@ -43,7 +38,7 @@ const NotificationList: React.FC = () => {
     {
       id: 5,
       title:
-        "Renew Moca lease contract. Your request has been scheduled on Thursday, August 10 at 10am.",
+        "Renew Moca [Location Name] lease contract with [Landlord Commercial Name]. Your request has been scheduled on Thursday, August 10 at 10am.",
       time: "1 hour ago",
       isNew: true,
       hasMore: true,
@@ -51,7 +46,7 @@ const NotificationList: React.FC = () => {
     {
       id: 6,
       title:
-        "A new Book a Tour request has been scheduled on Thursday, August 10 at 10am.",
+        "A new Book a Tour request has been scheduled on Thursday, August 10 at 10am...",
       time: "1 hour ago",
       isNew: false,
       hasMore: true,
@@ -59,119 +54,165 @@ const NotificationList: React.FC = () => {
   ];
 
   return (
-      
     <div
-      ref={scrollRef}
-      className="card-bg custom-scroll"
+      className="flex flex-col"
       style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-        maxHeight: "calc(100vh - 140px)",
-        overflowY: "auto",
-        paddingRight: "8px",
+        flex: 1,
+        backgroundColor: "transparent",
+        padding: "20px",
+        marginLeft: "clamp(1rem, 0rem + 3.125vw, 3rem)",
       }}
     >
-      {notifications.map((notif) => (
-        <div
-          key={notif.id}
+      {/* HEADER */}
+      <div className="flex flex-row ">
+        <h1
           style={{
-            backgroundColor: "var(--navbar)",
-            borderRadius: "32px",
-            padding: "20px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            opacity: notif.isNew ? 1 : 0.6,
-            transition: "opacity 0.3s ease",
+     
+            color: "var(--hot-purple)",
+            fontSize: "24px",
+            fontWeight: "600",
+            marginBottom: "20px",
+            letterSpacing: "1px",
           }}
         >
-          <div style={{ flex: 1, display: "flex", gap: "12px" }}>
-            {notif.isNew && (
-              <div
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  backgroundColor: "#B433FF",
-                  marginTop: "6px",
-                  flexShrink: 0,
-                }}
-              />
-            )}
+          NOTIFICATIONS
+        </h1>
 
-            <div style={{ flex: 1 }}>
-              <p
-                style={{
-                  color: "#fff",
-                  margin: "0 0 8px 0",
-                  fontSize: "14px",
-                  fontWeight: notif.isNew ? "600" : "400",
-                }}
-              >
-                {notif.title}
-              </p>
+        {/* Tabs */}
+     <div
+          className="flex justify-center"
+          style={{
+            backgroundColor: "var(--navbar)",
+            borderRadius: "50px",
+            padding: "5px",
+            display: "flex",
+            gap: "4px",
+            width: "fit-content",
+            margin: "0 auto", // <-- centers it perfectly
+          }}
+        >
+          <button
+            onClick={() => setActiveNotifications("Today")}
+            style={{
+              backgroundColor:
+                activeNotifications === "Today" ? "#D489FF" : "transparent",
+              color:
+                activeNotifications === "Today" ? "#2C2C2C" : "#B433FF",
+              width: "98px",
+              height: "40px",
+              borderRadius: "50px",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              fontWeight: "500",
+            }}
+          >
+            Today
+          </button>
 
-              {notif.description && (
+          <button
+            onClick={() => setActiveNotifications("Previous")}
+            style={{
+              backgroundColor:
+                activeNotifications === "Previous" ? "#D489FF" : "transparent",
+              color:
+                activeNotifications === "Previous" ? "#2C2C2C" : "#B433FF",
+              width: "98px",
+              height: "40px",
+              borderRadius: "50px",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              fontWeight: "500",
+            }}
+          >
+            Previous
+          </button>
+        </div>
+
+       
+      </div>
+
+      {/* ✨ MAIN WHITE GLASS CARD ✨ */}
+      <div
+        style={{
+          borderRadius: "30px",
+          padding: "30px",
+          maxHeight: "calc(100vh - 180px)",
+          overflowY: "auto",
+          boxShadow: "0px 4px 20px rgba(0,0,0,0.08)",
+          clipPath: "inset(0 round 30px)", // Important!
+        }}
+      >
+        {notifications.map((notif) => (
+          <div
+            key={notif.id}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "20px 0",
+              borderBottom: "1px solid rgba(0,0,0,0.05)",
+            }}
+          >
+            <div style={{ display: "flex", gap: "16px", flex: 1 }}>
+
+              {/* Text */}
+              <div style={{ flex: 1 }}>
                 <p
                   style={{
-                    color: "#999",
-                    margin: "0 0 8px 0",
-                    fontSize: "13px",
+                    color: "var(hot--purple)",
+                    fontSize: "15px",
+                    margin: 0,
+                    fontWeight: "600",
                   }}
                 >
-                  {notif.description}
+                  {notif.title}
                 </p>
-              )}
 
-              <div
-                style={{
-                  display: "flex",
-                  gap: "8px",
-                  alignItems: "center",
-                }}
-              >
+                {notif.description && (
+                  <p
+                    style={{
+                      color: "var(--black)",
+                      fontSize: "14px",
+                      marginTop: "6px",
+                      lineHeight: "1.4",
+                    }}
+                  >
+                    {notif.description}
+                  </p>
+                )}
+
                 <p
                   style={{
-                    color: "#666",
-                    margin: 0,
+                    color: "#aaa",
                     fontSize: "12px",
+                    marginTop: "8px",
                   }}
                 >
                   {notif.time}
                 </p>
-
-                {notif.hasMore && (
-                  <span
-                    style={{
-                      color: "#B433FF",
-                      fontSize: "12px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    See More
-                  </span>
-                )}
               </div>
             </div>
-          </div>
 
-          <button
-            style={{
-              backgroundColor: "var(--hot-purple)",
-              color: "#FFFFFF",
-              border: "none",
-              borderRadius: "1536px",
-              padding: "8px 24px",
-              cursor: "pointer",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
-          >
-            View
-          </button>
-        </div>
-      ))}
+            {/* View button */}
+            <button
+              style={{
+                backgroundColor: "var(--hot-purple)",
+                color: "white",
+                border: "none",
+                borderRadius: "25px",
+                padding: "10px 24px",
+                cursor: "pointer",
+                fontSize: "14px",
+                fontWeight: "500",
+                height: "40px",
+              }}
+            >
+              View
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
