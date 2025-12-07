@@ -16,7 +16,7 @@ const NotificationPage = () => {
 
         <div 
             className="flex flex-row justify-between h-full w-full" 
-            style={{ margin: "8px" }}
+            
         >
             <NotificationList/>
             <ToDo/>
