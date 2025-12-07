@@ -87,7 +87,7 @@ const Page = () => {
             </p>
 
             <div className="w-full mb-4">
-              <label className="card-description-sm" style={{ color: "#9E9E9E" }}>
+              <label className="card-description-sm flex flex-1" style={{ color: "#9E9E9E" ,marginBottom:'0px'}}>
                 E-Mail
               </label>
 

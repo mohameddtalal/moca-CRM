@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import Image from 'next/image';
 import { useState } from 'react';
-import { ButtonRounded } from '../../Button';
+import { ButtonRounded } from '../../buttons-arrow/Button';
 import { useNav } from "@/components/Context/Navcontext";
 import { useCardEditor } from "@/components/hooks/useCardEditor";
 

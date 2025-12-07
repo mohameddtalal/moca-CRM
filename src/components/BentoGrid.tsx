@@ -21,7 +21,7 @@ isEditMode?: Record<string, boolean>;
 
 const BentoGrid = ({ isEditMode={}, authorizationMap = {} }: BentoGridProps) => {
 const isAuthorized = (cardKey: string) =>
- authorizationMap[cardKey] ?? false; // default true for demo
+ authorizationMap[cardKey] ?? true; // default true for demo
 const isEdit = (cardKey:string)=>
 isEditMode[cardKey]??false;
     return (

@@ -1,5 +1,5 @@
-import Navbar from "@/components/Navbar";
-import ScrollingHeader from "../../components/ScrollingHeader";
+import Navbar from "@/components/Navbars/Navbar";
+import ScrollingHeader from "../../components/Scrollingheader/ScrollingHeader";
 import BentoGrid from "@/components/BentoGrid";
 
 const Page=() => {

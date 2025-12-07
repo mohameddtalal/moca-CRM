@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { Rnd } from 'react-rnd';
-import { ButtonSmall } from '@/components/Button_sm';
+import { ButtonSmall } from '@/components/buttons-arrow/Button_sm';
 import { useCardEditor } from '@/components/hooks/useCardEditor';
 
 

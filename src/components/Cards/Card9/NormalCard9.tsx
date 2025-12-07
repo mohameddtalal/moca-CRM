@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { ButtonSmall } from '../../Button_sm';
+import { ButtonSmall } from '../../buttons-arrow/Button_sm';
 import { useCardEditor } from '@/components/hooks/useCardEditor';
 import { useRouter } from 'next/navigation';
 

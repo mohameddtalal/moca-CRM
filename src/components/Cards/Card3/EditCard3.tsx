@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { Rnd } from 'react-rnd';
-import { ButtonRounded } from '../../Button';
+import { ButtonRounded } from '../../buttons-arrow/Button';
 import { useCardEditor } from '@/components/hooks/useCardEditor';
 
 interface Props {

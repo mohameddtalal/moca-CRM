@@ -3,8 +3,8 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { ButtonRounded } from '../../Button';
-import { ButtonSmall } from '@/components/Button_sm';
+import { ButtonRounded } from '../../buttons-arrow/Button';
+import { ButtonSmall } from '@/components/buttons-arrow/Button_sm';
 import { useRouter } from 'next/navigation';
 import { useCardEditor } from '@/components/hooks/useCardEditor';
 

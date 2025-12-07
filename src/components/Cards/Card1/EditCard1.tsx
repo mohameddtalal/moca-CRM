@@ -1,7 +1,7 @@
 'use client';
 import { useCardEditor } from '@/components/hooks/useCardEditor';
 import { Rnd } from "react-rnd";
-import { ButtonRounded } from "@/components/Button";
+import { ButtonRounded } from "@/components/buttons-arrow/Button";
 import Image from "next/image";
 
 interface Card1Props {

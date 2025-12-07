@@ -1,9 +1,9 @@
 'use client';
 import { useState } from "react";
-import NavbarDynamic from "@/components/NavbarDynamic";
+import NavbarDynamic from "@/components/Navbars/NavbarDynamic";
 import BentoGrid from "@/components/BentoGrid-edit";
-import LoginEdit from "@/components/LoginEdit";
-import ScrollingHeader from "@/components/ScrollingHeader";
+import LoginEdit from "@/components/LoginForEditBackground/LoginEdit";
+import ScrollingHeader from "@/components/Scrollingheader/ScrollingHeader";
 import AuthLayout from "../auth/layout";
 import Image from "next/image";
 

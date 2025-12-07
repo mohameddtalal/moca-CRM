@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { ButtonRounded } from "@/components/Button";
+import { ButtonRounded } from "@/components/buttons-arrow/Button";
 import Image from 'next/image';
 import { useCardEditor } from "@/components/hooks/useCardEditor";
 import { useRouter } from "next/navigation";

@@ -3,7 +3,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { ButtonRounded } from '../../Button';
+import { ButtonRounded } from '../../buttons-arrow/Button';
 import { useRouter } from 'next/navigation';
 import { useCardEditor } from '@/components/hooks/useCardEditor';
 

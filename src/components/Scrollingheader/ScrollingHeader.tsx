@@ -1,9 +1,9 @@
 'use client'
 
 import Image from "next/image";
-import PathIcon1 from '../../public/assets/path.svg';
-import PathIcon2 from '../../public/assets/path2.svg';
-import PathIcon3 from '../../public/assets/path3.svg';
+import PathIcon1 from '../../../public/assets/path.svg';
+import PathIcon2 from '../../../public/assets/path2.svg';
+import PathIcon3 from '../../../public/assets/path3.svg';
 
 
 const ScrollingHeader = () => {
