@@ -1,5 +1,5 @@
 "use client"
-
+import { useRouter } from "next/navigation";
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
@@ -9,7 +9,7 @@ const Navbar = () => {
 const [isSearchOpen, setIsSearchOpen] = useState(false)
 const [searchText, setSearchText] = useState("")
  const { selectedTitle, selectedButton } = useNav();
-
+ const router = useRouter();
   const handleSearch = () => {
 setIsSearchOpen(prev => !prev)   // toggle input
   }
@@ -76,17 +76,16 @@ setIsSearchOpen(prev => !prev)   // toggle input
                     </div>
                     <div className="line"></div>
                     <div className="notifications"> 
-                        <button className="notification"> 
-                        <Link href="/"> 
-                                <Image 
+                        <button className="notification" style={{cursor:'pointer'}}
+                         onClick={() => router.push("/notificationPage")} > 
                                 
+                                <Image 
                                 className="notification-img" 
                                 src="/assets/notification.svg" 
                                 alt="notification" 
                                 width={24} 
                                 height={24} 
                                 /> 
-                        </Link> 
                           </button> 
                     </div>
                     <div className="line"></div>
