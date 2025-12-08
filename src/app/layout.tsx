@@ -53,6 +53,28 @@ export default function RootLayout({
             </clipPath>
           </defs>
         </svg> 
+        <svg width="0" height="0">
+          <clipPath id="notifClip" clipPathUnits="objectBoundingBox">
+            <path
+             d="
+              M0.934 0.10
+              L0.60 0.10
+              A0.067 0.05 0 0 1 0.54 0.05
+              L0.54 0.05
+              A0.067 0.05 0 0 0 0.47 0.00
+              L0.07 0.00
+              A0.067 0.05 0 0 0 0.00 0.05
+              L0.00 0.95
+              A0.067 0.05 0 0 0 0.07 1.00
+              L0.934 1.00
+              A0.067 0.05 0 0 0 1.00 0.95
+              L1.00 0.15
+              A0.067 0.05 0 0 0 0.934 0.10
+              Z
+            "
+            />
+          </clipPath>
+        </svg>
          <NavProvider>
           {children}
           </NavProvider>

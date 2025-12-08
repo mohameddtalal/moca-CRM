@@ -131,10 +131,10 @@ const ToDo = () => {
       style={{ marginRight: "clamp(1rem, 0rem + 3.125vw, 3rem)"}}
     >
       <div
-        className="flex flex-col justify-center card-bg"
+        className="flex flex-col justify-center card-bg "
         style={{ alignItems: "center", backgroundColor: "var(--navbar)" }}
       >
-        <div style={{ width: "clamp(15.625rem, 0.6793rem + 29.8913vw, 29.375rem)" }}>
+        <div style={{ width: "clamp(15.625rem, 0.6793rem + 29.8913vw, 25rem)" }}>
           <div
             style={{
               display: "flex",
@@ -146,8 +146,9 @@ const ToDo = () => {
           >
             <h2
               style={{
+                fontFamily:"GT Walsheim" ,
                 color: "#434343",
-                fontSize: "28px",
+                fontSize: "clamp(0.875rem, -1.3326rem + 3.211vw, 1.75rem)",
                 fontWeight: 600,
                 margin: 0,
               }}
@@ -175,8 +176,9 @@ const ToDo = () => {
                   border: "none",
                   cursor: "pointer",
                   transition: "all 0.3s ease",
-                  fontSize: "13px",
+                  fontSize: "clamp(0.625rem, 0.1519rem + 0.6881vw, 0.8125rem)",
                   fontWeight: 500,
+                  fontFamily:"GT Walsheim" ,
                 }}
               >
                 Open
@@ -192,8 +194,9 @@ const ToDo = () => {
                   border: "none",
                   cursor: "pointer",
                   transition: "all 0.3s ease",
-                  fontSize: "13px",
+                  fontSize: "clamp(0.625rem, 0.1519rem + 0.6881vw, 0.8125rem)",
                   fontWeight: 500,
+                    fontFamily:"GT Walsheim" ,
                 }}
               >
                 Completed
@@ -244,28 +247,29 @@ const ToDo = () => {
                         margin: "0 0 8px 0",
                         fontSize: "14px",
                         fontWeight: 600,
-                        color:`${todo.theme}`
+                        color:`${todo.theme}`,
+                        fontFamily:"GT Walsheim" ,
                       }}
                     >
                       {todo.title}
                     </p>
-                    <p style={{ margin: 0, fontSize: "12px", opacity: 0.9,color: todo.descriptionColor }}>
+                    <p style={{ margin: 0, fontSize: "12px", opacity: 0.9,color: todo.descriptionColor ,fontFamily:"GT Walsheim" ,}}>
                       {todo.description}
                     </p>
                   </div>
                   <div className="flex flex-col ">
                   <div className="rounded-lg bg-white flex flex-col items-center justify-center" style={{
-                    width: "48px",      // adjust as needed
-                    height: "48px",     // adjust as needed
+                    width: "clamp(1.5rem, -2.2844rem + 5.5046vw, 3rem)",      // adjust as needed
+                    height: "clamp(1.5rem, -2.2844rem + 5.5046vw, 3rem)",     // adjust as needed
                     borderRadius: "24px",
                     backgroundColor: "white",
                     }}>   
-                    <div style={{ fontSize: "18px", fontWeight: 700, lineHeight: 1 }}>
+                    <div style={{ fontSize: "clamp(0.5625rem, -0.8567rem + 2.0642vw, 1.125rem)", fontWeight: 700, lineHeight: 1 }}>
                         {todo.day}
                         </div>
-                        <div style={{ fontSize: "10px", opacity: 0.8 }}>{todo.month}</div>
+                        <div style={{ fontSize: "clamp(0.375rem, -0.2557rem + 0.9174vw, 0.625rem)", opacity: 0.8 }}>{todo.month}</div>
                     </div>
-                    <div style={{ fontSize: "10px", marginTop: "4px", opacity: 0.7 ,textAlign:"center"}}>
+                    <div style={{ fontSize: "clamp(0.375rem, -0.2557rem + 0.9174vw, 0.625rem)", marginTop: "4px", opacity: 0.7 ,textAlign:"center"}}>
                       {todo.label}
                     </div>
                     </div>
