@@ -373,7 +373,7 @@ const ToDo = () => {
                         setShowCalendar(showCalendar === index ? null : index)
                       }
                       style={{
-                        border: "1px solid color:` ${todo.theme}`",
+                        border: `1px solid ${todo.theme}`,
                         borderRadius: "1536px",
                         width:"140px",
                         height:'32px',
@@ -383,8 +383,8 @@ const ToDo = () => {
                         alignItems: "center",
                         gap: "4px",
                         cursor: "pointer",
-                        justifyContent: "space-between",
-                        color:` ${todo.theme}` // <-- key to push image to the end
+                        justifyContent: "space-between",// <-- key to push image to the end
+                        color:` ${todo.theme}` 
                       }}
                     >
                       Due Date <img src="/assets/calendar.svg"/>

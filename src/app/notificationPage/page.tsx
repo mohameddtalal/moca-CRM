@@ -9,19 +9,20 @@ const NotificationPage = () => {
   const [activeNotifications, setActiveNotifications] = useState("Today");
 
 
- 
+
   return (
     <div className="flex flex-col" style={{ flex: 1 }}>
-        <NavbarDynamic/>
+      <NavbarDynamic />
 
-        <div 
-            className="flex flex-row justify-between h-full w-full" 
-            
-        >
-            <NotificationList/>
-            <ToDo/>
-        </div>
-        </div>
+      <div
+        className="flex flex-row justify-between h-full w-full"
+      >
+
+        <NotificationList />
+        <ToDo />
+      </div>
+
+    </div>
   );
 };
 
