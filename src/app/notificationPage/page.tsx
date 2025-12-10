@@ -19,14 +19,20 @@ const NotificationPage = () => {
       >
 
         <NotificationList />
-       <div  className='absolute left-1/2 top-2 transform -translate-x-1/2 z-10'>
+       <div  className='   absolute  -translate-x-1/2 z-10
+       left-[30%] sm:left-[35%] md:left-[40%] lg:left-[45%] xl:left-[50%]
+            top-5      /* very small screens → highest */
+            sm:top-4    /* small screens */
+            md:top-3    /* medium screens */
+            lg:top-0   /* large screens */
+            xl:top-1    /* extra-large screens → lowest */'>
          {/* Tabs */}
         <div
           className="flex justify-center"
           style={{
             backgroundColor: "var(--navbar)",
             borderRadius: "50px",
-            padding: "5px",
+            padding: " clamp(0.3125rem, -1.169rem + 2.3148vw, 0.625rem) clamp(0.625rem, -2.338rem + 4.6296vw, 1.25rem)",
             display: "flex",
             gap: "4px",
             width: "fit-content",
@@ -41,13 +47,15 @@ const NotificationPage = () => {
                 activeNotifications === "Today" ? "#D489FF" : "transparent",
               color:
                 activeNotifications === "Today" ? "#2C2C2C" : "#B433FF",
-              width: "98px",
-              height: "40px",
+              width: "clamp(3.125rem, 0.8647rem + 5.4795vw, 6.125rem)",
+              height: "clamp(1.25rem, 0.3082rem + 2.2831vw, 2.5rem)",
               borderRadius: "50px",
               border: "none",
               cursor: "pointer",
               fontWeight: "500",
               transition: "0.3s",
+              fontSize:'clamp(0.4375rem, 0.1079rem + 0.7991vw, 0.875rem)',
+              fontFamily:"GT Walsheim "
             }}
           >
             Today
@@ -60,13 +68,15 @@ const NotificationPage = () => {
                 activeNotifications === "Previous" ? "#D489FF" : "transparent",
               color:
                 activeNotifications === "Previous" ? "#2C2C2C" : "#B433FF",
-              width: "98px",
-              height: "40px",
+              width: "clamp(3.125rem, 0.8647rem + 5.4795vw, 6.125rem)",
+              height: "clamp(1.25rem, 0.3082rem + 2.2831vw, 2.5rem)",
               borderRadius: "50px",
               border: "none",
               cursor: "pointer",
               fontWeight: "500",
               transition: "0.3s",
+              fontSize:'clamp(0.4375rem, 0.1079rem + 0.7991vw, 0.875rem)',
+              fontFamily:"GT Walsheim "
             }}
           >
             Previous

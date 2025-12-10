@@ -89,7 +89,8 @@ const NotificationList = () => {
             fontWeight: "600",
             letterSpacing: "1px",
             width: '100%',
-            marginBottom:"80px"
+            marginBottom:"80px",
+            fontFamily:"GT Walsheim "
 
           }}
         >
@@ -142,6 +143,7 @@ const NotificationList = () => {
                       fontWeight: isRead ? "500" : "700",
                       fontSize: "clamp(0.5rem, -0.6038rem + 1.6055vw, 0.9375rem)",
                       marginBottom: "6px",
+                      fontFamily:"GT Walsheim "
                     }}
                   >
                     {notif.title}
@@ -154,6 +156,7 @@ const NotificationList = () => {
                         fontWeight: isRead ? "500" : "700",
                         fontSize: "clamp(0.5rem, -0.6038rem + 1.6055vw, 0.9375rem)",
                         marginBottom: "6px",
+                         fontFamily:"GT Walsheim "
                       }}
                     >
                       {notif.description}
@@ -166,7 +169,7 @@ const NotificationList = () => {
                       fontWeight: isRead ? "500" : "700",
                       fontSize: "clamp(0.5rem, -0.6038rem + 1.6055vw, 0.9375rem)",
                       marginBottom: "6px",
-
+                      fontFamily:"GT Walsheim "
                     }}
                   >
                     {notif.time}
@@ -187,6 +190,7 @@ const NotificationList = () => {
                   cursor: "pointer",
                   fontSize: "clamp(0.5rem, -0.6038rem + 1.6055vw, 0.9375rem)",
                   height: "40px",
+                  fontFamily:"GT Walsheim "
                 }}
               >
                 View
