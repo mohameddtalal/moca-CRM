@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
 import NavbarDynamic from "@/components/Navbars/NavbarDynamic";
 import { useEffect, useRef } from "react";
@@ -20,12 +20,12 @@ const NotificationPage = () => {
 
         <NotificationList />
        <div  className='   absolute  -translate-x-1/2 z-10
-       left-[30%] sm:left-[35%] md:left-[40%] lg:left-[45%] xl:left-[50%]
-            top-5      /* very small screens → highest */
-            sm:top-4    /* small screens */
-            md:top-3    /* medium screens */
+       left-[38%] sm:left-[40%] md:left-[43%] lg:left-[45%] xl:left-[47%]
+            top-4      /* very small screens → highest */
+            sm:top-3   /* small screens */
+            md:top-2    /* medium screens */
             lg:top-0   /* large screens */
-            xl:top-1    /* extra-large screens → lowest */'>
+            xl:top-0    /* extra-large screens → lowest */'>
          {/* Tabs */}
         <div
           className="flex justify-center"

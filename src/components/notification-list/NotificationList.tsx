@@ -47,7 +47,7 @@ const NotificationList = () => {
     {
       id: 5,
       title:
-        "Renew Moca [Location Name] lease contract with [Landlord Commercial Name]. Your request has been scheduled on Thursday, August 10 at 10am.",
+        "Renew Moca [Location Name] lease contract with [Landlord Commercial Name]. ",
       time: "1 hour ago",
       isNew: true,
       hasMore: true,
@@ -104,7 +104,7 @@ const NotificationList = () => {
         style={{
           maxHeight: "calc(100vh - 180px)",
           overflowY: "auto",
-
+          padding:'16px 30px'
         }}
       >
         {notifications.map((notif) => {
@@ -181,16 +181,16 @@ const NotificationList = () => {
               <button
                 style={{
                   color: isRead ? "##F7F7F7" : "#F7F7F7",
-                  fontWeight: isRead ? "500" : "700",
+                  fontWeight: isRead ? "600" : "600",
                   backgroundColor: isRead ? "#D489FF" : "var(--hot-purple)",
-                  marginBottom: "6px",
                   border: "none",
                   borderRadius: "25px",
-                  padding: "10px 24px",
                   cursor: "pointer",
-                  fontSize: "clamp(0.5rem, -0.6038rem + 1.6055vw, 0.9375rem)",
-                  height: "40px",
-                  fontFamily:"GT Walsheim "
+                  fontSize: "14px",
+                  height: "33px",
+                  fontFamily:"GT Walsheim ",
+                  width:'62px'
+
                 }}
               >
                 View

@@ -16,7 +16,7 @@ setIsSearchOpen(prev => !prev)   // toggle input
     return (
         <nav className="navbar rounded-full">
             <div className="row">
-                <Link href="/">
+                <Link href="/dashboard">
                     <div className="logo">
                         <Image
                             src="/assets/Asset1.svg"
