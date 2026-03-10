@@ -3,9 +3,9 @@
 import { useRouter } from "next/navigation";
 import Image from 'next/image';
 import { useState } from 'react';
-import { ButtonRounded } from '../../buttons-arrow/Button';
-import { useNav } from "@/components/Context/Navcontext";
-import { useCardEditor } from "@/components/hooks/useCardEditor";
+import { ButtonRounded } from '@/components/buttons-arrow/Button';
+import { useNav } from "@/components/Dashboard/Context/Navcontext";
+import { useCardEditor } from "@/components/Dashboard/hooks/useCardEditor";
 
 interface Props {
   title: string;

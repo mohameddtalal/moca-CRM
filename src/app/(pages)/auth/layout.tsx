@@ -20,6 +20,15 @@ interface AuthLayoutProps {
 
 export default function AuthLayout({ children, backgroundImage }: AuthLayoutProps) {
   const defaultBg = "/assets/Login.png";
+  const [publishedBg, setPublishedBg] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const stored = window.localStorage.getItem("published-login-bg");
+    setPublishedBg(stored || null);
+  }, []);
+
+  const effectiveBg = backgroundImage ?? publishedBg;
 
 
   return (
@@ -27,8 +36,8 @@ export default function AuthLayout({ children, backgroundImage }: AuthLayoutProp
       className={`${geistSans.variable} ${geistMono.variable} antialiased hide-scrollbar flex flex-col relative w-full h-full`}
     >
       {/* Background */} 
-      {backgroundImage ? (
-        <div className="-z-10 absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})`}} /> ) : (
+      {effectiveBg ? (
+        <div className="-z-10 absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${effectiveBg})`}} /> ) : (
         <div className="-z-10 absolute inset-0"> <Image src={defaultBg} alt="background" fill priority className="object-cover" /> </div> )}
 
       {/* Content */}

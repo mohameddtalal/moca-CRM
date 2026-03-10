@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from 'react';
-import NavbarDynamic from "@/components/Navbars/NavbarDynamic";
+import NavbarDynamic from "@/components/Dashboard/Navbars/NavbarDynamic";
 import { useEffect, useRef } from "react";
-import ToDo from '@/components/notification-list/todo';
-import NotificationList from '@/components/notification-list/NotificationList';
+import ToDo from '@/components/Dashboard/Notifications/todo';
+import NotificationList from '@/components/Dashboard/Notifications/NotificationList';
 
 const NotificationPage = () => {
   const [activeNotifications, setActiveNotifications] = useState("Today");
