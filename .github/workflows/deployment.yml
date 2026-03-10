@@ -1,0 +1,18 @@
+name : deployement
+on: 
+    push:
+        branches: [main]
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: ssh-setup
+              run: |
+                mkdir -p ~/.ssh
+                cd ~/.ssh
+                echo "${{ secrets.SSHKEY }}" >> ~/.ssh/id_rsa
+                chmod 600 ~/.ssh/id_rsa
+                ssh-keyscan contact.getmoca.co >> known_hosts
+            - name: deploy-files
+              run: |
+                ssh -i ~/.ssh/id_rsa root@contact.getmoca.co "cd /var/www/moca-CRM&&git pull&&npm i&&npm run build&&systemctl restart moca-spaces-crm.service"
