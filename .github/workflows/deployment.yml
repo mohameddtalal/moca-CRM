@@ -15,4 +15,4 @@ jobs:
                 ssh-keyscan contact.getmoca.co >> known_hosts
             - name: deploy-files
               run: |
-                ssh -i ~/.ssh/id_rsa root@contact.getmoca.co "cd /var/www/moca-CRM&&git pull&&npm i&&npm run build&&systemctl restart moca-spaces-crm.service"
+                ssh -i ~/.ssh/id_rsa root@contact.getmoca.co "cd /var/www/moca-CRM&&git restore package-lock.json&&git pull&&npm i&&npm run build&&systemctl restart moca-spaces-crm.service"
